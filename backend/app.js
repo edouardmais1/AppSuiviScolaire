@@ -3,21 +3,41 @@
 //importer le module Express
 const express = require('express');
 
-
 const app = express();
 
 
-app.use(express.json());
+const indexRoute = require('./routes/index');
 
-//middleware appliqué à toutes les routes de notre API pour l'échange entre appli et serveur
-app.use((req, res, next) => {
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+//appliquer le css qui se trouve dans le dossier public
+app.use('/public', express.static('public'));
 
-   //passer l'éxécution au prochain middleware
-   next();
- });
+
+//définition du moteur d'affichage
+app.set('view engine', 'ejs');
+
+//définition route Page d'index
+app.use('/',indexRoute);
+
+
+//test de route
+
+app.get('/test',(req,res)=>{
+    res.send("hello world")
+})
+
+//définition route vers ...
+
+
+//définition route vers ...
+
+
+//définition route vers ...
+
+
+//définition route vers ...
+
+
+
 
 //exporter 'app.js'
 module.exports = app;
