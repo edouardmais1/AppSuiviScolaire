@@ -1,7 +1,11 @@
-//import module MySQL2
+'use strict'
+
+//IMPORTER LE PACKAGE MYSQL
 const mysql = require('mysql2');
+
+//IMPORTER LE FICHIER DOTENV
 const dotenv = require('dotenv');
-const app = require('./app');
+
 
 dotenv.config({path : './config.env'});
 
