@@ -1,12 +1,12 @@
 <template>
   <div id="nav">  
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark my-primary">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">App suivi scolaire</router-link>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
+        <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <router-link class="nav-link" to="/calendrier">Calendrier</router-link>
@@ -20,10 +20,12 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/contact">Contact</router-link>
             </li>
+          </ul>
+          <ul class="navbar-nav justify-content-end">       
             <li class="nav-item">
               <router-link class="nav-link" to="/inscription">Inscription</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <router-link class="nav-link" to="/connexion">Connexion</router-link>
             </li>
           </ul>
@@ -33,4 +35,26 @@
   </div>
 </template>
 <style scoped>
+  .my-primary{
+    background-color: #004C99;
+  }
+
+  .navbar-expand-md .navbar-nav .nav-link{
+    padding-left: 50px;
+
+  }
+  .nav-link{
+    font-size: 20px;
+  }
+
+  .navbar-brand{
+    font-size: 30px;
+  }
+
+  @media (min-width: 1200px){
+    .navbar-expand-md {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h1>This a connexion component</h1>
+        <h1>This a CONNEXION component</h1>
     </div>
 </template>
