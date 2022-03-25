@@ -1,20 +1,15 @@
 'use strict'
 
-//IMPORTER LE PACKAGE MYSQL
+//importe le module mysql2
 const mysql = require('mysql2');
 
-//IMPORTER LE FICHIER DOTENV
-const dotenv = require('dotenv');
-
-
-dotenv.config({path : './config.env'});
-
+//crée la connection avec la base de données
 let db = mysql.createConnection({
     host : '176.96.231.253',
-    user : process.env.user,
-    password : process.env.password,
-    name : process.env.name,
-    database : process.env.database
+    user : 'appscolaire',
+    password : 'appscolaireephec',
+    name : 'appscolaire',
+    database : 'appscolaire'
 });
 
 db.connect(function(err) {
@@ -27,18 +22,3 @@ db.connect(function(err) {
 
 module.exports = db;
 
-
-/*
-
-pour effectuer des requetes sur la db il faut :
-
---> const db = require("../../database");
-
-db.query('SELECT * FROM tb_users,(err,result)=>{
-  if(err) throw err;
-  console.log(result)
-})
-
---> placer ce query dans un get ou autres...
-
-*/

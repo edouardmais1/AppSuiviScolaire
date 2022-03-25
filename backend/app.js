@@ -1,24 +1,24 @@
 'use strict'
 
-//importe le package express
+//importe le module express
 const express = require("express");
 
-//import le package cors
+//import le module cors
 const cors = require("cors");
 
-
+//importe le fichier main.js
 const Route = require("./routes/main");
 
 //initisaliser express
 const app = express();
 
-//use express json
+//utiliser json
 app.use(express.json());
 
-//use cors
+//utiliser cors
 app.use(cors());
 
-//use router
+//utiliser le router NodeJS
 app.use('/',Route);
 
 app.listen(3000, () => console.log('Server running at http://localhost:3000'));

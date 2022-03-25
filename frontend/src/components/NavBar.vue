@@ -35,6 +35,22 @@
   </div>
 </template>
 <style scoped>
+
+  @font-face {
+    font-family: 'magical_holidayregular';
+    src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
+         url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+  .navbar-brand{
+    padding-top: 0;
+    font-family:'magical_holidayregular';
+    font-weight : 0;
+  }
+
   .my-primary{
     background-color: #004C99;
   }
@@ -45,6 +61,8 @@
   }
   .nav-link{
     font-size: 20px;
+    font-family:'magical_holidayregular';
+    font-weight : 0;
   }
 
   .navbar-brand{

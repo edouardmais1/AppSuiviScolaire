@@ -1,15 +1,31 @@
 'use strict'
 
-//CONTIENT LA ROUTE VERS LE FICHIER MAIN DE NOTRE APPLICATION
-
+//importe le module express
 const express = require('express');
 
 //initialiser le router express
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-    res.send("hello world")
-})
+//importe le fichier requests.js (contient le requetes vers la base de données)
+const request = require('../controllers/request');
+
+
+//API REST
+
+//GET METHODS
+router.get('/',request.getEleves);
+router.get('/users',request.getUtilisateur)
+
+
+//POST METHODS 
+
+
+//DELETE METHODS
+
+
+//PUT METHODS
+
+
 
 
 module.exports = router;
