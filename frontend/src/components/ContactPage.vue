@@ -10,7 +10,7 @@
                     <form>
                         <div class="form-group">
 
-                            <h3>Contact par téléphone:</h3><img class="logo" src="../../public/images/phone-solid.svg">
+                            <h3 class="form-title">Contact par téléphone:</h3><img class="logo" src="../../public/images/phone-solid.svg">
                         </div>
                         <div class="form-group">
                             <h6>Secrétariat: +32*********</h6>
@@ -28,7 +28,7 @@
                <div class="Shadowed-container-fluid">
                     <form>
                         <div class="form-group">
-                            <h3>Contact par mail:</h3><img class="logo" src="../../public/images/envelope-solid.svg">
+                            <h3 class="form-title">Contact par mail:</h3><img class="logo" src="../../public/images/envelope-solid.svg">
                         </div>
                         <div class="form-group">
                             <h4>Destinataire:</h4>
@@ -63,8 +63,11 @@
 
 
 <style>
+.form-control{
+    border-radius: 15px;
+}
 .ContactPage{
-    background-image: url("../../public/images/schoolbackground.jpg");
+    background-image: url("../../public/images/background-school-2.jpg");
     background-size: contain;
     padding-top: 10%;
     padding-bottom: 10%;
@@ -96,7 +99,9 @@
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
     -ms-border-radius: 20px;
-    background-color: #6dabe4;
+    background-color: #dedede;
     padding: 15px;
+    border: solid;
+    border-color: #6dabe4;
 }
 </style>

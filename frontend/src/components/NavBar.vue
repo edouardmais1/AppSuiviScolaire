@@ -27,10 +27,14 @@
           </ul>
           <ul class="navbar-nav justify-content-end">       
             <li>
+            <div class="souligner">
               <router-link class="nav-link" to="/inscription">Inscription</router-link>
+            </div>
             </li>
             <li>
+            <div class="souligner">
               <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
+            </div>
             </li>
           </ul>
         </div>  

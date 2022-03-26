@@ -88,6 +88,7 @@ input {
     border: none;
     border-bottom: 1px solid #999;
     padding: 6px 30px;
+    border-radius: 15px;
     box-sizing: border-box; }
     input::-webkit-input-placeholder {
         color: #999; }
@@ -145,16 +146,20 @@ label {
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
     -ms-border-radius: 20px; 
+    background-color: #dedede;
+    border: solid;
+    border-color: #6dabe4;
 }
 
 .form-title{
     font-family:'magical_holidayregular';
     font-weight: 20;
     margin-bottom: 33px;
+    text-decoration: underline
 }
 
 .connexion{
-    background-image: url("../../public/images/schoolbackground.jpg");
+    background-image: url("../../public/images/background-school-2.jpg");
     background-size: contain;
     padding-top: 10%;
     padding-bottom: 10%;
