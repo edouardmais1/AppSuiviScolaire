@@ -13,16 +13,16 @@
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <router-link class="nav-link" to="/calendrier">Calendrier </router-link>
+              <router-link class="nav-link" to="/calendrier"><img class="logo" src="../../public/images/calendar-regular.svg"> Calendrier </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/comportement">Comportement </router-link>
+              <router-link class="nav-link" to="/comportement"><img class="logo" src="../../public/images/exclamation-solid.svg">Comportement </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/bulletin">Bulletin </router-link>
+              <router-link class="nav-link" to="/bulletin"><img class="logo" src="../../public/images/file-lines-regular.svg"> Bulletin</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/contact">Contact<font-awesome-icon icon="fa-light fa-phone" /></router-link>
+              <router-link class="nav-link" to="/contact"><img class="logo" src="../../public/images/envelope-regular.svg"> Contact<font-awesome-icon icon="fa-light fa-phone" /></router-link>
             </li>
           </ul>
           <ul class="navbar-nav justify-content-end">       
@@ -54,9 +54,7 @@
   }
 
 
-  .nav{
-    margin-bottom: 20px;
-  }
+ 
   .navbar-brand{
     padding-top: 0;
     font-family:'magical_holidayregular';
@@ -76,9 +74,6 @@
     font-family:'Letters for Learners';
     font-weight : 0;
     margin-left: 20px;
-    margin-bottom: 9px;
-
-
   }
 
   @media (min-width: 1200px){
