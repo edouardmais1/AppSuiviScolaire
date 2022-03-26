@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="input-button">
-                            <input type="submit" class="submit-bouton" name="connexion" id="connexion" value="Sign In">
+                            <button type="submit" class="submit-bouton" name="connexion" id="connexion">Sign In</button>
                         </div>
                     </form>
                 </div>
@@ -174,7 +174,7 @@ label {
     display: inline-block;
     background: #6dabe4;
     color: #fff;
-    border-bottom: none;
+    border: none;
     font-family: 'magical_holidayregular';
     width: auto;
     padding: 15px 39px;
@@ -186,10 +186,6 @@ label {
     margin-top: 25px;
     cursor: pointer;
     transition: transform 400ms;
-}
-
-html{
-    overflow-y: hidden;
 }
 
 
