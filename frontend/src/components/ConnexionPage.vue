@@ -149,14 +149,15 @@ label {
 
 .form-title{
     font-family:'magical_holidayregular';
-    font-weight: 200;
+    font-weight: 20;
     margin-bottom: 33px;
 }
 
 .connexion{
-    padding-top: 100px;
-    margin-top:150px;
-    margin-bottom: 150px;
+    background-image: url("../../public/images/schoolbackground.jpg");
+    background-size: contain;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .connexion-group {

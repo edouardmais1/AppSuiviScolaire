@@ -199,9 +199,10 @@ label {
 }
 
 .inscription{
-    padding-top: 40px;
-    margin-top: 150px;
-    margin-bottom: 150px;
+    background-image: url("../../public/images/schoolbackground.jpg");
+    background-size: contain;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .inscription-group {
