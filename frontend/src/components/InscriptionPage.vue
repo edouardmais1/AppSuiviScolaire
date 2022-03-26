@@ -200,7 +200,7 @@ label {
 
 .inscription{
     padding-top: 40px;
-    margin-top: 20px;
+    margin-top: 150px;
     margin-bottom: 150px;
 }
 

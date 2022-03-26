@@ -13,25 +13,25 @@
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <router-link class="nav-link" to="/calendrier">Calendrier 📅</router-link>
+              <router-link class="nav-link" to="/calendrier">Calendrier </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/comportement">Comportement ❗</router-link>
+              <router-link class="nav-link" to="/comportement">Comportement </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/bulletin">Bulletin 📝</router-link>
+              <router-link class="nav-link" to="/bulletin">Bulletin </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/contact">Contact 📞 <font-awesome-icon icon="fa-solid fa-phone" /></router-link>
+              <router-link class="nav-link" to="/contact">Contact<font-awesome-icon icon="fa-light fa-phone" /></router-link>
             </li>
           </ul>
           <ul class="navbar-nav justify-content-end">       
-            <button type="button" class="btn btn-outline-secondary">
+            <li>
               <router-link class="nav-link" to="/inscription">Inscription</router-link>
-            </button>
-            <button type="button" class="btn btn-outline-success">
-              <router-link class="nav-link" to="/connexion">Connexion</router-link>
-            </button>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
+            </li>
           </ul>
         </div>  
       </div>
@@ -48,6 +48,12 @@
     font-style: normal;
 
   }
+
+  #connexion{
+    margin-right:30px;
+  }
+
+
   .nav{
     margin-bottom: 20px;
   }
@@ -66,16 +72,13 @@
 
   }
   .nav-link{
-    font-size: 25px;
+    font-size: 22px;
     font-family:'Letters for Learners';
     font-weight : 0;
     margin-left: 20px;
     margin-bottom: 9px;
-  }
 
 
-  .navbar-brand{
-    font-size: 30px;
   }
 
   @media (min-width: 1200px){
