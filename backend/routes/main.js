@@ -7,17 +7,22 @@ const express = require('express');
 const router = express.Router();
 
 //importe le fichier requests.js (contient le requetes vers la base de données)
-const request = require('../controllers/request');
+const data = require('../controllers/data');
 
 
 //API REST
 
 //GET METHODS
-router.get('/',request.getEleves);
-router.get('/users',request.getUtilisateur)
+router.get('/users',data.getAllUsers);
+router.get('/users/:mail',data.getUserByMail)
+router.get('/eleves', data.getAllEleves);
+router.get('/eleves/:id',data.getEleveById);
+router.get('/calendrier',data.getCalendarData);
 
 
-//POST METHODS 
+//POST METHODS
+router.post('/eleves',data.insertStudent);
+router.post('/user',data.insertUser);
 
 
 //DELETE METHODS

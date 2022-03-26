@@ -9,31 +9,31 @@
                         <form method="" class="formulaire" id="formulaire">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off">
+                                <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off" v-model="nom">
                             </div>
 
                             <div class="inputs">
                                 <label for="firstname" class="input-label"></label>
-                                <input type="text" name="firstname" id="firstname" placeholder="Your Firstname" autocomplete="off">
+                                <input type="text" name="firstname" id="firstname" placeholder="Your Firstname" autocomplete="off" v-model="prenom">
                             </div>
 
                             <div class="inputs">
                                 <label for="email" class="input-label"></label>
-                                <input type="email" placeholder="Your Email" id="email" autocomplete="off">
+                                <input type="email" placeholder="Your Email" id="email" autocomplete="off" v-model="email">
                             </div>
 
                             <div class="inputs">
                                 <label for="password" class="input-label"></label>
-                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" v-model="password">
                             </div>
 
                             <div class="input">
                                 <label for="re-password" class="input-label"></label>
-                                <input type="password" name="re-password" id="re-password" placeholder="Repeat Password" autocomplete="off">
+                                <input type="password" name="re-password" id="re-password" placeholder="Repeat Password" autocomplete="off" v-model="repassword">
                             </div>
 
                             <div class="input-button">
-                                <input type="submit" name="inscription" id="inscription" class="submit-bouton" value="Sign Up">
+                                <button type="submit" name="inscription" id="inscription" class="submit-bouton" @click="createAccount()">Sign Up</button>
                             </div>
                         </form>
                     </div>
@@ -45,6 +45,30 @@
             </div>
         </section>
 </template>
+
+<script>
+//import axios from 'axios";
+
+export default{
+    name: 'InscriptionPage',
+    data: function(){
+        return {
+            nom : '',
+            prenom : '',
+            email : '',
+            password: '',
+            repassword: '',
+        }
+    },
+    methods: {
+        createAccount: function(){
+            console.log(this.nom, this.prenom);
+        },
+    },
+}
+
+
+</script>
 
 <style scoped>
 
@@ -195,7 +219,7 @@ label {
     display: inline-block;
     background: #6dabe4;
     color: #fff;
-    border-bottom: none;
+    border: none;
     font-family: 'magical_holidayregular';
     width: auto;
     padding: 15px 39px;
