@@ -6,7 +6,7 @@
                     <div class="inscription-form">
                         <h2 class="form-title">Sign Up</h2>
 
-                        <form method="" class="formulaire" id="formulaire">
+                        <form method="" class="formulaire" id="formulaire" @submit.prevent="createAccount()">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off" v-model="nom">
@@ -19,7 +19,7 @@
 
                             <div class="inputs">
                                 <label for="email" class="input-label"></label>
-                                <input type="email" placeholder="Your Email" id="email" autocomplete="off" v-model="email">
+                                <input type="email" placeholder="Your Email" id="email" v-model="email">
                             </div>
 
                             <div class="inputs">
@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="input-button">
-                                <button type="submit" name="inscription" id="inscription" class="submit-bouton" @click="createAccount()">Sign Up</button>
+                                <button type="submit" name="inscription" id="inscription" class="submit-bouton">Sign Up</button>
                             </div>
                         </form>
                     </div>
@@ -51,20 +51,31 @@
 
 export default{
     name: 'InscriptionPage',
-    data: function(){
-        return {
-            nom : '',
-            prenom : '',
-            email : '',
-            password: '',
-            repassword: '',
+
+    data(){
+        return{
+            nom:'',
+            prenom: '',
+            email: '',
+            password:'',
+            repassword:'',
         }
     },
-    methods: {
-        createAccount: function(){
-            console.log(this.nom, this.prenom);
+
+    methods : {
+        //CREATE AN ACCOUNT
+        createAccount(){
+            const data = {
+                prenom : this.prenom,
+                nom : this.nom,
+                email : this.email,
+                password : this.password,
+                repassword : this.repassword
+            }
+            console.log("submitted",data);
         },
     },
+
 }
 
 
