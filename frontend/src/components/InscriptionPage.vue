@@ -143,6 +143,7 @@ input {
     display: block;
     border: none;
     border-bottom: 1px solid #999;
+    border-radius: 15px;
     padding: 6px 30px;
     box-sizing: border-box; }
     input::-webkit-input-placeholder {
@@ -200,7 +201,11 @@ label {
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
-    -ms-border-radius: 20px; }
+    -ms-border-radius: 20px; 
+    background-color: #dedede;
+    border: solid;
+    border-color: #6dabe4;
+    }
 
 
 .form-title{
@@ -210,9 +215,10 @@ label {
 }
 
 .inscription{
-    padding-top: 40px;
-    margin-top: 150px;
-    margin-bottom: 150px;
+    background-image: url("../../public/images/background-school-2.jpg");
+    background-size: contain;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .inscription-group {

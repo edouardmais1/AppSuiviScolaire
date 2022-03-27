@@ -1,6 +1,6 @@
 <template>
   <div id="nav">  
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark my-primary " style="background-color: #6dabe4;">
+    <nav class="navbar fixed-top navbar-expand-xl navbar-dark my-primary " style="background-color: #6dabe4;">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
             <a class="navbar-brand" href="#">
@@ -12,26 +12,38 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/calendrier">Calendrier </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/comportement">Comportement </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/bulletin">Bulletin </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/contact">Contact<font-awesome-icon icon="fa-light fa-phone" /></router-link>
-            </li>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/calendrier"><img class="logo" src="../../public/images/calendar-regular.svg"> Calendrier </router-link>
+              </li>
+            </div>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/comportement"><img class="logo" src="../../public/images/exclamation-solid.svg">Comportement </router-link>
+              </li>
+            </div>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/bulletin"><img class="logo" src="../../public/images/file-lines-regular.svg"> Bulletin</router-link>
+              </li>
+            </div>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/contact"><img class="logo" src="../../public/images/envelope-regular.svg"> Contact</router-link>
+              </li>
+            </div>
           </ul>
           <ul class="navbar-nav justify-content-end">       
-            <li>
-              <router-link class="nav-link" to="/inscription">Inscription</router-link>
-            </li>
-            <li>
-              <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
-            </li>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/inscription">Inscription</router-link>
+              </li>
+            </div>
+            <div class="nav-links">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
+              </li>
+            </div>
           </ul>
         </div>  
       </div>
@@ -49,42 +61,46 @@
 
   }
 
-  #connexion{
-    margin-right:30px;
-  }
-
-
-  .nav{
-    margin-bottom: 20px;
-  }
-  .navbar-brand{
+  .navbar-brand {
     padding-top: 0;
     font-family:'magical_holidayregular';
     font-weight : 0;
   }
 
-  .my-primary{
+  .my-primary {
     background-color: #004C99;
   }
 
-  .navbar-expand-md .navbar-nav .nav-link{
-    padding-left: 50px;
-
-  }
-  .nav-link{
+  .nav-link {
     font-size: 22px;
     font-family:'Letters for Learners';
     font-weight : 0;
+   
+  }
+
+  .nav-links{
     margin-left: 20px;
-    margin-bottom: 9px;
-
-
   }
 
-  @media (min-width: 1200px){
-    .navbar-expand-md {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-    }
+  .navbar .navbar-nav .nav-item {
+    position: relative;
   }
+
+  .navbar .navbar-nav .nav-item::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #000000;
+    width: 0%;
+    content: "";
+    height: 4px;
+    transition: all 0.5s;
+  }
+
+  .navbar .navbar-nav .nav-item:hover::before {
+    width: 100%;
+  }
+
 </style>
