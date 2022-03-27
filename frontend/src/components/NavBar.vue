@@ -52,55 +52,62 @@
 </template>
 <style scoped>
 
-  @font-face {
-    font-family: 'magical_holidayregular';
-    src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
-         url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+.logo{
+  margin-bottom: 11px;
+  margin-right: 4px;
 
-  }
+}
 
-  .navbar-brand {
-    padding-top: 0;
-    font-family:'magical_holidayregular';
-    font-weight : 0;
-  }
+@font-face {
+  font-family: 'magical_holidayregular';
+  src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
+        url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
-  .my-primary {
-    background-color: #004C99;
-  }
+}
 
-  .nav-link {
-    font-size: 22px;
-    font-family:'Letters for Learners';
-    font-weight : 0;
-   
-  }
+.navbar-brand {
+  padding-top: 0;
+  font-family:'magical_holidayregular';
+  font-weight : 0;
+}
 
-  .nav-links{
-    margin-left: 20px;
-  }
+.my-primary {
+  background-color: #004C99;
+}
 
-  .navbar .navbar-nav .nav-item {
-    position: relative;
-  }
+.nav-link {
+  font-size: 22px;
+  font-family:'Letters for Learners';
+  color: white;
+  padding: 0;
+  
+}
 
-  .navbar .navbar-nav .nav-item::before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color: #000000;
-    width: 0%;
-    content: "";
-    height: 4px;
-    transition: all 0.5s;
-  }
+.nav-links{
+  margin-left: 20px;
+}
 
-  .navbar .navbar-nav .nav-item:hover::before {
-    width: 100%;
-  }
+.navbar .navbar-nav .nav-item {
+  position: relative;
+}
+
+.navbar .navbar-nav .nav-item::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(240, 240, 240, 0.8);
+  width: 0%;
+  content: "";
+  height: 4px;
+  transition: all 0.5s;
+}
+
+.navbar .navbar-nav .nav-item:hover::before {
+  width: 100%;
+}
 
 </style>

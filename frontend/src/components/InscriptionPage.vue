@@ -47,7 +47,7 @@
 </template>
 
 <script>
-//import axios from 'axios";
+import axios from 'axios';
 
 export default{
     name: 'InscriptionPage',
@@ -64,25 +64,29 @@ export default{
 
     methods : {
         //CREATE AN ACCOUNT
-        createAccount(){
-            const data = {
-                prenom : this.prenom,
-                nom : this.nom,
-                email : this.email,
-                password : this.password,
-                repassword : this.repassword
+        async createAccount(){
+            try{
+                await axios.post("http://localhost:3000/users",{
+                    Mail : this.email,
+                    MotDePasse: this.password,
+                    Roles : "1",
+                    Token : "testBonsoir"
+                });
+                this.email = "";
+                this.password = "";
             }
-            console.log("submitted",data);
+            catch(err){
+                console.log(err);
+            }
         },
     },
 
-}
+};
 
 
 </script>
 
 <style scoped>
-
 @font-face {
     font-family: 'magical_holidayregular';
     src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
@@ -127,8 +131,6 @@ export default{
 
 
 
-
-
 h2 {
     line-height: 1.66;
     margin: 0;
@@ -143,7 +145,6 @@ input {
     display: block;
     border: none;
     border-bottom: 1px solid #999;
-    border-radius: 15px;
     padding: 6px 30px;
     box-sizing: border-box; }
     input::-webkit-input-placeholder {
@@ -189,6 +190,7 @@ label {
 
 
 .container {
+    border: 3px solid #6dabe4;
     width: 900px;
     background: #fff;
     margin: 0 auto;
@@ -201,24 +203,19 @@ label {
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
-    -ms-border-radius: 20px; 
-    background-color: #dedede;
-    border: solid;
-    border-color: #6dabe4;
-    }
+    -ms-border-radius: 20px; }
 
 
 .form-title{
     font-family:'magical_holidayregular';
-    font-weight: 20;
+    font-weight: 200;
     margin-bottom: 33px;
 }
 
 .inscription{
-    background-image: url("../../public/images/background-school-2.jpg");
-    background-size: contain;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    margin-top:100px;
+    padding-top: 40px;
+    margin-bottom: 150px;
 }
 
 .inscription-group {
@@ -263,7 +260,7 @@ label {
 
 .inputs{
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     overflow: hidden; }
 
 .inputs:last-child {

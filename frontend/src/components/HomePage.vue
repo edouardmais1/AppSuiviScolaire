@@ -138,7 +138,8 @@
     border-radius: 50px;
 }
 .HomePage{
-    background-image: url("../../public/images/background-school-2.jpg");
+    /*
+    background-image: url("../../public/images/background-school-2.jpg");*/
     background-size: contain;
     padding-top: 10%;
     padding-bottom: 10%;

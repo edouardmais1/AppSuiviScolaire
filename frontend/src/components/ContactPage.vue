@@ -32,11 +32,8 @@
                         </div>
                         <div class="form-group">
                             <h4>Destinataire:</h4>
-                            <select class="form-control" >
-                            <option>direction@institut.com</option>
-                            <option>secretariat@institut.com</option>
-                            <option>j.paul@institut.com</option>
-                            <option>l.vanden@institut.com</option>
+                            <select class="form-control">
+                            <option  v-for="item in items" :key="item.Mail">{{item.Mail}}</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -59,15 +56,61 @@
 </section>
 </template>
 
+<script>
+    import axios from 'axios';
+
+    export default{
+        name: "ContactPage",
+
+        data(){
+            return{
+                items: [],
+            };
+        },
+
+        created(){
+            this.getContacts();
+        },
+
+        methods :{
+            //RECUPERER LES CONTACTS
+            async getContacts(){
+                try{
+                    const response = await axios.get("http://localhost:3000/contact");
+                    this.items = response.data
+                    console.log(this.items);
+                }
+                catch(err){
+                    console.log(err);
+                }
+            }
+
+        },
+
+    }
+
+</script>
+
 
 
 
 <style>
+
+@font-face {
+  font-family: 'magical_holidayregular';
+  src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
+        url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
 .form-control{
     border-radius: 15px;
 }
 .ContactPage{
-    background-image: url("../../public/images/background-school-2.jpg");
+    /*font-family:'magical_holidayregular';*/
     background-size: contain;
     padding-top: 10%;
     padding-bottom: 10%;
@@ -85,7 +128,17 @@
 
 
 .send {
-    margin-left: 85%;
+    background-color: white;
+    color: black;
+    border: none;
+    margin-left: 87%;
+    margin-top: 20px;
+}
+
+.send:hover{
+    background-color: black;
+    color:white;
+    font-family:'magical_holidayregular';
 }
 
 .Shadowed-container-fluid{
@@ -99,7 +152,7 @@
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
     -ms-border-radius: 20px;
-    background-color: #dedede;
+    background-color: white;
     padding: 15px;
     border: solid;
     border-color: #6dabe4;

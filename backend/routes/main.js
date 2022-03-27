@@ -18,11 +18,12 @@ router.get('/users/:mail',data.getUserByMail)
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
 router.get('/calendrier',data.getCalendarData);
+router.get('/contact',data.getContactDirectionSecretariat);
 
 
 //POST METHODS
 router.post('/eleves',data.insertStudent);
-router.post('/user',data.insertUser);
+router.post('/users',data.insertUser);
 
 
 //DELETE METHODS

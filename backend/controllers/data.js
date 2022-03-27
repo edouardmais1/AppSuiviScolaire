@@ -106,6 +106,22 @@ const getCalendarData = (request,response)=>{
 }
 
 
+//GET DIRECTION-SECRETARIAT CONTACTS
+
+const getContactDirectionSecretariat = (request,response)=>{
+    
+    //RECUPERER LES MAILS DES MEMBRES DU PERSONNEL
+    db.query("SELECT Mail FROM `tb_Utilisateurs` WHERE Mail like '%@secretariat.be' or Mail Like '%@direction.be'",(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    });
+}
+
+
 //POST
 
 
@@ -171,6 +187,8 @@ const insertUser = (request,response)=>{
 
 
 
+
+
 module.exports = {
     getAllEleves,
     getAllUsers,
@@ -178,6 +196,7 @@ module.exports = {
     getEleveById,
     getUserByMail,
     insertStudent,
-    insertUser
+    insertUser,
+    getContactDirectionSecretariat
 }
 

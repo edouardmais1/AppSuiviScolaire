@@ -5,14 +5,14 @@
                 <div class="connexion-form">
                     <h2 class="form-title">Sign In</h2>
 
-                    <form action="" class="formulaire" id="formulaire">
+                    <form action="" class="formulaire" id="formulaire" @submit-prevent ="Connexion()">
                         <div class="inputs">
                             <label for="email" class="input-label"></label>
-                            <input type="email" name="email" id="email" placeholder="Your Mail" autocomplete="off">
+                            <input type="email" name="email" id="email" placeholder="Your Mail" autocomplete="off" v-model="mail">
                         </div>
                         <div class="inputs">
                             <label for="password" class="input-label"></label>
-                            <input type="password" name="password" id="password" placeholder="Your Password" autocomplete="off">
+                            <input type="password" name="password" id="password" placeholder="Your Password" autocomplete="off" v-model="password">
                         </div>
 
                         <div class="input-button">
@@ -72,6 +72,7 @@
     margin-right: 0px;
     margin-bottom: 10px; } }
 
+
     
 h2 {
     line-height: 1.66;
@@ -88,7 +89,6 @@ input {
     border: none;
     border-bottom: 1px solid #999;
     padding: 6px 30px;
-    border-radius: 15px;
     box-sizing: border-box; }
     input::-webkit-input-placeholder {
         color: #999; }
@@ -133,6 +133,7 @@ label {
 
 
 .container {
+    border: 3px solid #6dabe4;
     width: 900px;
     background: #fff;
     margin: 0 auto;
@@ -146,23 +147,18 @@ label {
     -webkit-border-radius: 20px;
     -o-border-radius: 20px;
     -ms-border-radius: 20px; 
-    background-color: #dedede;
-    border: solid;
-    border-color: #6dabe4;
 }
 
 .form-title{
     font-family:'magical_holidayregular';
-    font-weight: 20;
+    font-weight: 200;
     margin-bottom: 33px;
-    text-decoration: underline
 }
 
 .connexion{
-    background-image: url("../../public/images/background-school-2.jpg");
-    background-size: contain;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    margin-top: 150px;
+    padding-top: 100px;
+    margin-bottom: 150px;
 }
 
 .connexion-group {
@@ -206,7 +202,7 @@ label {
 
 .inputs{
     position: relative;
-    margin-top: 15px;
+    margin-top: 50px;
     overflow: hidden; }
 
 .inputs:last-child {
@@ -238,6 +234,4 @@ label {
 .link{
     margin-top: 30px;
 }
-
-
 </style>
