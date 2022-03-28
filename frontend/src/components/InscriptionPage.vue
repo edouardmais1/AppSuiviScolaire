@@ -213,7 +213,7 @@ label {
 }
 
 .inscription{
-    margin-top:100px;
+    margin-top: 100px;
     padding-top: 40px;
     margin-bottom: 150px;
 }

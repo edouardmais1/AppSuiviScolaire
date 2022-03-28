@@ -156,7 +156,7 @@ label {
 }
 
 .connexion{
-    margin-top: 150px;
+    margin-top: 50px;
     padding-top: 100px;
     margin-bottom: 150px;
 }

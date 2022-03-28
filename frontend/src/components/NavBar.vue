@@ -58,6 +58,10 @@
 
 }
 
+.nav{
+  background-color: #6dabe4;
+}
+
 @font-face {
   font-family: 'magical_holidayregular';
   src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
@@ -74,7 +78,7 @@
 }
 
 .my-primary {
-  background-color: #004C99;
+  background-color: #6dabe4;
 }
 
 .nav-link {
