@@ -14,10 +14,15 @@ const data = require('../controllers/data');
 
 //GET METHODS
 router.get('/users',data.getAllUsers);
-router.get('/users/:mail',data.getUserByMail)
+router.get('/users/:mail',data.getUserByMail);
+
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
+
 router.get('/calendrier',data.getCalendarData);
+router.get('/calendrier/:classe',data.getCalendarByClasse);
+
+router.get('/',data.getActualite);
 router.get('/contact',data.getContactDirectionSecretariat);
 
 

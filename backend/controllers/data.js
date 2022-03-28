@@ -34,7 +34,7 @@ const getDataEleve = (id, result) => {
             console.log(err);
             result(err, null);
         } else {
-            result(null, results[0]);
+            result(null, results);
         }
     });   
 }
@@ -74,7 +74,7 @@ const getDataUser = (mail, result) => {
             console.log(err);
             result(err, null);
         } else {
-            result(null, results[0]);
+            result(null, results);
         }
     });   
 }
@@ -106,6 +106,32 @@ const getCalendarData = (request,response)=>{
 }
 
 
+//GET CALENDAR BY CLASSE
+const getDataCalendarByClass = (classe, result) => {
+
+    //RECUPERER LES EVENEMENTS EN FONCTION DES CLASSES
+    db.query("SELECT * FROM tb_Calendrier Where Classe = ?", [classe], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+const getCalendarByClasse = (request, response) => {
+    getDataCalendarByClass(request.params.classe, (err, results) => {
+        if (err){
+            response.send(err);
+        }else{
+            response.json(results);
+        }
+    });
+}
+
+
+
 //GET DIRECTION-SECRETARIAT CONTACTS
 
 const getContactDirectionSecretariat = (request,response)=>{
@@ -119,6 +145,22 @@ const getContactDirectionSecretariat = (request,response)=>{
             response.status(200).json(results);
         }
     });
+}
+
+
+//GET ACTUALITY OF SCHOOL
+
+const getActualite = (request,response)=>{
+
+    //RECUPERER LES ACTUALITES DE L'ECOLE
+    db.query('SELECT * FROM tb_Actualites',(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
 }
 
 
@@ -193,6 +235,8 @@ module.exports = {
     getAllEleves,
     getAllUsers,
     getCalendarData,
+    getCalendarByClasse,
+    getActualite,
     getEleveById,
     getUserByMail,
     insertStudent,

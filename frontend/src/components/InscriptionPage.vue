@@ -67,6 +67,8 @@ export default{
         async createAccount(){
             try{
                 await axios.post("http://localhost:3000/users",{
+                    Nom: this.nom,
+                    Prenom: this.prenom,
                     Mail : this.email,
                     MotDePasse: this.password,
                     Roles : "1",
