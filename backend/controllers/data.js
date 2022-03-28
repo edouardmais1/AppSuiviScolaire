@@ -174,10 +174,10 @@ const insertUser = (request,response)=>{
 
     dataUser(data,(err,results)=>{
         if(err){
-            res.send(err);
+            response.send(err);
         }
         else{
-            res.json(results)
+            response.json(results)
         }
     });
 }
