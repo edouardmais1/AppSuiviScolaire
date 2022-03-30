@@ -55,6 +55,8 @@
 .logo{
   margin-bottom: 11px;
   margin-right: 4px;
+  width: 25px;
+  height: 25px;
 
 }
 

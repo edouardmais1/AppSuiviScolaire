@@ -8,11 +8,11 @@
                     <form action="" class="formulaire" id="formulaire" @submit-prevent ="Connexion()">
                         <div class="inputs">
                             <label for="email" class="input-label"></label>
-                            <input type="email" name="email" id="email" placeholder="Your Mail" autocomplete="off" v-model="mail">
+                            <input type="email" name="email" id="email" placeholder="Your Mail" autocomplete="off" v-model="mail" class="inscription-input">
                         </div>
                         <div class="inputs">
                             <label for="password" class="input-label"></label>
-                            <input type="password" name="password" id="password" placeholder="Your Password" autocomplete="off" v-model="password">
+                            <input type="password" name="password" id="password" placeholder="Your Password" autocomplete="off" v-model="password" class="inscription-input">
                         </div>
 
                         <div class="input-button">
@@ -83,38 +83,38 @@ h2 {
     font-size: 36px; }
 
 
-input {
+.inscription-input{
     width: 100%;
     display: block;
     border: none;
     border-bottom: 1px solid #999;
     padding: 6px 30px;
     box-sizing: border-box; }
-    input::-webkit-input-placeholder {
+    .inscription-input::-webkit-input-placeholder {
         color: #999; }
-    input::-moz-placeholder {
+    .inscription-input::-moz-placeholder {
         color: #999; }
-    input:-ms-input-placeholder {
+    .inscription-inputt:-ms-input-placeholder {
         color: #999; }
-    input:-moz-placeholder {
+    .inscription-input:-moz-placeholder {
         color: #999; }
-    input:focus::-webkit-input-placeholder {
+    .inscription-input:focus::-webkit-input-placeholder {
     color: #222; }
-    input:focus::-moz-placeholder {
+    .inscription-input:focus::-moz-placeholder {
     color: #222; }
-    input:focus:-ms-input-placeholder {
+    .inscription-input:focus:-ms-input-placeholder {
     color: #222; }
-    input:focus:-moz-placeholder {
+    .inscription-input:focus:-moz-placeholder {
     color: #222; }
 
-    input:focus{
+    .inscription-input:focus{
         outline-style:none;
         box-shadow:none;
         border-color:black;
         background-color: white;
     }
 
-    input:active{
+    .inscription-input:active{
         background-color: white;
     }   
 

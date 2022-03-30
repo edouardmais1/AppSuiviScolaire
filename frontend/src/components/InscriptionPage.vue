@@ -9,27 +9,27 @@
                         <form method="" class="formulaire" id="formulaire" @submit.prevent="createAccount()">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off" v-model="nom">
+                                <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off" v-model="nom" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="firstname" class="input-label"></label>
-                                <input type="text" name="firstname" id="firstname" placeholder="Your Firstname" autocomplete="off" v-model="prenom">
+                                <input type="text" name="firstname" id="firstname" placeholder="Your Firstname" autocomplete="off" v-model="prenom" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="email" class="input-label"></label>
-                                <input type="email" placeholder="Your Email" id="email" v-model="email">
+                                <input type="email" placeholder="Your Email" id="email" v-model="email" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="password" class="input-label"></label>
-                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" v-model="password">
+                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" v-model="password" class="inscription-input">
                             </div>
 
                             <div class="input">
                                 <label for="re-password" class="input-label"></label>
-                                <input type="password" name="re-password" id="re-password" placeholder="Repeat Password" autocomplete="off" v-model="repassword">
+                                <input type="password" name="re-password" id="re-password" placeholder="Repeat Password" autocomplete="off" v-model="repassword" class="inscription-input">
                             </div>
 
                             <div class="input-button">
@@ -142,40 +142,7 @@ h2 {
     font-size: 36px; }
 
 
-input {
-    width: 100%;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #999;
-    padding: 6px 30px;
-    box-sizing: border-box; }
-    input::-webkit-input-placeholder {
-        color: #999; }
-    input::-moz-placeholder {
-        color: #999; }
-    input:-ms-input-placeholder {
-        color: #999; }
-    input:-moz-placeholder {
-        color: #999; }
-    input:focus::-webkit-input-placeholder {
-    color: #222; }
-    input:focus::-moz-placeholder {
-    color: #222; }
-    input:focus:-ms-input-placeholder {
-    color: #222; }
-    input:focus:-moz-placeholder {
-    color: #222; }
 
-    input:focus{
-        outline-style:none;
-        box-shadow:none;
-        border-color:black;
-        background-color: white;
-    }
-
-    input:active{
-        background-color: white;
-    }
 
 
 label {
