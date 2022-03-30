@@ -76,6 +76,8 @@ export default{
                 });
                 this.email = "";
                 this.password = "";
+                this.nom = "";
+                this.prenom = "";
             }
             catch(err){
                 console.log(err);

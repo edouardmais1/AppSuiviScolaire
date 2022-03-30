@@ -9,6 +9,7 @@ const router = express.Router();
 //importe le fichier requests.js (contient le requetes vers la base de données)
 const data = require('../controllers/data');
 
+const mail = require('../controllers/mail');
 
 //API REST
 
@@ -29,6 +30,8 @@ router.get('/contact',data.getContactDirectionSecretariat);
 //POST METHODS
 router.post('/eleves',data.insertStudent);
 router.post('/users',data.insertUser);
+
+router.post('/sendMail',mail.sendMail);
 
 
 //DELETE METHODS

@@ -3,17 +3,17 @@
     <div class="wrapper">
         <header>Contact Us</header>
 
-        <form action="#">
+        <form action="#" @submit.prevent="sendMail()">
         <div class="items-1">
             <div class="dbl-field">
                 <div class="field">
-                    <input type="text" placeholder="Enter your name" class="contact-input-1">
+                    <input type="text" placeholder="Entrez votre nom" class="contact-input-1" v-model="name">
                     <i class="fas fa-user"></i>
                 </div>
             </div>
             <div class="dbl-field">
                 <div class="field">
-                    <input type="text" placeholder="Enter your Email" class="contact-input-2">
+                    <input type="text" placeholder="Objet de votre mail" class="contact-input-2" v-model="objet">
                     <i class="fas fa-envelope" id="item"></i>
                 </div>
             </div>
@@ -21,13 +21,13 @@
         <div class="items-2">
             <div class="dbl-field">
                 <div class="field">
-                    <input type="text" placeholder="Enter your phone" class="contact-input-3">
+                    <input type="text" placeholder="Entrez votre numéro de téléphone" class="contact-input-3" v-model="telephone">
                     <i class="fas fa-phone-alt"></i>
                 </div>
             </div>
             <div class="dbl-field">
                 <div class="field">
-                    <input type="text" placeholder="Chose your destnation" class="contact-input-4">
+                    <input type="email" placeholder="Mail du destinataire" class="contact-input-4" v-model="email">
                     <i class="fas fa-envelope" id="item"></i>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="button-area">
                 <button type="submit">Send Message</button>
-                <span></span>
+                <p class="message-alert">{{message}}</p>
             </div>
         </form>
     </div>
@@ -46,36 +46,57 @@
 </template>
 
 <script>
-    import axios from 'axios';
+import axios from 'axios';
 
     export default{
         name: "ContactPage",
-
         data(){
             return{
-                items: [],
-            };
-        },
-
-        created(){
-            this.getContacts();
-        },
-
-        methods :{
-            //RECUPERER LES CONTACTS
-            async getContacts(){
-                try{
-                    const response = await axios.get("http://localhost:3000/contact");
-                    this.items = response.data
-                    console.log(this.items);
-                }
-                catch(err){
-                    console.log(err);
-                }
+                name:'',
+                objet:'',
+                telephone:'',
+                email:'',
+                message:'',
             }
-
         },
 
+        methods:{
+            sendMail(){
+                if(this.checkInputs()){
+                    this.message ="";
+                    this.CreateRequest();
+                }
+                else{
+                    console.log("nope");
+                    this.message = "VEUILLEZ COMPLETER CHAQUE CHAMPS DU FORMULAIRE !"
+                }
+            
+            },
+
+            checkInputs(){
+                if(this.name.length != 0 && this.objet.length != 0 && this.email.length != 0 && this.telephone.length != 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
+            },
+            CreateRequest(){
+                axios.post("http://localhost:3000/sendMail",{
+                        nom: this.name,
+                        email: this.email,
+                        objet: this.objet,
+                        telephone: this.telephone,
+                    })
+                    .then(response =>{
+                        console.log(response);
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    });
+                },
+        },
     }
 
 </script>
@@ -101,6 +122,13 @@
     padding:0;
     box-sizing: border-box;
     font-family: 'Poppins'
+}
+
+.message-alert{
+    font-family: 'Poppins';
+    margin-top: 15px;
+    color: red;
+    font-size: 15px;
 }
 
 .container-contact{
@@ -152,17 +180,17 @@
     margin-right:auto;
     background: #fff;
     border-radius: 5px;
-    border: 3px solid #6dabe4;
+    border: 4px solid #6dabe4;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
 
 }
 
 .wrapper header{
-    font-size: 22px;
+    font-size: 25px;
     text-align: center;
     font-weight: 600;
     padding: 20px 30px;
-    border-bottom: 3px solid #6dabe4;
+    border-bottom: 4px solid #6dabe4;
 }
 
 .wrapper form{
