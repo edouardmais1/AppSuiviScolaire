@@ -100,10 +100,6 @@ import axios from 'axios';
     }
 
 </script>
-
-
-
-
 <style>
 @font-face {
   font-family: 'magical_holidayregular';
@@ -111,11 +107,9 @@ import axios from 'axios';
         url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
 
 *{
     margin: 0;
@@ -124,92 +118,91 @@ import axios from 'axios';
     font-family: 'Poppins'
 }
 
-.message-alert{
+.message-alert {
     font-family: 'Poppins';
     margin-top: 15px;
     color: red;
     font-size: 15px;
 }
 
-.container-contact{
-    margin-top:150px;
+.container-contact {
+    margin-top: 150px;
 }
 
-.items-1{
+.items-1 {
     display: flex;
     align-items: center;
 }
 
-.items-1 .dbl-field{
+.items-1 .dbl-field {
     flex-basis: 50%;
     align-items: center;
 }
 
-.items-2{
+.items-2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.items-2 .dbl-field{
+.items-2 .dbl-field {
     margin-top: 40px;
     flex-basis: 50%;
 }
 
-.items-2 .dbl-field .field{
+.items-2 .dbl-field .field {
     width: 90%;
 }
 
-.items-1 .dbl-field .field{
+.items-1 .dbl-field .field {
     width: 90%;
 }
 
 
-.items-1 .dbl-field .field .contact-input-2{
+.items-1 .dbl-field .field .contact-input-2 {
     margin-left: 11.5%;
 }
 
-.items-2 .dbl-field .field .contact-input-4{
+.items-2 .dbl-field .field .contact-input-4 {
     margin-left: 11.5%;
 }
 
-
-.wrapper{
+.wrapper {
     width: 60%;
     margin-left:auto;
     margin-right:auto;
     background: #fff;
-    border-radius: 5px;
-    border: 4px solid #6dabe4;
+    border-radius: 20px;
+    border: 3px solid #6dabe4;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
 
 }
 
-.wrapper header{
-    font-size: 25px;
+.wrapper header {
+    font-size: 36px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 300;
     padding: 20px 30px;
-    border-bottom: 4px solid #6dabe4;
+    border-bottom: 3px solid #6dabe4;
 }
 
-.wrapper form{
+.wrapper form {
     margin:35px 30px;
 }
 
-.wrapper form.disabled{
+.wrapper form.disabled {
     pointer-events: none;
     opacity: 0.7;
 }
 
-.dbl-field .field{
+.dbl-field .field {
     height: 50px;
     position: relative;
     width: calc(100% / 2 - 13px);
     margin-top: 30px;
 }
 
-.wrapper form i{
+.wrapper form i {
     position: absolute;
     top: 50%;
     left: 18px;
@@ -217,10 +210,9 @@ import axios from 'axios';
     font-size: 17px;
     pointer-events: none;
     transform: translateY(-50%);
-
 }
 
-.wrapper #item{
+.wrapper #item {
     position: absolute;
     top: 50%;
     left: 15%;
@@ -231,8 +223,7 @@ import axios from 'axios';
 
 }
 
-
-form .field input{
+form .field input {
     width: 100%;
     height: 100%;
     outline: none;
@@ -242,7 +233,7 @@ form .field input{
     border: 1px solid #ccc;
 }
 
-form .message textarea{
+form .message textarea {
     width: 100%;
     height: 100%;
     outline: none;
@@ -253,18 +244,18 @@ form .message textarea{
 }
 
 .field input::placeholder,
-.message textarea::placeholder{
+.message textarea::placeholder {
     color: #ccc;
 }
 
 .field input:focus,
-.message textarea:focus{
+.message textarea:focus {
     border: 3px solid #6dabe4;
 }
 
 
 
-form .message{
+form .message {
     position: relative;
     margin-top: 30px;
     height: 200px;
@@ -275,7 +266,7 @@ form.message i {
     font-size: 20px;
 }
 
-form .message textarea{
+form .message textarea {
     min-heigth: 175px;
     max-heigth: 230px;
     max-width: 100%;
@@ -284,21 +275,21 @@ form .message textarea{
     padding: 15px 20px 0px 48px;
 }
 
-form .message textarea::-webkit-scrollbar{
+form .message textarea::-webkit-scrollbar {
     width: 0px;
 }
 
-.message textarea:focus{
+.message textarea:focus {
     padding-top: 14px;
 }
 
 
-form .button-area{
+form .button-area {
     margin: 50px 0;
     text-align: center;
 }
 
-.button-area button{
+.button-area button {
     color : #fff;
     border: none;
     outline: none;
@@ -311,64 +302,56 @@ form .button-area{
     transition: transform 400ms;
 }
 
-.button-area button:hover{
+.button-area button:hover {
     transform: scale(1.10);
 }
 
-.button-area span{
+.button-area span {
     font-size : 17px;
     margin-left: 30px;
     display: none;
 }
 
-@media (max-width: 600px){
-    .wrapper header{
+@media (max-width: 600px) {
+    .wrapper header {
         text-align: center;
     }
-    .wrapper form{
+    .wrapper form {
         margin: 35px 20px;
     }
-    .wrapper{
+    .wrapper {
         width: 90%;
     }
-    form .dbl-field{
+    form .dbl-field {
         flex-direction: column;
         margin-bottom: 0px;
     }
-    form .dbl-field .field{
+    form .dbl-field .field {
         width: 60%;
         heigth: 45px;
         margin-bottom: 20px;
 
     }
 
-    form .message textarea{
+    form .message textarea {
         resize: none;
 
     }
 
-    form .button-area{
+    form .button-area {
         margin-top: 20px;
         flex-direction: column;
     }
 
-    .button-area button{
+    .button-area button {
         width: 100%;
         padding: 11px;
         font-size: 16px;
     }
 
-    .button-area span{
+    .button-area span {
         margin: 20px 0 0;
         text-align: center;
     }
 }
-
-
-
-
-
-
-
-
 </style>

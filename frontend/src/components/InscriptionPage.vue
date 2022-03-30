@@ -100,6 +100,8 @@ export default{
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 @media screen and (max-width: 1200px) {
 .container {
     width: calc( 100% - 30px);
@@ -133,8 +135,6 @@ export default{
     margin-right: 0px;
     margin-bottom: 10px; } }
 
-
-
 h2 {
     line-height: 1.66;
     margin: 0;
@@ -142,10 +142,6 @@ h2 {
     font-weight: bold;
     color: #222;
     font-size: 36px; }
-
-
-
-
 
 label {
     position: absolute;
@@ -158,8 +154,6 @@ label {
     -ms-transform: translateY(-50%);
     color: #222; }
           
-
-
 .container {
     border: 3px solid #6dabe4;
     width: 900px;
@@ -176,14 +170,13 @@ label {
     -o-border-radius: 20px;
     -ms-border-radius: 20px; }
 
-
-.form-title{
-    font-family:'magical_holidayregular';
+.form-title {
+    font-family:'Poppins';
     font-weight: 200;
     margin-bottom: 33px;
 }
 
-.inscription{
+.inscription {
     margin-top: 100px;
     padding-top: 40px;
     margin-bottom: 150px;
@@ -205,7 +198,7 @@ label {
     background: #6dabe4;
     color: #fff;
     border: none;
-    font-family: 'magical_holidayregular';
+    font-family: 'Poppins';
     width: auto;
     padding: 15px 39px;
     border-radius: 5px;
@@ -245,7 +238,7 @@ label {
     display: block;
     text-align: center;
     text-decoration: none;
-    font-family: 'magical_holidayregular';
+    font-family: 'Poppins';
     font-size: 15px;
     transition: transform 400ms;
  }

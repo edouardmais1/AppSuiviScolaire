@@ -36,8 +36,9 @@
          url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 @media screen and (max-width: 1200px) {
     .container {
@@ -71,9 +72,7 @@
     .social-label {
     margin-right: 0px;
     margin-bottom: 10px; } }
-
-
-    
+ 
 h2 {
     line-height: 1.66;
     margin: 0;
@@ -82,8 +81,7 @@ h2 {
     color: #222;
     font-size: 36px; }
 
-
-.inscription-input{
+.inscription-input {
     width: 100%;
     display: block;
     border: none;
@@ -118,7 +116,6 @@ h2 {
         background-color: white;
     }   
 
-
 label {
     position: absolute;
     left: 0;
@@ -149,13 +146,13 @@ label {
     -ms-border-radius: 20px; 
 }
 
-.form-title{
-    font-family:'magical_holidayregular';
+.form-title {
+    font-family:'Poppins';
     font-weight: 200;
     margin-bottom: 33px;
 }
 
-.connexion{
+.connexion {
     margin-top: 50px;
     padding-top: 100px;
     margin-bottom: 150px;
@@ -165,7 +162,7 @@ label {
     padding: 75px 0;
 }
 
-.connexion-form{
+.connexion-form {
     margin: 0 auto;
     width: 50%;
     overflow: hidden;
@@ -177,7 +174,7 @@ label {
     background: #6dabe4;
     color: #fff;
     border: none;
-    font-family: 'magical_holidayregular';
+    font-family: 'Poppins';
     width: auto;
     padding: 15px 39px;
     border-radius: 5px;
@@ -190,17 +187,16 @@ label {
     transition: transform 400ms;
 }
 
-
-.submit-bouton:hover{
+.submit-bouton:hover {
     transform: scale(1.20);
 }
 
-.input-button{
+.input-button {
     margin-top: 10px;
     text-align: center;
 }
 
-.inputs{
+.inputs {
     position: relative;
     margin-top: 50px;
     overflow: hidden; }
@@ -209,11 +205,10 @@ label {
     margin-bottom: 0px; 
 }
 
-.connexion-image{
+.connexion-image {
     max-width: 40px;
     max-height: auto;
 }
-
 
 .inscription-link {
     font-size: 14px;
@@ -221,17 +216,16 @@ label {
     display: block;
     text-align: center;
     text-decoration: none;
-    font-family: 'magical_holidayregular';
+    font-family: 'Poppins';
     font-size: 15px;
     transition: transform 400ms;
  }
 
-.inscription-link:hover{
+.inscription-link:hover {
     transform: scale(1.25);
 }
 
-
-.link{
+.link {
     margin-top: 30px;
 }
 </style>

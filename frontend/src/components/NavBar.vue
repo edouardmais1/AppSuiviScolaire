@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">  
+  <div id="nav mh-50">  
     <nav class="navbar fixed-top navbar-expand-xl navbar-dark my-primary " style="background-color: #6dabe4;">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
@@ -14,33 +14,51 @@
           <ul class="navbar-nav me-auto">
             <div class="nav-links">
               <li class="nav-item">
-                <router-link class="nav-link" to="/calendrier"><img class="logo" src="../../public/images/calendar-regular.svg"> Calendrier </router-link>
+                <div>
+                  <i class="fas fa-calendar-alt imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/calendrier">Calendrier</router-link>
               </li>
             </div>
             <div class="nav-links">
               <li class="nav-item">
-                <router-link class="nav-link" to="/comportement"><img class="logo" src="../../public/images/exclamation-solid.svg">Comportement </router-link>
+              <div>
+                <i class="fas fa-exclamation imgs comportement"></i>
+              </div>
+                <router-link class="nav-link" to="/comportement">Comportement</router-link>
               </li>
             </div>
             <div class="nav-links">
               <li class="nav-item">
-                <router-link class="nav-link" to="/bulletin"><img class="logo" src="../../public/images/file-lines-regular.svg"> Bulletin</router-link>
+                <div>
+                  <i class="fas fa-file imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/bulletin">Bulletin</router-link>
               </li>
             </div>
             <div class="nav-links">
               <li class="nav-item">
-                <router-link class="nav-link" to="/contact"><img class="logo" src="../../public/images/envelope-regular.svg"> Contact</router-link>
+                <div>
+                  <i class="fas fa-envelope imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/contact">Contact</router-link>
               </li>
             </div>
           </ul>
           <ul class="navbar-nav justify-content-end">       
             <div class="nav-links">
               <li class="nav-item">
+                <div>
+                  <i class="fas fa-align-left imgs"></i>
+                </div>
                 <router-link class="nav-link" to="/inscription">Inscription</router-link>
               </li>
             </div>
             <div class="nav-links">
               <li class="nav-item">
+                <div>
+                  <i class="fas fa-sign-in-alt imgs"></i>
+                </div>
                 <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
               </li>
             </div>
@@ -52,25 +70,36 @@
 </template>
 <style scoped>
 
-.logo{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.logo {
   margin-bottom: 11px;
   margin-right: 4px;
   width: 25px;
   height: 25px;
-
 }
 
-.nav{
+.nav {
   background-color: #6dabe4;
 }
 
-@font-face {
-  font-family: 'magical_holidayregular';
-  src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
-        url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+.navbar {
+   height: 75px;
+}
 
+.imgs {
+  position: absolute;
+  margin-top: 5px;
+  color:  rgba(240, 240, 240, 0.8);
+}
+
+.comportement {
+  margin-left: 10px;
+
+}
+
+.nav-item {
+  padding-right:0px;
 }
 
 .navbar-brand {
@@ -84,15 +113,15 @@
 }
 
 .nav-link {
-  font-size: 22px;
-  font-family:'Letters for Learners';
+  font-size: 18px;
+  font-family:'Poppins';
   color: white;
   padding: 0;
-  
+  margin-left:20px;
 }
 
-.nav-links{
-  margin-left: 20px;
+.nav-links {
+  margin-left: 30px;
 }
 
 .navbar .navbar-nav .nav-item {
@@ -105,15 +134,23 @@
   left: 0;
   right: 0;
   margin: auto;
+  margin-top: 10px;
   background-color: rgba(240, 240, 240, 0.8);
   width: 0%;
   content: "";
-  height: 4px;
+  height: 2px;
   transition: all 0.5s;
 }
 
 .navbar .navbar-nav .nav-item:hover::before {
   width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 5px;
+  }
 }
 
 </style>
