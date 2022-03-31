@@ -1,16 +1,21 @@
 <template>
-  <div id="nav">
-    <NavBar/>
-  </div>
-  <router-view />
+  <body>
+    <div id="nav">
+      <NavBar/> 
+    </div>
+    <router-view />
+  </body>
+  <FooterBar/>
 </template>
  
 <script>
 import NavBar from './components/NavBar.vue'
+import FooterBar from './components/FooterBar.vue'
 export default {
   name: "App",
   components : {
-    NavBar
+    NavBar,
+    FooterBar
   } 
 };
 </script>
@@ -20,6 +25,9 @@ export default {
   }
 
   ::-webkit-scrollbar {
+    width: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
     width: 0px;
   }
 

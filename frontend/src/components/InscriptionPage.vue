@@ -4,42 +4,42 @@
             <div class="container">
                 <div class="inscription-group">
                     <div class="inscription-form">
-                        <h2 class="form-title">Sign Up</h2>
+                        <h2 class="form-title">Inscription</h2>
 
                         <form method="" class="formulaire" id="formulaire" @submit.prevent="createAccount()">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" autocomplete="off" v-model="nom" class="inscription-input">
+                                <input type="text" name="name" id="name" placeholder="Votre Nom" autocomplete="off" v-model="nom" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="firstname" class="input-label"></label>
-                                <input type="text" name="firstname" id="firstname" placeholder="Your Firstname" autocomplete="off" v-model="prenom" class="inscription-input">
+                                <input type="text" name="firstname" id="firstname" placeholder="Votre Prénom" autocomplete="off" v-model="prenom" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="email" class="input-label"></label>
-                                <input type="email" placeholder="Your Email" id="email" v-model="email" class="inscription-input">
+                                <input type="email" placeholder="Votre Email" id="email" v-model="email" class="inscription-input">
                             </div>
 
                             <div class="inputs">
                                 <label for="password" class="input-label"></label>
-                                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" v-model="password" class="inscription-input">
+                                <input type="password" name="password" id="password" placeholder="Mot de passe" autocomplete="off" v-model="password" class="inscription-input">
                             </div>
 
                             <div class="input">
                                 <label for="re-password" class="input-label"></label>
-                                <input type="password" name="re-password" id="re-password" placeholder="Repeat Password" autocomplete="off" v-model="repassword" class="inscription-input">
+                                <input type="password" name="re-password" id="re-password" placeholder="Confirmer le mot de passe" autocomplete="off" v-model="repassword" class="inscription-input">
                             </div>
 
                             <div class="input-button">
-                                <button type="submit" name="inscription" id="inscription" class="submit-bouton">Sign Up</button>
+                                <button type="submit" name="inscription" id="inscription" class="submit-bouton">S'inscrire  </button>
                             </div>
                         </form>
                     </div>
 
                     <div class="link">
-                        <router-link to="/connexion" class="connexion-link">I am already member</router-link>
+                        <router-link to="/connexion" class="connexion-link">Je suis déjà membre</router-link>
                     </div>
                 </div>
             </div>
@@ -220,9 +220,7 @@ label {
     text-align: center;
 }
 
-
-
-.inputs{
+.inputs {
     position: relative;
     margin-bottom: 35px;
     overflow: hidden; }
@@ -230,7 +228,6 @@ label {
 .inputs:last-child {
     margin-bottom: 0px; 
 }
-
 
 .connexion-link {
     font-size: 14px;
@@ -243,10 +240,9 @@ label {
     transition: transform 400ms;
  }
 
-.connexion-link:hover{
+.connexion-link:hover {
     transform: scale(1.25);
 }
-
 
 .link{
     margin-top: 30px;

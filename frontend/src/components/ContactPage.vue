@@ -1,7 +1,7 @@
 <template>
 <div class="container-contact">
     <div class="wrapper">
-        <header>Contact Us</header>
+        <header>Contact</header>
 
         <form action="#" @submit.prevent="sendMail()">
         <div class="items-1">
@@ -33,10 +33,10 @@
             </div>
         </div>
             <div class="message">
-                <textarea placeholder="Write your message"></textarea>
+                <textarea placeholder="Ecrivez votre message"></textarea>
             </div>
             <div class="button-area">
-                <button type="submit">Send Message</button>
+                <button type="submit">Envoyer</button>
                 <p class="message-alert">{{message}}</p>
             </div>
         </form>
@@ -252,8 +252,6 @@ form .message textarea {
 .message textarea:focus {
     border: 3px solid #6dabe4;
 }
-
-
 
 form .message {
     position: relative;

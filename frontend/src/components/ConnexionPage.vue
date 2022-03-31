@@ -3,26 +3,26 @@
         <div class="container">
             <div class="connexion-group">
                 <div class="connexion-form">
-                    <h2 class="form-title">Sign In</h2>
+                    <h2 class="form-title">Connexion</h2>
 
                     <form action="" class="formulaire" id="formulaire" @submit-prevent ="Connexion()">
                         <div class="inputs">
                             <label for="email" class="input-label"></label>
-                            <input type="email" name="email" id="email" placeholder="Your Mail" autocomplete="off" v-model="mail" class="inscription-input">
+                            <input type="email" name="email" id="email" placeholder="Votre Email" autocomplete="off" v-model="mail" class="inscription-input">
                         </div>
                         <div class="inputs">
                             <label for="password" class="input-label"></label>
-                            <input type="password" name="password" id="password" placeholder="Your Password" autocomplete="off" v-model="password" class="inscription-input">
+                            <input type="password" name="password" id="password" placeholder="Mot de passe" autocomplete="off" v-model="password" class="inscription-input">
                         </div>
 
                         <div class="input-button">
-                            <button type="submit" class="submit-bouton" name="connexion" id="connexion">Sign In</button>
+                            <button type="submit" class="submit-bouton" name="connexion" id="connexion">Se connecter</button>
                         </div>
                     </form>
                 </div>
 
                 <div class="link">
-                    <router-link to="inscription" class="inscription-link">Create an account</router-link>
+                    <router-link to="inscription" class="inscription-link">Créer un compte</router-link>
                 </div>
             </div>
         </div>
