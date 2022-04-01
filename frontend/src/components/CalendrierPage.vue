@@ -85,5 +85,6 @@ export default {
         -ms-border-radius: 20px;
         padding: 25px;
         font-size: 14px;
+        background-color: white;
 }
 </style>

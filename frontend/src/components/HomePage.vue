@@ -1,9 +1,10 @@
 <template>
-    <section class="HomePage">
+<section class="HomePage">
     <div class="text-center">
             <h1 class="form-title">Actualités</h1>
     </div>
-        <div>
+    <div>
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="HomePageContainer">
                     <div class="col-md-4">
                     </div>
@@ -11,23 +12,75 @@
                     <h3 class="form-title">Titre de l'article.</h3>
                     </div>
                     <div class="col-md-4">
-                    <div class="imgAbt">
-                        <img  class="rounded" alt="100x100" width="150" height="150" src="../../public/images/chat.jpg" data-holder-rendered="true">
                     </div>
-                    </div>
-                    <div class="col-md-8"><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o</p></div>
+                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
             </div>
         </div>
+    </div>
+    <div>
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
+            <div class="HomePageContainer">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                    <h3 class="form-title">Titre de l'article.</h3>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
+            <div class="HomePageContainer">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                    <h3 class="form-title">Titre de l'article.</h3>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
+            <div class="HomePageContainer">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                    <h3 class="form-title">Titre de l'article.</h3>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
+            <div class="HomePageContainer">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                    <h3 class="form-title">Titre de l'article.</h3>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+        </div>
+    </div>
+    
     </section>
 </template>
 
+
+
 <style>
-.souligner{
-    text-decoration: underline;
-}
-.imgAbt{
-    border-radius: 50px;
-}
+
 .HomePage{
     /*
     background-image: url("../../public/images/background-school-2.jpg");*/
