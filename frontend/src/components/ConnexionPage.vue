@@ -1,5 +1,6 @@
 <template>
     <section class="connexion">
+            <div data-aos="zoom-in-left" data-aos-duration="1250">
         <div class="container">
             <div class="connexion-group">
                 <div class="connexion-form">
@@ -26,6 +27,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 </template>
 
@@ -46,6 +48,7 @@
         max-width: 100%; } }
 @media screen and (min-width: 1024px) {
 .container {
+
     max-width: 1200px; } }
 @media screen and (max-width: 768px) {
 .signup-content, .signin-content {
@@ -155,7 +158,7 @@ label {
 .connexion {
     margin-top: 50px;
     padding-top: 100px;
-    margin-bottom: 150px;
+    padding-bottom: 10%;
 }
 
 .connexion-group {

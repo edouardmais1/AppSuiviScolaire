@@ -1,6 +1,7 @@
 <template>
         <!--formualaire d'inscription-->
         <section class="inscription">
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="container">
                 <div class="inscription-group">
                     <div class="inscription-form">
@@ -42,6 +43,7 @@
                         <router-link to="/connexion" class="connexion-link">Je suis déjà membre</router-link>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 </template>
@@ -179,7 +181,7 @@ label {
 .inscription {
     margin-top: 100px;
     padding-top: 40px;
-    margin-bottom: 150px;
+    padding-bottom: 10%;
 }
 
 .inscription-group {

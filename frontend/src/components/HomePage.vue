@@ -6,70 +6,62 @@
     <div>
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="HomePageContainer">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
+            <div class="row">
+                    <div class="col-sm">
                     <h3 class="form-title">Titre de l'article.</h3>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                     <h8 class="form-title">03/04/22</h8>
                     </div>
-                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
             </div>
         </div>
     </div>
-    <div>
+        <div>
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="HomePageContainer">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
+            <div class="row">
+                    <div class="col-sm">
                     <h3 class="form-title">Titre de l'article.</h3>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                     <h8 class="form-title">03/04/22</h8>
                     </div>
-                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
             </div>
         </div>
-    </div>
-    <div>
+    </div>    <div>
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="HomePageContainer">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
+            <div class="row">
+                    <div class="col-sm">
                     <h3 class="form-title">Titre de l'article.</h3>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                     <h8 class="form-title">03/04/22</h8>
                     </div>
-                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            </div>
+            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
             </div>
         </div>
-    </div>
-    <div>
+    </div>    <div>
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="HomePageContainer">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
+            <div class="row">
+                    <div class="col-sm">
                     <h3 class="form-title">Titre de l'article.</h3>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                     <h8 class="form-title">03/04/22</h8>
                     </div>
-                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
             </div>
-        </div>
-    </div>
-    <div>
-        <div data-aos="zoom-in-left" data-aos-duration="1250">
-            <div class="HomePageContainer">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
-                    <h3 class="form-title">Titre de l'article.</h3>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <div><p>Lots of text here...With the four tiers of grids available you're bound to run into issues where, at certain breakpoints, your columns don't clear quite right as one is taller than the other. To fix that, use a combination of a .clearfix and o blablalbalbalbabla</p></div>
+            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
             </div>
         </div>
     </div>
@@ -80,6 +72,8 @@
 
 
 <style>
+
+
 
 .HomePage{
     /*

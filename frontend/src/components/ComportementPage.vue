@@ -1,5 +1,6 @@
 <template>
 <div class="container-comportement">
+<div data-aos="zoom-in-left" data-aos-duration="1250">
     <div class="wrapper">
         <header>Comportement</header>
          <table class="table table-hover table-borderless ">
@@ -80,6 +81,7 @@
             </tbody>
         </table>
     </div>
+    </div>
 </div>
 </template>
 <style>
@@ -102,6 +104,7 @@
 
 .container-comportement {
     margin-top: 150px;
+    padding-bottom: 10%;
 }
 
 .wrapper {

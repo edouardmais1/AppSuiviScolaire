@@ -1,5 +1,6 @@
 <template>
 <div class="container-contact">
+<div data-aos="zoom-in-left" data-aos-duration="1250">
     <div class="wrapper">
         <header>Contact</header>
 
@@ -41,6 +42,7 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 
 </template>
@@ -127,6 +129,7 @@ import axios from 'axios';
 
 .container-contact {
     margin-top: 150px;
+    padding-bottom: 10%;
 }
 
 .items-1 {

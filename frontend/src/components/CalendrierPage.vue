@@ -56,9 +56,7 @@ export default {
 
 <template>
 <div class = "calendar">
-
         <FullCalendar :options="calendarOptions" />
-
 </div>
 </template>
 
@@ -86,5 +84,6 @@ export default {
         padding: 25px;
         font-size: 14px;
         background-color: white;
+        height: auto;
 }
 </style>
