@@ -54,14 +54,34 @@
                 <router-link class="nav-link" to="/inscription">Inscription</router-link>
               </li>
             </div>
+            <!--
+            <div class="nav-links">
+              <li class="nav-item">
+                <div>
+                  <i class="fas fa-align-left imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/inscription">Profil</router-link>
+              </li>
+            </div>
+            -->
             <div class="nav-links">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-sign-in-alt imgs"></i>
                 </div>
-                <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
+                <router-link class="nav-link" to="/connexion" id="connexion">Déconnexion</router-link>
               </li>
             </div>
+            <!--
+            <div class="nav-links">
+              <li class="nav-item">
+                <div>
+                  <i class="fas fa-align-left imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/connexion">Connexion</router-link>
+              </li>
+            </div>
+            -->
           </ul>
         </div>  
       </div>
@@ -87,15 +107,19 @@
    height: 75px;
 }
 
+.navbar-collapse {
+  background-color: #6dabe4;
+  border-radius: 20px;
+}
+
 .imgs {
   position: absolute;
   margin-top: 5px;
-  color:  rgba(240, 240, 240, 0.8);
+  color: rgba(240, 240, 240, 0.8);
 }
 
 .comportement {
   margin-left: 10px;
-
 }
 
 .nav-item {
@@ -151,6 +175,10 @@
     padding-right: 0;
     padding-left: 5px;
   }
+  .comportement {
+  margin-right: 10px;
+
+}
 }
 
 </style>

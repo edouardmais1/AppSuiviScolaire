@@ -25,26 +25,28 @@ export default {
 </script>
 <style>
   body {
+    min-height: 100vh;
     background-color: rgba(240, 240, 240, 0.8); 
   }
+
   * {
   scrollbar-width: thin;
   scrollbar-color: #6dabe4  rgba(240, 240, 240, 0.8);
-}
-::-webkit-scrollbar {
-    width: 12px;
-}
- 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
+  }
+  ::-webkit-scrollbar {
+      width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+      border-radius: 10px;
 
-}
- 
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  }
 
 
 </style>

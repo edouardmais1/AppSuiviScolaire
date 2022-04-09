@@ -15,10 +15,7 @@
     height: 45px;
     width: 100%;
     background-color: #6dabe4;
-}
-
-.comportement {
-  margin-left: 10px;
+    position: sticky;
 }
 
 .footer-title {

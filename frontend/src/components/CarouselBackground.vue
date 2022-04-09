@@ -44,31 +44,37 @@
 </template>
 
 <style>
-.carousel { 
-  z-index: -99; 
-  margin-top: 25px;
-  }
-/*.carousel-item {
-    position: fixed; 
-    width: 100%; height: 100%;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    -ms-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    transition: opacity 1s;
+  .carousel { 
+    z-index: -99; 
+    margin-top: 25px;
+    }
+  /*.carousel-item {
+      position: fixed; 
+      width: 100%; height: 100%;
+      -webkit-transition: opacity 1s;
+      -moz-transition: opacity 1s;
+      -ms-transition: opacity 1s;
+      -o-transition: opacity 1s;
+      transition: opacity 1s;
+      background-size: cover;
+      -moz-background-size: cover;
+  }*/
+  .carousel-item {
+    position: fixed;
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     -moz-background-size: cover;
-}*/
-.carousel-item {
-  position: fixed;
-  height: 100vh;
-  min-height: 350px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -moz-background-size: cover;
-}
+  }
+
+  @media (min-width: 1430px) {
+    .carousel-item {
+      height: 60%;
+    }   
+  }
 
 </style>
