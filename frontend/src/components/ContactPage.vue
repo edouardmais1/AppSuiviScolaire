@@ -28,7 +28,10 @@
             </div>
             <div class="dbl-field">
                 <div class="field">
-                    <input type="email" placeholder="Mail du destinataire" class="contact-input-4" v-model="email">
+                    <input type="mail" placeholder="Mail du destinataire" class="contact-input-4" v-model="email" list="test">
+                    <datalist id="test">
+                        <option v-for="item in items" :key="item.Mail">{{item.Mail}}</option>
+                    </datalist>
                     <i class="fas fa-envelope" id="item"></i>
                 </div>
             </div>
@@ -59,10 +62,31 @@ import axios from 'axios';
                 telephone:'',
                 email:'',
                 message:'',
+                items: [],
             }
         },
 
+        created(){
+
+            this.getContacts();
+
+        },
+
         methods:{
+
+            getContacts(){
+                axios.get("http://localhost:3000/contacts")
+
+                    .then(response =>{
+                        console.log(response.data);
+                        this.items = response.data
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    });
+
+            },
+
             sendMail(){
                 if(this.checkInputs()){
                     this.message ="";

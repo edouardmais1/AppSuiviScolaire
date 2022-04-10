@@ -8,14 +8,14 @@
             <div class="HomePageContainer">
             <div class="row">
                     <div class="col-sm">
-                    <h3 class="form-title">Titre de l'article.</h3>
+                    <h3 class="form-title">{{this.items[items.length - 1].Titre}}</h3>
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">03/04/22</h8>
+                     <h8 class="form-title">{{this.items[items.length - 1].Date}}</h8> //utiliser une fonction de conversion de date
                     </div>
             </div>
-            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
+            <div><p>{{this.items[items.length - 1].Contenu}}</p></div>
             </div>
         </div>
     </div>
@@ -24,14 +24,14 @@
             <div class="HomePageContainer">
             <div class="row">
                     <div class="col-sm">
-                    <h3 class="form-title">Titre de l'article.</h3>
+                    <h3 class="form-title">{{this.items[items.length - 2].Titre}}</h3>
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">03/04/22</h8>
+                     <h8 class="form-title">{{this.items[items.length - 2].Date}}</h8> //utiliser une fonction de conversion de date
                     </div>
             </div>
-            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
+            <div><p>{{this.items[items.length - 2].Contenu}}</p></div>
             </div>
         </div>
     </div>    <div>
@@ -69,6 +69,39 @@
     </section>
 </template>
 
+<script>
+
+import axios from 'axios'
+    export default{
+
+        name: "HomePage",
+        data(){
+            return{
+                items: [],
+            }
+        },
+
+        created(){
+            this.getActualite();
+        },
+
+        methods : {
+            getActualite(){
+                axios.get("http://localhost:3000/")
+
+                    .then(reponse =>{
+                        console.log(reponse.data);
+                        this.items = reponse.data;
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    });
+            }
+        }
+    }
+
+
+</script>
 
 
 <style>

@@ -20,11 +20,12 @@ router.get('/users/:mail',data.getUserByMail);
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
 
+//temporaire /calendrier --> inutile ?
 router.get('/calendrier',data.getCalendarData);
 router.get('/calendrier/:classe',data.getCalendarByClasse);
 
 router.get('/',data.getActualite);
-router.get('/contact',data.getContactDirectionSecretariat);
+router.get('/contacts',data.getContactDirectionSecretariat);
 
 
 //POST METHODS
@@ -32,6 +33,9 @@ router.post('/eleves',data.insertStudent);
 router.post('/users',data.insertUser);
 
 router.post('/sendMail',mail.sendMail);
+
+//actualité
+//calendrier
 
 
 //DELETE METHODS
