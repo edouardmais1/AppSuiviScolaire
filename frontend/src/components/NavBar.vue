@@ -177,8 +177,7 @@
   }
   .comportement {
   margin-right: 10px;
-
-}
+  }
 }
 
 </style>

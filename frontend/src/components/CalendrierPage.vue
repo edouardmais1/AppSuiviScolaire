@@ -52,38 +52,38 @@ export default {
   },
 }
 </script>
-
-
 <template>
-<div class = "calendar">
-        <FullCalendar :options="calendarOptions" />
-</div>
+    <div class ="calendar">
+            <FullCalendar :options="calendarOptions" class="test"/>
+    </div>
 </template>
 
-<style>
-#calendar {
-  max-width: 900px;
-  margin: 40px auto;
-}
-.initialView{
-  font-color: #6dabe4;
-}
-.calendar{
-        margin: 10% 10%;
-        border: 3px solid #6dabe4;
-        box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-        -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-        -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-        -o-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-        -ms-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-        border-radius: 20px;
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        -o-border-radius: 20px;
-        -ms-border-radius: 20px;
-        padding: 25px;
-        font-size: 14px;
-        background-color: white;
-        height: auto;
-}
-</style>
+<style> 
+  #calendar {
+    max-width: 900px;
+    margin: 40px auto;
+  }
+  
+  .initialView {
+    color: #6dabe4;
+  }
+
+  .calendar {
+    margin: 10% 10%;
+    border: 3px solid #6dabe4;
+    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -o-border-radius: 20px;
+    -ms-border-radius: 20px;
+    padding: 25px;
+    font-size: 14px;
+    background-color: white;
+    height: auto;
+  }
+  </style>
