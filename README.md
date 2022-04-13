@@ -3,36 +3,6 @@
 *** DevIII -> Développement d'une application web visant la communication entre enseignants de primaire et parents d'élèves.
 -->
 
-<br />
-
-<!-- SOMMAIRE -->
-<details>
-  <summary>SOMMAIRE</summary>
-  <ol>
-    <li>
-      <a href="#a-propos-du-projet">A propos du projet</a>
-      <ul>
-        <li><a href="#description-du-projet">Description du projet</a></li>
-        <li><a href="#a-propos-du-client">A propos du client</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#pour-commencer">Pour commencer</a>
-      <ul>
-        <li><a href="#technologies-choisies">Technologies choisies</a></li>
-        <li><a href="#liens-utiles">Liens utiles</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#contacts">Contacts</a>
-      <ul>
-        <li><a href="#nous-contacter-?">Nous contacter ?</a></li>
-      </ul>
-    </li>
-  </ol>
-</details>
-
-
 <!-- A PROPOS DU PROJET -->
 ## A propos du projet
 
@@ -52,35 +22,23 @@ Pour le bon déroulement de l'application, le secrétariat devra jouer un role d
 Notre cliente est une enseignante de 5ème primaire travaillant à Bruxelles. Celle-ci utilise déja une application web qui pour elle manque de certaines fonctionnalités de communication avec les parents. 
 
 
-  
+<br><br>
 <!-- POUR COMMENCER -->
-## Pour Commencer
+## AppSuiviScolaire <br>
 
-### Technologies choisies
+### Pré Requis
   
-* Backend : 
-  MySQL/SQLite
-* Frontend :
-  VueJs
-  Bootstrap
-
-### Liens utiles
-
-* Url du site: ??
-* Liens vers les outils: 
-  MySQL : --> https://www.mysql.com/fr/ <br><br>
-  SQLite : --> https://sqlite.org/index.html <br><br>
-  VueJs : --> https://vuejs.org/ <br><br>
-  Bootstrap : --> https://getbootstrap.com/ <br><br>
-  Github : --> https://github.com/ <br><br>
-  Trello : --> https://github.com/ <br><br>
-  Clockify : --> https://app.clockify.me <br><br>
-  VScode : --> https://code.visualstudio.com/ <br><br>
-  SublimeText : --> https://www.sublimetext.com/ <br><br>
+* NodeJS & npm
+* Editeur de texte
+ 
+### Installation 
+Clonez le repository git via un invité de commande : `git clone https://github.com/edouardmais1/AppSuiviScolaire.git`
   
-* Lien vers la vidéo de présentation: ??  
+### Démarrage
 
-
+Accéder aux répertoire <i>backend</i> et <i>frontend</i> via `cd backend` et `cd frontend`. Ensuite dans le dossier <i>backend</i>, tapez les commandes `npm install` et `npm start`. Puis, dans le dossier <i>frontend</i>, tapez les commandes `npm install` et `npm run serve`. Enfin, rendez vous dans votre navigateur et mettez y les urls appropiés.
+ 
+<br><br>
   
 <!-- CONTACTS -->
 ## Contacts
