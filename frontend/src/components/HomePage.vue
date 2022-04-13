@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">{{this.items[items.length - 1].Date}}</h8> //utiliser une fonction de conversion de date
+                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 1].Date)}}</h8>
                     </div>
             </div>
             <div><p>{{this.items[items.length - 1].Contenu}}</p></div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">{{this.items[items.length - 2].Date}}</h8> //utiliser une fonction de conversion de date
+                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 2].Date)}}</h8>
                     </div>
             </div>
             <div><p>{{this.items[items.length - 2].Contenu}}</p></div>
@@ -39,14 +39,14 @@
             <div class="HomePageContainer">
             <div class="row">
                     <div class="col-sm">
-                    <h3 class="form-title">Titre de l'article.</h3>
+                    <h3 class="form-title">{{this.items[items.length - 3].Titre}}</h3>
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">03/04/22</h8>
+                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 3].Date)}}</h8>
                     </div>
             </div>
-            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
+            <div><p>{{this.items[items.length - 3].Contenu}}</p></div>
             </div>
         </div>
     </div>    <div>
@@ -54,14 +54,14 @@
             <div class="HomePageContainer">
             <div class="row">
                     <div class="col-sm">
-                    <h3 class="form-title">Titre de l'article.</h3>
+                    <h3 class="form-title">{{this.items[items.length - 4].Titre}}</h3>
                     </div>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                     <h8 class="form-title">03/04/22</h8>
+                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 4].Date)}}</h8>
                     </div>
             </div>
-            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsa sapiente expedita aperiam iste suscipit cum voluptates voluptatibus facilis incidunt perferendis dolore iure iusto, minima culpa id velit consequatur quae?</p></div>
+            <div><p>{{this.items[items.length - 4].Contenu}}</p></div>
             </div>
         </div>
     </div>
@@ -90,12 +90,17 @@ import axios from 'axios'
                 axios.get("http://localhost:3000/")
 
                     .then(reponse =>{
-                        console.log(reponse.data);
                         this.items = reponse.data;
                     })
                     .catch(error =>{
                         console.log(error);
                     });
+            },
+
+            conversionDate(date){
+                let result = new Date(date);
+
+                return result.toLocaleDateString();
             }
         }
     }

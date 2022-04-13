@@ -44,7 +44,7 @@ const getEleveById = (req, res) => {
         if (err){
             res.send(err);
         }else{
-            res.json(results);
+            res.status(200).json(results);
         }
     });
 }
@@ -84,7 +84,7 @@ const getUserByMail = (req, res) => {
         if (err){
             res.send(err);
         }else{
-            res.json(results);
+            res.status(200).json(results);
         }
     });
 }
@@ -125,7 +125,7 @@ const getCalendarByClasse = (request, response) => {
         if (err){
             response.send(err);
         }else{
-            response.json(results);
+            response.status(200).json(results);
         }
     });
 }

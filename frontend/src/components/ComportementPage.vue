@@ -18,7 +18,7 @@
                     <td>Votre fils a été insolent lors du cours de sport car il ne voulait pas jouer au basket.</td>
                     <td>29/09/2021</td>
                     <td>
-                        <input type="checkbox" id="1" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="1" class="input-comportement" true-value="1" false-value="false" />
                     </td>
                 </tr>
                 <tr>
@@ -26,7 +26,7 @@
                     <td>Bavardage en classe avec son voisin, impossibe d'arrêter.</td>
                     <td>16/11/2021</td>
                     <td>
-                        <input type="checkbox" id="2" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="2" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>
                 <tr>
@@ -34,7 +34,7 @@
                     <td>Manque de concentration lors d'une présenation avec des élèves au tableau.</td>
                     <td>12/12/2021</td>
                     <td>
-                        <input type="checkbox" id="3" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="3" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>    
                 <tr>
@@ -42,7 +42,7 @@
                     <td>3 semaines sans ses affaires de sport. </td>
                     <td>27/01/2022</td>
                     <td>
-                        <input type="checkbox" id="4" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="4" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>
                 <tr>
@@ -50,7 +50,7 @@
                     <td>Très bon comportement de votre fils lors de la sortie scolaire à Durby.</td>
                     <td>25/02/2022</td>
                     <td>
-                        <input type="checkbox" id="5" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="5" class="input-comportement" true-value="1" false-value="false" />
                     </td>
                 </tr>
                 <tr>
@@ -58,7 +58,7 @@
                     <td>Insolence lors d'une remarque dans les couloirs, son vocabulaire n'était pas adapté à l'école.</td>
                     <td>14/03/2022</td>
                     <td>
-                        <input type="checkbox" id="6" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="6" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>
                  <tr>
@@ -66,7 +66,7 @@
                     <td>Bon comportement en histoire.</td>
                     <td>20/03/2022</td>
                     <td>
-                        <input type="checkbox" id="7" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="7" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>
                  <tr>
@@ -74,7 +74,7 @@
                     <td>Bon comportement en classe, que de plaisr !</td>
                     <td>25/04/2022</td>
                     <td>
-                        <input type="checkbox" id="8" class="input-comportement" v-model="toggle" true-value="1" false-value="false" />
+                        <input type="checkbox" id="8" class="input-comportement"  true-value="1" false-value="false" />
                     </td>
                 </tr>
 
