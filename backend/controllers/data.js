@@ -10,6 +10,24 @@ db.connect();
 
 //GET
 
+//GET ALL CLASSES 
+
+const getAllClasses = (request, response) =>{
+    db.query('SELECT Classe from tb_Classe', (error, results)=>{
+        if(error){
+            throw error;
+        }
+
+        else{
+            response.status(200).json(results);
+        }
+    })
+}
+
+
+
+
+
 //GET ALL ELEVES
 
 const getAllEleves = (request,response)=>{
@@ -110,7 +128,7 @@ const getCalendarData = (request,response)=>{
 const getDataCalendarByClass = (classe, result) => {
 
     //RECUPERER LES EVENEMENTS EN FONCTION DES CLASSES
-    db.query("SELECT * FROM tb_Calendrier Where Classe = ?", [classe], (err, results) => {             
+    db.query("SELECT Contenu as 'title', Date as 'date' FROM tb_Calendrier Where Classe = ?", [classe], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -241,6 +259,7 @@ module.exports = {
     getUserByMail,
     insertStudent,
     insertUser,
-    getContactDirectionSecretariat
+    getContactDirectionSecretariat,
+    getAllClasses
 }
 

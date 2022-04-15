@@ -27,6 +27,8 @@ router.get('/calendrier/:classe',data.getCalendarByClasse);
 router.get('/',data.getActualite);
 router.get('/contacts',data.getContactDirectionSecretariat);
 
+router.get('/classes',data.getAllClasses);
+
 
 //POST METHODS
 router.post('/eleves',data.insertStudent);
