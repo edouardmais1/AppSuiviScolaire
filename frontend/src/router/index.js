@@ -6,6 +6,10 @@ import BulletinPage from '../components/BulletinPage.vue'
 import ContactPage from '../components/ContactPage.vue'
 import InscriptionPage from '../components/InscriptionPage.vue'
 import ConnexionPage from '../components/ConnexionPage.vue'
+import SecretariatPage from '../components/SecretariatPage.vue'
+import SecretariatActualites from '../components/SecretariatActualites.vue'
+import SecretariatClasses from '../components/SecretariatClasses.vue'
+import SecretariatEleves from '../components/SecretariatEleves.vue'
 
 
 const routes = [
@@ -34,6 +38,26 @@ const routes = [
         path:'/contact',
         name: 'ContactPage',
         component: ContactPage
+    },
+    {
+        path:'/secretariat',
+        name: 'SecretariatPage',
+        component: SecretariatPage
+    },
+    {
+        path:'/secretariat/actualites',
+        name: 'SecretariatActualites',
+        component: SecretariatActualites
+    },
+    {
+        path:'/secretariat/eleves',
+        name: 'SecretariatEleves',
+        component: SecretariatEleves
+    },
+    {
+        path:'/secretariat/classes',
+        name: 'SecretariatClasses',
+        component: SecretariatClasses
     },
     {
         path:'/inscription',

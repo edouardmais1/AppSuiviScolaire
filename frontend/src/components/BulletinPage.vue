@@ -1,34 +1,34 @@
 <template>
-<div class="container-bulletin">
-<div data-aos="zoom-in-left" data-aos-duration="1250">
-    <div class="wrapper">
-        <header>Bulletin</header>
-         <table class="table table-hover table-borderless ">
-            <tbody>
-                <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2020.pdf</a></td>
-                </tr>
-                 <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2021.pdf</a></td>
-                </tr>
-               <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2021.pdf</a></td>
-                </tr>
-                 <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2022.pdf</a></td>
-                </tr>
-                <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2022.pdf</a></td>
-                </tr>
-                 <tr>                  
-                    <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2023.pdf</a></td>
-                </tr>
-              
-            </tbody>
-        </table>
+    <div data-aos="zoom-in-left" data-aos-duration="1250">
+        <div class="container-bulletin">
+            <div class="wrapper">
+                <header>Bulletin</header>
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2020.pdf</a></td>
+                        </tr>
+                        <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2021.pdf</a></td>
+                        </tr>
+                    <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2021.pdf</a></td>
+                        </tr>
+                        <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2022.pdf</a></td>
+                        </tr>
+                        <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2022.pdf</a></td>
+                        </tr>
+                        <tr>                  
+                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2023.pdf</a></td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    </div>
-</div>
 </template>
 <style>
 @font-face {
