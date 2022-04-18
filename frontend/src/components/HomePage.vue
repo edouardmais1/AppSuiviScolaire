@@ -1,83 +1,33 @@
 <template>
-<section class="HomePage">
-    <div class="text-center">
+    <section class="HomePage">
+        <div class="text-center">
             <h1 class="form-title">Actualités</h1>
-    </div>
-    <div>
-        <div data-aos="zoom-in-left" data-aos-duration="1250">
-            <div class="HomePageContainer">
-            <div class="row">
-                    <div class="col-sm">
-                    <h3 class="form-title">{{this.items[items.length - 1].Titre}}</h3>
-                    </div>
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 1].Date)}}</h8>
-                    </div>
-            </div>
-            <div><p>{{this.items[items.length - 1].Contenu}}</p></div>
-            </div>
         </div>
-    </div>
-        <div>
-        <div data-aos="zoom-in-left" data-aos-duration="1250">
-            <div class="HomePageContainer">
-            <div class="row">
-                    <div class="col-sm">
-                    <h3 class="form-title">{{this.items[items.length - 2].Titre}}</h3>
-                    </div>
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 2].Date)}}</h8>
-                    </div>
-            </div>
-            <div><p>{{this.items[items.length - 2].Contenu}}</p></div>
-            </div>
+        <div v-if="this.checkLengthItems()">
+            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-for="item in items.slice(0,5).reverse()" :key="item"/>
         </div>
-    </div>    <div>
-        <div data-aos="zoom-in-left" data-aos-duration="1250">
-            <div class="HomePageContainer">
-            <div class="row">
-                    <div class="col-sm">
-                    <h3 class="form-title">{{this.items[items.length - 3].Titre}}</h3>
-                    </div>
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 3].Date)}}</h8>
-                    </div>
-            </div>
-            <div><p>{{this.items[items.length - 3].Contenu}}</p></div>
-            </div>
-        </div>
-    </div>    <div>
-        <div data-aos="zoom-in-left" data-aos-duration="1250">
-            <div class="HomePageContainer">
-            <div class="row">
-                    <div class="col-sm">
-                    <h3 class="form-title">{{this.items[items.length - 4].Titre}}</h3>
-                    </div>
-                    <div class="col-sm"></div>
-                    <div class="col-sm">
-                     <h8 class="form-title">{{this.conversionDate(this.items[items.length - 4].Date)}}</h8>
-                    </div>
-            </div>
-            <div><p>{{this.items[items.length - 4].Contenu}}</p></div>
-            </div>
-        </div>
-    </div>
-    
+        <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
+
     </section>
+
+
 </template>
 
 <script>
+    import ActuComponent from "./ActuComponent.vue";
+    import axios from 'axios';
 
-import axios from 'axios'
     export default{
+        name : "HomePage",
 
-        name: "HomePage",
+        components: {
+            ActuComponent
+        },
+
         data(){
-            return{
+            return {
                 items: [],
+                alerMessage : "",
             }
         },
 
@@ -86,33 +36,48 @@ import axios from 'axios'
         },
 
         methods : {
-            getActualite(){
-                axios.get("http://localhost:3000/")
+            checkLengthItems(){
+                if(this.items.length == 0){
+                    this.alerMessage = "PAS D'ACTUALITE..."
+                    return false;
+                }
+                else{
+                    this.alerMessage = ""
+                    return true;
+                }
+            },
 
-                    .then(reponse =>{
-                        this.items = reponse.data;
+            async getActualite(){
+                try{
+                    await axios.get("http://localhost:3000/")
+                    .then(response =>{
+                        this.items = response.data;
+                        console.log(response.data);
                     })
                     .catch(error =>{
-                        console.log(error);
-                    });
+                        console.log(error)
+                    })
+                }
+                catch(error){
+                    console.log(error);
+                }
+
             },
 
             conversionDate(date){
                 let result = new Date(date);
 
                 return result.toLocaleDateString();
-            }
+            },
+        
         }
-    }
 
+
+    }
 
 </script>
 
-
 <style>
-
-
-
 .HomePage{
     /*
     background-image: url("../../public/images/background-school-2.jpg");*/
@@ -120,25 +85,10 @@ import axios from 'axios'
     padding-top: 10%;
     padding-bottom: 10%;
 }
-.HomePageContainer{
-    width: 50%;
-    height: 0 auto;
-    margin: 0 auto;
-    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-    -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-    -o-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-    -ms-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
-    border-radius: 50px;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -o-border-radius: 20px;
-    -ms-border-radius: 20px; 
-    padding: 10px;
-    background-color: white;
-    margin-top: 50px;
-        border: solid;
-    border-color: #6dabe4;
+
+.alertMessage{
+    margin-left: 46.2%;
+    color: red;
 }
 
 </style>
