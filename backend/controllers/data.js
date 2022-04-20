@@ -155,7 +155,7 @@ const getCalendarByClasse = (request, response) => {
 const getContactDirectionSecretariat = (request,response)=>{
     
     //RECUPERER LES MAILS DES MEMBRES DU PERSONNEL
-    db.query("SELECT Mail FROM `tb_Utilisateurs` WHERE Mail like '%@secretariat.be' or Mail Like '%@direction.be'",(err,results)=>{
+    db.query("SELECT Mail from tb_Utilisateurs where Roles = 2 or Roles = 3",(err,results)=>{
         if(err){
             throw err;
         }

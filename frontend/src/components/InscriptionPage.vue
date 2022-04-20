@@ -7,7 +7,7 @@
                     <div class="inscription-form">
                         <h2 class="form-title">Inscription</h2>
 
-                        <form method="" class="formulaire" id="formulaire" @submit.prevent="createAccount()">
+                        <form method="" class="formulaire" id="formulaire" @submit.prevent="checkContentInputs()">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
                                 <input type="text" name="name" id="name" placeholder="Votre Nom" autocomplete="off" v-model="nom" class="inscription-input">
@@ -39,6 +39,10 @@
                         </form>
                     </div>
 
+                    <div class="alertMessage">
+                        <p>{{message}}</p>
+                    </div>
+
                     <div class="link">
                         <router-link to="/connexion" class="connexion-link">Je suis déjà membre</router-link>
                     </div>
@@ -61,6 +65,7 @@ export default{
             email: '',
             password:'',
             repassword:'',
+            message: '',
         }
     },
 
@@ -85,6 +90,26 @@ export default{
                 console.log(err);
             }
         },
+
+        checkContentInputs(){
+            if(this.prenom.length == 0 || this.nom.length == 0 || this.email.length == 0 || this.password.length || this.repassword.length ==0){
+                this.message = "VEUILLEZ REMPLIR CHAQUE CHAMP DU FORMULAIRE";
+                return false;
+            }
+            else{
+                this.message = '';
+                return true;
+            }
+        },
+
+        checkPasswords(){
+            
+        }
+
+
+        sendData(){
+
+        }
     },
 
 };
@@ -155,6 +180,11 @@ label {
     -o-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     color: #222; }
+
+.alertMessage{
+    color: red;
+    margin-left: 28.5%
+}
           
 .container {
     border: 3px solid #6dabe4;
