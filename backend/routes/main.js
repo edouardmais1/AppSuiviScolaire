@@ -2,6 +2,7 @@
 
 //importe le module express
 const express = require('express');
+const { checkSchema } = require('express-validator');
 
 //initialiser le router express
 const router = express.Router();
@@ -32,12 +33,11 @@ router.get('/classes',data.getAllClasses);
 
 //POST METHODS
 router.post('/eleves',data.insertStudent);
-router.post('/users',data.insertUser);
+
+//route vers l'inscription 
+router.post('/inscription',data.insertUser);
 
 router.post('/sendMail',mail.sendMail);
-
-//actualité
-//calendrier
 
 
 //DELETE METHODS

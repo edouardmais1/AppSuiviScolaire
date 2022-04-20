@@ -6,10 +6,10 @@
                 <div class="connexion-form">
                     <h2 class="form-title">Connexion</h2>
 
-                    <form action="" class="formulaire" id="formulaire" @submit-prevent ="Connexion()">
+                    <form action="" class="formulaire" id="formulaire" @submit.prevent ="login()">
                         <div class="inputs">
                             <label for="email" class="input-label"></label>
-                            <input type="email" name="email" id="email" placeholder="Votre Email" autocomplete="off" v-model="mail" class="inscription-input">
+                            <input type="email" name="email" id="email" placeholder="Votre Email" autocomplete="off" v-model="email" class="inscription-input">
                         </div>
                         <div class="inputs">
                             <label for="password" class="input-label"></label>
@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="input-button">
-                            <button type="submit" class="submit-bouton" name="connexion" id="connexion">Se connecter</button>
+                            <button type="submit" class="submit-bouton" name="connexion" id="connexion" :disabled="validatedFields" >Se connecter</button>
                         </div>
                     </form>
                 </div>
@@ -30,6 +30,47 @@
         </div>
     </section>
 </template>
+
+<script>
+    export default{
+        name : "ConnexionPage",
+
+        data(){
+            return {
+                email: '',
+                password: '',
+            }
+        },
+
+        computed:{
+            validatedFields : function(){
+                if(this.email != "" && this.password != ""){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+        },
+
+        methods: {
+            login(){
+                this.$store.dispatch('login',{
+                    Mail : this.email,
+                    MotDePasse: this.password,
+                })
+                .then(response =>{
+                console.log(response);
+                })
+                .catch(error =>{
+                console.log(error);
+                })
+            },
+
+        }
+    }
+</script>
+
 
 <style>
 @font-face {
@@ -156,7 +197,7 @@ label {
 }
 
 .connexion {
-    margin-top: 50px;
+    margin-top: 3.5%;
     padding-top: 100px;
     padding-bottom: 10%;
 }

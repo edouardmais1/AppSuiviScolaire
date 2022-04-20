@@ -3,6 +3,7 @@
 const { json } = require("express");
 const { response } = require("../app");
 
+
 //IMPORTE LE FICHIER DATABASE.JS
 const db = require('../config/database');
 db.connect();
@@ -237,9 +238,11 @@ const insertUser = (request,response)=>{
             response.send(err);
         }
         else{
-            response.json(results)
+            response.status(200).json(results)
         }
     });
+
+
 }
 
 

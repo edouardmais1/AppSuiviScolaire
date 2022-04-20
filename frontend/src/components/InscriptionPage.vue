@@ -7,7 +7,7 @@
                     <div class="inscription-form">
                         <h2 class="form-title">Inscription</h2>
 
-                        <form method="" class="formulaire" id="formulaire" @submit.prevent="checkContentInputs()">
+                        <form method="" class="formulaire" id="formulaire" @submit.prevent="this.SendData()">
                             <div class="inputs">
                                 <label for="name" class="input-label"></label>
                                 <input type="text" name="name" id="name" placeholder="Votre Nom" autocomplete="off" v-model="nom" class="inscription-input">
@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="input-button">
-                                <button type="submit" name="inscription" id="inscription" class="submit-bouton">S'inscrire  </button>
+                                <button type="submit" name="inscription" id="inscription" class="submit-bouton" :disabled="validatedFields" >S'inscrire  </button>
                             </div>
                         </form>
                     </div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import axios from 'axios';
 
 export default{
@@ -66,50 +67,73 @@ export default{
             password:'',
             repassword:'',
             message: '',
+
+            mail_exist: '',
         }
     },
 
-    methods : {
-        //CREATE AN ACCOUNT
-        async createAccount(){
-            try{
-                await axios.post("http://localhost:3000/users",{
-                    Nom: this.nom,
-                    Prenom: this.prenom,
-                    Mail : this.email,
-                    MotDePasse: this.password,
-                    Roles : "1",
-                    Token : "testBonsoir"
-                });
-                this.email = "";
-                this.password = "";
-                this.nom = "";
-                this.prenom = "";
-            }
-            catch(err){
-                console.log(err);
-            }
-        },
-
-        checkContentInputs(){
-            if(this.prenom.length == 0 || this.nom.length == 0 || this.email.length == 0 || this.password.length || this.repassword.length ==0){
-                this.message = "VEUILLEZ REMPLIR CHAQUE CHAMP DU FORMULAIRE";
-                return false;
+    computed: {
+        validatedFields : function(){
+            if(this.prenom != "" && this.nom != "" && this.email != "" && this.password != "" && this.repassword != ""){
+                if(this.password == this.repassword){
+                    return false;
+                }
+                else{
+                    return true;
+                }
             }
             else{
-                this.message = '';
                 return true;
             }
         },
+        ...mapState(['status'])
+    },
 
-        checkPasswords(){
-            
+    methods : {
+        checkAccountExist(mail){
+            const url = `http://localhost:3000/users/${mail}`;
+
+            return new Promise((resolve, reject)=>{
+                axios.get(url)
+                .then(response =>{
+                    this.mail_exist = response.data.length;
+                    resolve(response);
+                })
+                .catch(error =>{
+                    reject(error);
+                })
+            })
+            },
+
+        async SendData(){
+            await this.checkAccountExist(this.email)
+
+            if(this.mail_exist == "1"){
+                this.message = "Ce compte éxiste déja"
+            }
+
+            else{
+                this.message = ""
+                //validation des données à mettre en place
+
+                this.createAccount();
+            }
         },
 
-
-        sendData(){
-
-        }
+        createAccount(){
+            this.$store.dispatch('createAccount',{
+                Nom: this.nom,
+                Prenom: this.prenom,
+                Mail : this.email,
+                MotDePasse: this.password,
+            })
+            .then(response =>{
+                console.log(response);
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+        },
     },
 
 };
@@ -183,7 +207,7 @@ label {
 
 .alertMessage{
     color: red;
-    margin-left: 28.5%
+    margin-left: 40%
 }
           
 .container {
@@ -209,7 +233,7 @@ label {
 }
 
 .inscription {
-    margin-top: 100px;
+    margin-top: 3.5%;
     padding-top: 40px;
     padding-bottom: 10%;
 }
