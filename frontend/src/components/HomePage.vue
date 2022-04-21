@@ -4,7 +4,7 @@
             <h1 class="form-title">Actualités</h1>
         </div>
         <div v-if="this.checkLengthItems()">
-            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-for="item in items.slice(0,5).reverse()" :key="item"/>
+            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items.slice(0,5).reverse()" :key="item"/>
         </div>
         <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
 
