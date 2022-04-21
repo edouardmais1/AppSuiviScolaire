@@ -1,59 +1,109 @@
 <template>
-    <section class="SecretariatPage">
-        <div class="text-center">
-                <h1 class="form-title">Secrétariat</h1>
+<section class="SecretariatPage">
+<div class="position-center">
+<div class="row">
+    <div class="col-sm">
+        <div class="text-left">
+            <h1 class="form-title">Gestion des Actualités <i class="fas fa-regular fa-calendar-check"></i></h1>
+
         </div>
-        <div class="SecretariatContainer">
-        <div class="text-center">
-            <div class="row">
-                <div class="col">
-                <div class="nav-links">
-                    <button class="btn btn-success btn-lg">
-                        <router-link class="nav-link" to="/secretariat/eleves">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des élèves
-                        </router-link>
-                    </button>
-                </div>
-                </div>
-                <div class="col">
-                <div class="nav-links">
-                    <button class="btn btn-secondary btn-lg">
-                        <router-link class="nav-link" to="/secretariat/classes">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des classes
-                        </router-link>
-                    </button>
-                </div>
-                </div>
-                <div class="col">
-                <div class="nav-links">
-                    <button class="btn btn-primary btn-lg">
-                        <router-link class="nav-link" to="/secretariat/actualites">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des actualités
-                        </router-link>
-                    </button>
-                </div>
+    </div>
+</div>
+</div>
+    <div class="containerSecretariatEleves">
+        <div class="row">
+            <div class="col-sm">
+                <div class="underlined">
+                Titre :
                 </div>
             </div>
+            <div class="col-sm">
+            <div class="underlined">
+                Date :
+                </div>
+            </div>
+            <div class="col-sm">
+            <div class="underlined">
+                Contenu :
+                </div>
+            </div>
+
+            <div class="col-sm">
+            </div>
         </div>
+                 <!-- partie à généré avec backend -->
+        <div class="listeEleves">
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            </div>
         </div>
-    </section>
+        
+        </div>
+         <!-- Fin de la partie -->
+                          <!-- partie à généré avec backend -->
+        <div class="listeEleves">
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        
+        </div>
+         <!-- Fin de la partie -->
+                          <!-- partie à généré avec backend -->
+        <div class="listeEleves">
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
+            </div>
+            <div class="col-sm">
+                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        
+        </div>
+         <!-- Fin de la partie -->
+
+         
+    </div>
+    <div class="add-button">
+        <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-solid fa-plus"></i></button>
+    </div>
+</section>
 </template>
-
 <script>
-
 
 </script>
 
-
 <style>
-
-.nav-link {
-  font-family:'Poppins';
-  color: white;
-  padding: 0;
-}
-
-
 
 .SecretariatPage{
     /*
@@ -62,11 +112,41 @@
     padding-top: 10%;
     padding-bottom: 10%;
 }
-.SecretariatContainer{
-    padding-left: 20%;
-    padding-right: 20%;
+.containerSecretariatEleves{
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
+.listeEleves{
+    margin-top: 15px;
+}
 
+.underlined{
+    text-decoration: underline;
+}
+.position-center{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.button-Save{
+    margin-left: 85%;
+}
+.add-button{
+    margin-left: 5%;
+    margin-top: 15px;
+}
 
+.btn-primary {
+    background-color: #6dabe4;
+    border-color: #6dabe4;
+}
+
+.btn-success{
+    background-color: #71c770;
+    border-color: #71c770;
+}
+.btn-danger{
+    background-color: #df5757;
+    border-color: #df5757;
+}
 </style>

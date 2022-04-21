@@ -10,7 +10,7 @@
                 <div class="nav-links">
                     <button class="btn btn-success btn-lg">
                         <router-link class="nav-link" to="/secretariat/eleves">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des élèves
+                            <i class="fas fa-solid fa-graduation-cap"></i>  Gestion des élèves
                         </router-link>
                     </button>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="nav-links">
                     <button class="btn btn-secondary btn-lg">
                         <router-link class="nav-link" to="/secretariat/classes">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des classes
+                            <i class="fas fa-solid fa-school"></i>  Gestion des classes
                         </router-link>
                     </button>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="nav-links">
                     <button class="btn btn-primary btn-lg">
                         <router-link class="nav-link" to="/secretariat/actualites">
-                            <i class="fas fa-solid fa-gear"></i>  Liste des actualités
+                            <i class="fas fa-regular fa-calendar-check"></i>  Gestion des actualités
                         </router-link>
                     </button>
                 </div>
@@ -46,13 +46,24 @@
 
 
 <style>
+.btn-primary {
+    background-color: #6dabe4;
+}
 
+.btn-success{
+    background-color: #71c770;
+}
+.btn-danger{
+    background-color: #df5757;
+}
 .nav-link {
   font-family:'Poppins';
   color: white;
   padding: 0;
 }
-
+.btn-lg{
+    height: 75px;
+}
 
 
 .SecretariatPage{
@@ -65,6 +76,8 @@
 .SecretariatContainer{
     padding-left: 20%;
     padding-right: 20%;
+    margin: 0 auto;
+    margin-top: 125px;
 }
 
 
