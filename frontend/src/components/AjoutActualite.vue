@@ -36,10 +36,12 @@
     
     <style scoped>
     .add-actualite{
-        width: 750px;
-        height: 250px;
-        padding: 75px;
-        margin-bottom: 100px;
+    width: 750px;
+    height: 250px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
     }
     </style>
     

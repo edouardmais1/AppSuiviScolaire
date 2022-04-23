@@ -27,8 +27,14 @@ const userDataValidationSchema = [
       .withMessage("Password is required")
       .isString()
       .withMessage("Password should be a string")
-      .isLength({min: 8, max: 40})
+      .isLength({min: 8, max: 40}),
     
+    body("Classe")
+      .exists({ checkFalsy: true })
+      .withMessage("Classe is required")
+      .isString()
+      .withMessage("Classe should be a string")
+      .isLength({max: 2}),
 ];
 
 module.exports = userDataValidationSchema;

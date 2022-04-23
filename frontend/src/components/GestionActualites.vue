@@ -21,6 +21,7 @@
         </div>
 </template>
 
+
 <script>
     import ModaleComponent from "./ModalComponent.vue"
     export default{
@@ -35,7 +36,6 @@
                 revele: false,
             }
         },
-
         methods:{
             toggleModale: function(){
                 this.revele=!this.revele;

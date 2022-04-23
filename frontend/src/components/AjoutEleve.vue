@@ -1,43 +1,43 @@
 <template>
-<form class='add-student' v-if="revele">
+<form class='add-student' v-if="revele" @submit="insertStudent()" >
 <h4> Ajout d'un élève <i class="fas fa-solid fa-user-plus"></i></h4>
 <div class="row">
-<div class="col">
-  <div class="mb-3">
-   <h6>Nom de l'élève:</h6>
-    <input type="text" class="form-control" id="exampleInputEmail1">
-  </div>
-</div>
-<div class="col">
-  <div class="mb-3">
-    <h6>Prenom de l'élève:</h6>
-    <input type="text" class="form-control" id="exampleInputPassword1">
-  </div>
-  </div>
+    <div class="col">
+        <div class="mb-3">
+        <h6>Nom de l'élève:</h6>
+            <input v-model="nom" type="text" class="form-control" id="exampleInputEmail1">
+    </div>
+        </div>
+    <div class="col">
+        <div class="mb-3">
+            <h6>Prenom de l'élève:</h6>
+            <input v-model="prenom" type="text" class="form-control" id="exampleInputPassword1">
+        </div>
+    </div>
 </div>
 <div class="row">
 <div class="col">
     <div class="mb-3">
     <h6>Mail des parents:</h6>
-    <input type="text" class="form-control" id="exampleInputPassword1">
+    <input v-model="email" type="mail" class="form-control" id="exampleInputPassword1">
   </div>
   </div>
 <div class="col">
    <div class="mb-3">
     <h6>Date de naissance:</h6>
-    <input type="date" class="form-control" id="exampleInputPassword1">
+    <input v-model="date" type="date" class="form-control" id="exampleInputPassword1">
   </div>
   </div>
   </div>
   <div class="mb-3">
   <h6>Classe de l'élève:</h6>
-    <select class="custom-select" id="inputGroupSelect01">
-        <option v-bind:value="classe" selected>{{classe}}</option>
-        <option v-for="item in items" :key="item.Classe">{{item.Classe}}</option>
+    <select  v-model="classe" class="custom-select" id="inputGroupSelect01">
+        <option v-bind:value="classe" selected>Choisissez la classe ...</option>
+        <option  v-for="item in items" :key="item.Classe">{{item.Classe}}</option>
     </select>
   </div>
 
-  <button type="submit" class="btn btn-success">Ajouter</button>
+  <button type="submit" class="btn btn-success" :disabled="validatedFields">Ajouter</button>
 </form>
 </template>
 
@@ -50,13 +50,27 @@ export default{
     data(){
         return{
             items : [],
-          
+            nom: '',
+            prenom: '',
+            email: '',
+            date: '',
+            classe:'',
             }
     },
     created(){
         this.getClasses()
     },
-     methods:{
+    computed: {
+        validatedFields : function(){
+            if(this.prenom != "" && this.nom != "" && this.email != "" && this.date != "" && this.classe != ""){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },
+    },
+    methods:{
             async getClasses(){
                 await axios.get("http://localhost:3000/classes")
                 .then(response =>{
@@ -66,6 +80,22 @@ export default{
                     console.log(error)
                 })
             },
+            async insertStudent(){
+                await axios.post("http://localhost:3000/eleves",
+                {
+                    Nom:this.nom,
+                    Prenom:this.prenom,
+                    Mail:this.email,
+                    Classe:this.classe,
+                    DateDeNaissance:this.date,
+                })
+                .then(response =>{
+                    console.log(response.data);
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            }
 
         }
 }
@@ -75,7 +105,9 @@ export default{
 .add-student{
     width: 750px;
     height: 250px;
-    padding: 75px;
+    margin-top: 50px;
     margin-bottom: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 </style>

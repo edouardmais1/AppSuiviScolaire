@@ -35,7 +35,7 @@
          <GestionActualites></GestionActualites>
     </div>
     <div class="add-button">
-        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i></button>
+        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-calendar-plus"></i></button>
     </div>
     <AjoutActualite v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutActualite>
 </section>

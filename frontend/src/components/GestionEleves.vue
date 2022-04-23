@@ -1,9 +1,9 @@
 <template>
-<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale" v-bind:text="text"></ModaleComponent>
+<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
     <div class="listeEleves">
     <div class="row">
         <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-bind:value="this.nom">
+            <input type="text" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-bind:value="nom">
         </div>
         <div class="col-sm">
             <input type="text" class="form-control" placeholder="Prénom" aria-label="Prénom" aria-describedby="basic-addon1" v-bind:value="prenom">
@@ -80,17 +80,7 @@
 
 <style>
 
-.SecretariatPage{
-    /*
-    background-image: url("../../public/images/background-school-2.jpg");*/
-    background-size: contain;
-    padding-top: 10%;
-    padding-bottom: 10%;
-}
-.containerSecretariatEleves{
-    margin-left: 5%;
-    margin-right: 5%;
-}
+
 
 .listeEleves{
     margin-top: 15px;

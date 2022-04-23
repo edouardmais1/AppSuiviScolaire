@@ -93,9 +93,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .logo {
-  width: 200px;
-  height:150px;
-  margin-top: 10px;
+  width:100px;
+  height:75px;
 }
 
 .nav {

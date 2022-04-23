@@ -188,34 +188,6 @@ const getActualite = (request,response)=>{
 //POST
 
 
-//INSERT A STUDENT
-const dataStudent = (data,result)=>{
-
-    //INSERER UN UTILISATEUR DANS LA TABLE ELEVE
-    db.query("INSERT INTO tb_Eleves SET ?", [data],(err,results)=>{
-        if(err){
-            console.log(err);
-            result(err,null);
-        }
-        else{
-            result(null,results);
-        }
-    });
-}
-
-const insertStudent = (request,response)=>{
-    const data = request.body;
-
-    dataStudent(data,(err,results)=>{
-        if(err){
-            res.send(err);
-        }
-        else{
-            res.json(results);
-        }
-    });
-}
-
 
 //INSERT AN USER 
 const dataUser = (data,result)=>{
@@ -351,7 +323,7 @@ const getComportement = (id,result) =>{
     });
 }
 
-const getComportementById = (request, response,next) =>{
+const getComportementById = (request, response) =>{
     getComportement(request.params.id, (error,results)=>{
         if(error){
             response.send(error);
@@ -405,6 +377,53 @@ const getBulletinById = (request, response,next) =>{
     })
 }
 
+//INSERT AN STUDENT 
+const dataStudent = (data,result)=>{
+
+    //INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
+    db.query("INSERT INTO tb_Eleves SET ?", [data], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+};
+
+const insertStudent = (request,response,next)=>{
+    const data = request.body;
+
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataStudent(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
 module.exports = {
     getAllEleves,
     getAllUsers,
@@ -423,5 +442,6 @@ module.exports = {
     getComportementById,
     getAllBulletin,
     getBulletinById
+    
 }
 

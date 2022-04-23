@@ -10,6 +10,7 @@ import SecretariatPage from '../components/SecretariatPage.vue'
 import SecretariatActualites from '../components/SecretariatActualites.vue'
 import SecretariatClasses from '../components/SecretariatClasses.vue'
 import SecretariatEleves from '../components/SecretariatEleves.vue'
+import EvenementsPage from '../components/EvenementsPage.vue'
 
 
 const routes = [
@@ -68,6 +69,11 @@ const routes = [
         path:'/connexion',
         name: 'ConnexionPage',
         component: ConnexionPage
+    },
+    {
+        path:'/calendrier/evenements',
+        name: 'EvenementsPage',
+        component: EvenementsPage
     }
 
 ]

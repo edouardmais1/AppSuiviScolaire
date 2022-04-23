@@ -42,7 +42,7 @@
         </div>
         <GestionEleves v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:email="item.Mail" v-bind:dateNaissance="this.conversionDate(item.DateDeNaissance)" v-bind:classe="item.Classe" v-for="item in items" :key="item" />
         <div class="lol">
-            <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i>
+            <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-user-plus"></i>
         </button>
     </div>
 
@@ -99,5 +99,16 @@
 <style>
 .lol{
     margin-top: 15px;
+}
+.SecretariatPage{
+    /*
+    background-image: url("../../public/images/background-school-2.jpg");*/
+    background-size: contain;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+.containerSecretariatEleves{
+    margin-left: 5%;
+    margin-right: 5%;
 }
 </style>
