@@ -23,71 +23,31 @@
                 </div>
             </div>
         </div>
-          <!-- partie à généré avec backend -->
-        <div class="listeClasse">
-        <div class="row">
-            <div class="col-sm">
-                Classe de 1E
-            </div>
-            <div class="col-sm">
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option value="test@mail.be">prof1@mail.be</option>
-                    <option value="test2@mail.be">prof2@mail.be</option>
-                    <option value="test3@mail.be">prof3@mail.be</option>
-                </select>
-            </div>
-        </div>
-        </div>
-         <!-- Fin de la partie -->
-          <!-- partie à généré avec backend -->
-        <div class="listeClasse">
-        <div class="row">
-            <div class="col-sm">
-                Classe de 2C
-            </div>
-            <div class="col-sm">
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option value="test@mail.be">prof1@mail.be</option>
-                    <option value="test2@mail.be">prof2@mail.be</option>
-                    <option value="test3@mail.be">prof3@mail.be</option>
-                </select>
-            </div>
-        </div>
-        </div>
-         <!-- Fin de la partie -->
-          <!-- partie à généré avec backend -->
-        <div class="listeClasse">
-        <div class="row">
-            <div class="col-sm">
-                Classe de 6A
-            </div>
-            <div class="col-sm">
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option value="test@mail.be">prof1@mail.be</option>
-                    <option value="test2@mail.be">prof2@mail.be</option>
-                    <option value="test3@mail.be">prof3@mail.be</option>
-                </select>
-            </div>
-        </div>
-        </div>
-         <!-- Fin de la partie -->
+        <GestionClasses></GestionClasses>
+        <button type="button" class="btn btn-success btn-lg"><i class="fas fa-solid fa-check"></i></button>
     </div>
 </section>
 </template>
 
-<style>
-.btn-primary {
-    background-color: #6dabe4;
-    border-color: #6dabe4;
-}
+<script>
+    import GestionClasses from "./GestionClasses.vue"
+    export default{
+        name: "SecretariatClasses",
+
+        components: {
+            GestionClasses
+        },
+    }
+</script>
+
+<style scoped>
 
 .btn-success{
     background-color: #71c770;
     border-color: #71c770;
-}
-.btn-danger{
-    background-color: #df5757;
-    border-color: #df5757;
+    position: absolute;
+    right: 5%;
+    margin-top: 100px;
 }
 .SecretariatPage{
     /*
@@ -120,4 +80,7 @@
     margin-top: 15px;
 }
 
+.custom-select{
+    text-align-last:center;
+}
 </style>

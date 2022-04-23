@@ -61,9 +61,7 @@
   color: white;
   padding: 0;
 }
-.btn-lg{
-    height: 75px;
-}
+
 
 
 .SecretariatPage{

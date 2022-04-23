@@ -31,79 +31,42 @@
             <div class="col-sm">
             </div>
         </div>
-                 <!-- partie à généré avec backend -->
-        <div class="listeEleves">
-        <div class="row">
-            <div class="col-sm">
-                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
-            </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
-            </div>
-        </div>
-        
-        </div>
-         <!-- Fin de la partie -->
-                          <!-- partie à généré avec backend -->
-        <div class="listeEleves">
-        <div class="row">
-            <div class="col-sm">
-                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
-            </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
-            </div>
-        </div>
-        
-        </div>
-         <!-- Fin de la partie -->
-                          <!-- partie à généré avec backend -->
-        <div class="listeEleves">
-        <div class="row">
-            <div class="col-sm">
-                <input type="text" class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <input type="date" class="form-control" aria-label="Date" aria-describedby="basic-addon1">
-            </div>
-            <div class="col-sm">
-                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
-            </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
-            </div>
-        </div>
-        
-        </div>
-         <!-- Fin de la partie -->
 
-         
+         <GestionActualites></GestionActualites>
     </div>
     <div class="add-button">
-        <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-solid fa-plus"></i></button>
+        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i></button>
     </div>
+    <AjoutActualite v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutActualite>
 </section>
 </template>
 <script>
+    import AjoutActualite from "./AjoutActualite.vue"
+    import GestionActualites from "./GestionActualites.vue"
+    export default{
+        name: "SecretariatActualites",
 
+        components: {
+            AjoutActualite,
+            GestionActualites
+        },
+
+        data(){
+            return{
+                revele : false,
+            }
+        },
+
+        methods: {
+
+            toggleModale: function(){
+                this.revele=!this.revele;
+            },
+        },
+    }
 </script>
 
-<style>
+<style scoped>
 
 .SecretariatPage{
     /*
@@ -124,10 +87,7 @@
 .underlined{
     text-decoration: underline;
 }
-.position-center{
-    margin-left: 5%;
-    margin-right: 5%;
-}
+
 .button-Save{
     margin-left: 85%;
 }

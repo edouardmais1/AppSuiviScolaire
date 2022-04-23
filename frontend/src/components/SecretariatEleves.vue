@@ -41,24 +41,32 @@
             </div>
         </div>
         <GestionEleves v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:email="item.Mail" v-bind:dateNaissance="this.conversionDate(item.DateDeNaissance)" v-bind:classe="item.Classe" v-for="item in items" :key="item" />
+        <div class="lol">
+            <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i>
+        </button>
+    </div>
 
     </div>
+    <AjoutEleve v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutEleve>
 </section>
 </template>
 
 <script>
     import axios from 'axios';
     import GestionEleves from "./GestionEleves.vue"
+    import AjoutEleve from "./AjoutEleve.vue"
     export default{
         name: "SecretariatEleves",
 
         components: {
-            GestionEleves
+            GestionEleves,
+            AjoutEleve
         },
 
         data(){
             return{
                 items : [],
+                revele : false,
             }
         },
 
@@ -82,6 +90,14 @@
 
                 return result.toLocaleDateString();
             },
+            toggleModale: function(){
+                this.revele=!this.revele;
+            },
         },
     }
 </script>
+<style>
+.lol{
+    margin-top: 15px;
+}
+</style>

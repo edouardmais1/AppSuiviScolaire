@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
             <a class="navbar-brand" href="#">
-              <img src="../../public/images/logo.png" alt="" width="200" height="">
+              <img class="logo" src="../../public/images/logoChildSuccess.png" alt="" width="200" height="">
             </a>
       </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,10 +93,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .logo {
-  margin-bottom: 11px;
-  margin-right: 4px;
-  width: 25px;
-  height: 25px;
+  width: 200px;
+  height:150px;
+  margin-top: 10px;
 }
 
 .nav {

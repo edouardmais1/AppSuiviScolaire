@@ -1,4 +1,5 @@
 <template>
+<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale" v-bind:text="text"></ModaleComponent>
     <div class="listeEleves">
     <div class="row">
         <div class="col-sm">
@@ -20,8 +21,8 @@
             <input type="text" class="form-control"  aria-label="Date" aria-describedby="basic-addon1" v-bind:value="dateNaissance">
         </div>
         <div class="col-sm">
-            <button type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button v-on:click="toggleModale" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+            <button v-on:click="toggleModale" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     
@@ -30,13 +31,18 @@
 
 <script>
     import axios from 'axios';
-
+    import ModaleComponent from "./ModalComponent.vue"
     export default{
         name: "GestionEleves",
+        
+        components: {
+            ModaleComponent
+        },
 
         data(){
             return{
                 items : [],
+                revele: false,
             }
         },
 
@@ -61,7 +67,11 @@
                 .catch(error =>{
                     console.log(error)
                 })
-            }
+            },
+            toggleModale: function(){
+                this.revele=!this.revele;
+            },
+
         }
     }
 
@@ -96,10 +106,7 @@
 .button-Save{
     margin-left: 85%;
 }
-.add-button{
-    margin-left: 5%;
-    margin-top: 15px;
-}
+
 
 .btn-primary {
     background-color: #6dabe4;
