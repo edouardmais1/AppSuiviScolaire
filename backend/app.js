@@ -26,6 +26,8 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.use(express.urlencoded({extended: true}));
+
 //utiliser le router NodeJS
 app.use('/',Route);
 

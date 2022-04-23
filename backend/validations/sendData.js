@@ -1,51 +1,34 @@
-const {body, checkSchema} = require ("express-validator");
+const {body} = require ("express-validator");
 
-const userDataValidationSchema = {
-    Mail: {
-        exists: {errorMessage: "le champ mail est requis"},
-        isString: {errorMessage: "Le champ mail doit etre une chaine de caracteres"},
-        trim: true,
-        isLength:{
-            options: {min:3, max:40},
-            errorMessage: "le mail doit comporter entre 3 et 40 caractères"
-        },
-        errorMessage: "le champ mail est invalide"
-    },
+const userDataValidationSchema = [
+    body("Prenom")
+      .exists({ checkFalsy: true })
+      .withMessage("User Prenom is required")
+      .isString()
+      .withMessage("User prenom should be string")
+      .isLength({min: 3, max: 40}),
+      
+    body("Nom")
+      .exists({ checkFalsy: true })
+      .withMessage("User Prenom is required")
+      .isString()
+      .withMessage("User prenom should be string")
+      .isLength({min: 3, max: 40}),
 
-    MotDePasse: {
-        exists: {errorMessage: "le champ Password est requis"},
-        isString: {errorMessage: "Le champ password doit etre une chaine de caracteres"},
-        trim: true,
-        isLength:{
-            options: {min:8, max:40},
-            errorMessage: "le mail doit comporter entre 8 et 40 caractères"
-        },
-        errorMessage: "le champ password est invalide"
-    },
-
-    Nom: {
-        exists: {errorMessage: "le champ Nom est requis"},
-        isString: {errorMessage: "Le champ nom doit etre une chaine de caracteres"},
-        trim: true,
-        isLength:{
-            options: {min:3, max:40},
-            errorMessage: "le nom doit comporter entre 3 et 40 caractères"
-        },
-        errorMessage: "le champ nom est invalide"
-    },
-
-    Prenom: {
-        exists: {errorMessage: "le champ prenom est requis"},
-        isString: {errorMessage: "Le champ prenom doit etre une chaine de caracteres"},
-        trim: true,
-        isLength:{
-            options: {min:3, max:40},
-            errorMessage: "le prenom doit comporter entre 3 et 40 caractères"
-        },
-        errorMessage: "le champ prenom est invalide"
-    },
-
-
-};
+    body("Mail")
+      .exists({ checkFalsy: true })
+      .withMessage("Mail is required")
+      .isEmail()
+      .withMessage("input should be Mail")
+      .isLength({min: 3, max: 40}),
+    
+    body("MotDePasse")
+      .exists({ checkFalsy: true })
+      .withMessage("Password is required")
+      .isString()
+      .withMessage("Password should be a string")
+      .isLength({min: 8, max: 40})
+    
+];
 
 module.exports = userDataValidationSchema;

@@ -3,6 +3,8 @@
 const { json } = require("express");
 const { response } = require("../app");
 
+const {validationResult} = require("express-validator");
+
 
 //IMPORTE LE FICHIER DATABASE.JS
 const db = require('../config/database');
@@ -226,23 +228,95 @@ const dataUser = (data,result)=>{
         }
         else{
             result(null,results);
+            console.log("Request send with success");
         }
     });
 };
 
-const insertUser = (request,response)=>{
+const insertUser = (request,response,next)=>{
     const data = request.body;
 
-    dataUser(data,(err,results)=>{
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataUser(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
+
+//recuper le token d'un utilisateur et son mail
+const getTokenMail = (mail,result) =>{
+
+    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
+    db.query("SELECT Token, Mail from tb_Utilisateurs where Mail = ?", [mail], (err,results)=>{
         if(err){
-            response.send(err);
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+}
+
+const connexionUser = (request, response,next) =>{
+    getTokenMail(request.params.mail, (error,results)=>{
+        if(error){
+            response.send(error);
         }
         else{
             response.status(200).json(results)
         }
+    })
+}
+
+
+
+//GET password by mail
+
+const getDataPasswordByMail = (mail, result) => {
+    
+    //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
+    db.query("SELECT MotDePasse FROM tb_Utilisateurs WHERE Mail = ?", [mail], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+const getPasswordByMail = (req, res) => {
+    getDataPasswordByMail(req.params.mail, (err, results) => {
+        if (err){
+            res.send(err);
+        }else{
+            res.status(200).json(results);
+        }
     });
-
-
 }
 
 
@@ -263,6 +337,8 @@ module.exports = {
     insertStudent,
     insertUser,
     getContactDirectionSecretariat,
-    getAllClasses
+    getAllClasses,
+    getPasswordByMail,
+    connexionUser
 }
 

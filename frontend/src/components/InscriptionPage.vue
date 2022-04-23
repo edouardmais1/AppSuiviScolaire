@@ -90,6 +90,15 @@ export default{
     },
 
     methods : {
+
+        rand(){
+            return Math.random().toString(36).substr(2);
+        },
+
+        token(){
+            return this.rand() + this.rand();
+        },
+
         checkAccountExist(mail){
             const url = `http://localhost:3000/users/${mail}`;
 
@@ -126,6 +135,7 @@ export default{
                 Prenom: this.prenom,
                 Mail : this.email,
                 MotDePasse: this.password,
+                Token: this.token()
             })
             .then(response =>{
                 console.log(response);

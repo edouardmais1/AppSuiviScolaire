@@ -6,7 +6,7 @@
                 <div class="connexion-form">
                     <h2 class="form-title">Connexion</h2>
 
-                    <form action="" class="formulaire" id="formulaire" @submit.prevent ="login()">
+                    <form action="" class="formulaire" id="formulaire" @submit.prevent ="SendData()">
                         <div class="inputs">
                             <label for="email" class="input-label"></label>
                             <input type="email" name="email" id="email" placeholder="Votre Email" autocomplete="off" v-model="email" class="inscription-input">
@@ -22,6 +22,10 @@
                     </form>
                 </div>
 
+                <div class="alertMessage">
+                    <p>{{message}}</p>
+                </div>
+
                 <div class="link">
                     <router-link to="inscription" class="inscription-link">Créer un compte</router-link>
                 </div>
@@ -32,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios';
     export default{
         name : "ConnexionPage",
 
@@ -39,6 +44,11 @@
             return {
                 email: '',
                 password: '',
+
+                mail_exist: '',
+                password_exist: '',
+
+                message: "",
             }
         },
 
@@ -54,13 +64,60 @@
         },
 
         methods: {
-            login(){
-                this.$store.dispatch('login',{
-                    Mail : this.email,
-                    MotDePasse: this.password,
+
+            checkMailDatabase(mail){
+                const url = `http://localhost:3000/users/${mail}`;
+
+                return new Promise((resolve, reject) =>{
+                    axios.get(url)
+                    .then(response =>{
+                        this.mail_exist = response.data.length;
+                        resolve(response);
+                    })
+                    .catch(error =>{
+                        reject(error);
+                    })
                 })
+            },
+
+            getPasswordByMail(mail){
+                const url = `http://localhost:3000/passwords/${mail}`;
+
+                return new Promise((resolve,reject) =>{
+                    axios.get(url)
+                    .then(response =>{
+                        this.password_exist = response.data[0].MotDePasse;
+                        resolve(response);
+                    })
+                    .catch(error =>{
+                        reject(error);
+                    })
+                })
+            },
+
+            async SendData(){
+                await this.checkMailDatabase(this.email);
+                if(this.mail_exist == "1"){
+                    await this.getPasswordByMail(this.email);
+                    if (this.password == this.password_exist){
+                        console.log("loged")
+                        this.message = "";
+                        this.login();
+                    }
+                    else{
+                        this.message = "email ou mot de passe invalide réessayez"
+                    }
+                }
+                else{
+                    this.message = "Veuillez remplir des informations valides"
+                }
+            },
+
+
+            login(){
+                this.$store.dispatch('login',this.email)
                 .then(response =>{
-                console.log(response);
+                console.log(response.data);
                 })
                 .catch(error =>{
                 console.log(error);
@@ -72,7 +129,7 @@
 </script>
 
 
-<style>
+<style scoped>
 @font-face {
     font-family: 'magical_holidayregular';
     src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
@@ -116,6 +173,11 @@
     .social-label {
     margin-right: 0px;
     margin-bottom: 10px; } }
+
+.alertMessage{
+    color: red;
+    margin-left: 32%;
+}
  
 h2 {
     line-height: 1.66;

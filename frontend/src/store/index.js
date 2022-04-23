@@ -26,12 +26,13 @@ const store = createStore({
 
             });
         },
-        /*
         login: ({commit}, userInfos) => {
+
+            const url = `http://localhost:3000/connexion/${userInfos}`
 
             return new Promise((resolve, reject) =>{
                 commit;
-                instance.post("/inscription",userInfos)
+                instance.get(url)
                 .then(response =>{
                     resolve(response);
                 })
@@ -40,7 +41,7 @@ const store = createStore({
                 });
 
             });
-        }*/
+        }
     }
 });
 
