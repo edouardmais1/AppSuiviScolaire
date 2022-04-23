@@ -129,7 +129,7 @@ import axios from 'axios';
 </script>
 
 
-<style scoped>
+<style>
 @font-face {
     font-family: 'magical_holidayregular';
     src: url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),

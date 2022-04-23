@@ -322,9 +322,88 @@ const getPasswordByMail = (req, res) => {
 
 
 
+//Comportement routes
+
+const getAllComportement = (request,response)=>{
+
+    db.query('SELECT * FROM tb_Comportements',(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
+
+const getComportement = (id,result) =>{
+
+    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
+    db.query("SELECT * FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+}
+
+const getComportementById = (request, response,next) =>{
+    getComportement(request.params.id, (error,results)=>{
+        if(error){
+            response.send(error);
+        }
+        else{
+            response.status(200).json(results)
+        }
+    })
+}
 
 
 
+
+//Routes bulletin
+
+const getAllBulletin = (request,response)=>{
+
+    db.query('SELECT * FROM tb_Bulletins',(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
+
+const getBulletin = (id,result) =>{
+
+    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
+    db.query("SELECT * FROM tb_Bulletins WHERE EleveID = ?", [id], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+}
+
+const getBulletinById = (request, response,next) =>{
+    getBulletin(request.params.id, (error,results)=>{
+        if(error){
+            response.send(error);
+        }
+        else{
+            response.status(200).json(results)
+        }
+    })
+}
 
 module.exports = {
     getAllEleves,
@@ -339,6 +418,10 @@ module.exports = {
     getContactDirectionSecretariat,
     getAllClasses,
     getPasswordByMail,
-    connexionUser
+    connexionUser,
+    getAllComportement,
+    getComportementById,
+    getAllBulletin,
+    getBulletinById
 }
 
