@@ -69,7 +69,7 @@
                 <div>
                   <i class="fas fa-sign-in-alt imgs"></i>
                 </div>
-                <router-link class="nav-link" to="/connexion" id="connexion">Déconnexion</router-link>
+                <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
               </li>
             </div>
             <!--

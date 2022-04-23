@@ -11,9 +11,15 @@ import SecretariatActualites from '../components/SecretariatActualites.vue'
 import SecretariatClasses from '../components/SecretariatClasses.vue'
 import SecretariatEleves from '../components/SecretariatEleves.vue'
 import EvenementsPage from '../components/EvenementsPage.vue'
+import ProfilePage from '../components/ProfilePage';
 
 
 const routes = [
+    {
+        path:'/profile',
+        name: 'ProfilePage',
+        component: ProfilePage
+    },    
 
     {
         path:'/',

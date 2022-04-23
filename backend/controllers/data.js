@@ -424,6 +424,36 @@ const insertStudent = (request,response,next)=>{
 
 }
 
+
+
+//GET USER BY MAIL
+
+const getDataUserByToken = (token, result) => {
+    
+    //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
+    db.query("SELECT Nom, Prenom, Mail, Roles  FROM tb_Utilisateurs WHERE Token = ?", [token], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+const getUserByToken = (req, res) => {
+    getDataUserByToken(req.params.token, (err, results) => {
+        if (err){
+            res.send(err);
+        }else{
+            res.status(200).json(results);
+        }
+    });
+}
+
+
+
+
 module.exports = {
     getAllEleves,
     getAllUsers,
@@ -441,7 +471,8 @@ module.exports = {
     getAllComportement,
     getComportementById,
     getAllBulletin,
-    getBulletinById
+    getBulletinById,
+    getUserByToken
     
 }
 

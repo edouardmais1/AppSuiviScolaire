@@ -128,8 +128,22 @@ export default{
                 this.createAccount();
             }
         },
+        
+        logUser(){
+            const self = this;
+
+            this.$store.dispatch('login',this.email)
+            .then(function(){
+                self.$router.push('/profile');
+            })
+            .catch(error =>{
+            console.log(error);
+            })
+        },
 
         createAccount(){
+            const self = this;
+
             this.$store.dispatch('createAccount',{
                 Nom: this.nom,
                 Prenom: this.prenom,
@@ -137,8 +151,9 @@ export default{
                 MotDePasse: this.password,
                 Token: this.token()
             })
-            .then(response =>{
-                console.log(response);
+            .then(function(){
+                console.log('ok');
+                self.logUser();
             })
             .catch(error =>{
                 console.log(error);

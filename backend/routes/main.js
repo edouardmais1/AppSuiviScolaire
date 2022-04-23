@@ -37,12 +37,13 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 //récuperer le token et le mail de l'utilisateur
 router.get('/connexion/:mail',data.connexionUser);
 
-router.get('/comportement',data.getAllComportement);
+router.get('/infos/:token',data.getUserByToken);
 
+
+router.get('/comportement',data.getAllComportement);
 router.get('/comportement/:id',data.getComportementById);
 
 router.get('/bulletin',data.getAllBulletin);
-
 router.get('/bulletin/:id',data.getBulletinById);
 
 //POST METHODS

@@ -36,7 +36,9 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 import axios from 'axios';
+
     export default{
         name : "ConnexionPage",
 
@@ -60,7 +62,8 @@ import axios from 'axios';
                 else{
                     return true;
                 }
-            }
+            },
+            ...mapState(['status'])
         },
 
         methods: {
@@ -100,7 +103,6 @@ import axios from 'axios';
                 if(this.mail_exist == "1"){
                     await this.getPasswordByMail(this.email);
                     if (this.password == this.password_exist){
-                        console.log("loged")
                         this.message = "";
                         this.login();
                     }
@@ -115,9 +117,12 @@ import axios from 'axios';
 
 
             login(){
+                 
+                const self = this;
+
                 this.$store.dispatch('login',this.email)
-                .then(response =>{
-                console.log(response.data);
+                .then(function(){
+                    self.$router.push('/profile');
                 })
                 .catch(error =>{
                 console.log(error);
