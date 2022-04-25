@@ -1,9 +1,17 @@
 <template>
     <div class ="calendar">
+      <div class="row">
+        <div class="col-sm">
             <select @change="getEventsByClasse($event)" id="object">
               <option value="NOPE" selected>Choisissez une classe</option>
               <option v-for="item in items" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
             </select>
+        </div>
+        <div class="col-sm">
+            <BoutonProfesseur></BoutonProfesseur>
+        </div>
+
+        </div>
             <p class="alertMessage">{{alertMessage}}</p>
 
             <FullCalendar :options="calendarOptions" class="test"/>
@@ -19,13 +27,14 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import axios from 'axios'
-
+import BoutonProfesseur from './BoutonProfesseur.vue'
 
 export default{
     name : "CalendrierPage",
 
     components: {
-      FullCalendar
+      FullCalendar,
+      BoutonProfesseur
     },
 
     data(){
@@ -131,7 +140,7 @@ export default{
 
 </script>
 
-<style> 
+<style scoped> 
 #calendar {
   max-width: 900px;
   margin: 40px auto;
@@ -158,6 +167,7 @@ export default{
   font-size: 14px;
   background-color: white;
   height: auto;
+  min-width: 500px;
 }
 
 .alertMessage{

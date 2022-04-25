@@ -12,6 +12,7 @@ import SecretariatClasses from '../components/SecretariatClasses.vue'
 import SecretariatEleves from '../components/SecretariatEleves.vue'
 import EvenementsPage from '../components/EvenementsPage.vue'
 import ProfilePage from '../components/ProfilePage';
+import CalendrierModification from '../components/CalendrierModification';
 
 
 const routes = [
@@ -80,6 +81,11 @@ const routes = [
         path:'/calendrier/evenements',
         name: 'EvenementsPage',
         component: EvenementsPage
+    },
+    {
+        path:'/calendrier/modification',
+        name: 'CalendrierModification',
+        component: CalendrierModification
     }
 
 ]
