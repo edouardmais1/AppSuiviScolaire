@@ -1,45 +1,74 @@
 <template>
-    <div data-aos="zoom-in-left" data-aos-duration="1250">
-        <div class="container-bulletin">
+    <div class="container-bulletin">
+        <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="wrapper">
                 <header>Bulletin</header>
-                <table class="table table-hover table-borderless">
-                    <tbody>
-                        <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2020.pdf</a></td>
-                        </tr>
-                        <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2021.pdf</a></td>
-                        </tr>
-                    <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2021.pdf</a></td>
-                        </tr>
-                        <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2022.pdf</a></td>
-                        </tr>
-                        <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Noel_Jonathan_David_2022.pdf</a></td>
-                        </tr>
-                        <tr>                  
-                            <td><a href="path_to_file" class="bulletin" download="bulletin1">Bulletin_Juin_Jonathan_David_2023.pdf</a></td>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+                <div class="row titles">
+                        <div class="col-md title">Contenu</div>
+                        <div class="col-md title">Date</div>
+                </div>
+                <BullComponent v-bind:contenu="item.Contenu" v-bind:date="this.conversionDate(item.Date)" v-for="item in items" :key="item"/>
             </div>
         </div>
     </div>
 </template>
-<style>
-@font-face {
-  font-family: 'magical_holidayregular';
-  src:  url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff2') format('woff2'),
-        url('../../public/fonts/MagicalHollyday/magical_holiday-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+<script>
+ import BullComponent from "./BullComponent.vue";
+    import axios from 'axios';
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    const instance = axios.create({
+    baseURL: 'http://localhost:3000/bulletin'
+  });
+
+    export default{
+        name : "BulletinPage",
+
+        components: {
+            BullComponent
+        },
+
+        data(){
+            return {
+                items: [],
+            }
+        },
+
+        created(){
+            this.getBulletinById();
+        },
+
+        methods : {
+
+            async getBulletinById(){
+                try{
+                    await instance.get("/1")
+                    .then(response =>{
+                        this.items = response.data;
+                        console.log(response.data);
+                    })
+                    .catch(error =>{
+                        console.log(error)
+                    })
+                }
+                catch(error){
+                    console.log(error);
+                }
+
+            },
+
+            conversionDate(date){
+                let result = new Date(date);
+
+                return result.toLocaleDateString();
+            },
+        
+        }
+
+
+    }
+
+</script>
+<style scoped>
 
 *{
     margin: 0;
@@ -47,12 +76,11 @@
     box-sizing: border-box;
     font-family: 'Poppins'
 }
-
 .container-bulletin {
     margin-top: 150px;
     padding-bottom: 10%;
+    padding: 50px;
 }
-
 .wrapper {
     width: 60%;
     margin-left: auto;
@@ -62,7 +90,6 @@
     border: 3px solid #6dabe4;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
 }
-
 .wrapper header {
     font-size: 36px;
     text-align: center;
@@ -71,10 +98,16 @@
     border-bottom: 3px solid #6dabe4;
 }
 
-td{
-    text-align: center; 
-    vertical-align: middle;
-    color: 6dabe4;
+.titles {
+    margin-left: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.title {
+    margin-top: 0px;
+    font-weight: bold;
+    text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -86,4 +119,5 @@ td{
         width: 90%;
     }
 }
+
 </style>
