@@ -14,7 +14,6 @@ db.connect();
 //GET
 
 //GET ALL CLASSES 
-
 const getAllClasses = (request, response) =>{
     db.query('SELECT Classe from tb_Classe', (error, results)=>{
         if(error){
@@ -32,7 +31,6 @@ const getAllClasses = (request, response) =>{
 
 
 //GET ALL ELEVES
-
 const getAllEleves = (request,response)=>{
 
     //RECUPERER LES ETUDIANTS DANS LA BASE DE DONNEES
@@ -46,7 +44,10 @@ const getAllEleves = (request,response)=>{
     });
 };
 
+
 //GET ELEVE BY ID
+
+//recuperer les données de l'élèves en fonction de son Id
 const getDataEleve = (id, result) => {
 
     //RECUPERER UN ELEVE EN FONCTION DE SON ID
@@ -60,6 +61,7 @@ const getDataEleve = (id, result) => {
     });   
 }
 
+//requete finale sur base de la précédente.
 const getEleveById = (req, res) => {
     getDataEleve(req.params.id, (err, results) => {
         if (err){
@@ -85,8 +87,10 @@ const getAllUsers = (request,response)=>{
     });
 };
 
+
 //GET USER BY MAIL
 
+//recuperer les données d'un user sur base de son mail.
 const getDataUser = (mail, result) => {
     
     //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
@@ -100,6 +104,7 @@ const getDataUser = (mail, result) => {
     });   
 }
 
+//requete finale sur base de la précédente.
 const getUserByMail = (req, res) => {
     getDataUser(req.params.mail, (err, results) => {
         if (err){
@@ -113,6 +118,8 @@ const getUserByMail = (req, res) => {
 
 
 //GET CALENDAR DATA 
+
+//recuperer les données de la table calendrier
 const getCalendarData = (request,response)=>{
 
     //RECUPERER TOUS LES EVENEMENTS DES CALENDRIERS
@@ -154,7 +161,6 @@ const getCalendarByClasse = (request, response) => {
 
 
 //GET DIRECTION-SECRETARIAT CONTACTS
-
 const getContactDirectionSecretariat = (request,response)=>{
     
     //RECUPERER LES MAILS DES MEMBRES DU PERSONNEL
@@ -170,7 +176,6 @@ const getContactDirectionSecretariat = (request,response)=>{
 
 
 //GET ACTUALITY OF SCHOOL
-
 const getActualite = (request,response)=>{
 
     //RECUPERER LES ACTUALITES DE L'ECOLE
@@ -185,7 +190,31 @@ const getActualite = (request,response)=>{
 }
 
 
-//POST
+const getDataActuByTitle = (titre, result)=>{
+
+    //recuperer les actualités sur base de leurs titres
+    db.query("SELECT Contenu, Date from tb_Actualites where Titre = ?", [titre], (err, results) =>{
+        if(err){
+            result(err,null)
+        }
+        else{
+            result(null, results);
+        }
+    });
+}
+
+const getActuByTitle = (request, response) => {
+    getDataActuByTitle(request.params.titre, (err, results) => {
+        if (err){
+            response.send(err);
+        }else{
+            response.status(200).json(results);
+        }
+    });
+}
+
+
+//POST 
 
 
 
@@ -396,6 +425,7 @@ const dataStudent = (data,result)=>{
 const insertStudent = (request,response,next)=>{
     const data = request.body;
 
+
     try{
         const errors = validationResult(request);
 
@@ -426,8 +456,7 @@ const insertStudent = (request,response,next)=>{
 
 
 
-//GET USER BY MAIL
-
+//GET USER BY TOKEN
 const getDataUserByToken = (token, result) => {
     
     //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
@@ -452,6 +481,58 @@ const getUserByToken = (req, res) => {
 }
 
 
+//INSERT AN Actuality
+const dataActualite = (data,result)=>{
+
+    //INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
+    db.query("INSERT INTO tb_Actualites SET ?", [data], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+};
+
+const insertActualite = (request,response,next)=>{
+    const data = request.body;
+
+
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataActualite(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
+
+
+
+
 
 
 module.exports = {
@@ -472,7 +553,9 @@ module.exports = {
     getComportementById,
     getAllBulletin,
     getBulletinById,
-    getUserByToken
+    getUserByToken,
+    insertActualite,
+    getActuByTitle
     
 }
 
