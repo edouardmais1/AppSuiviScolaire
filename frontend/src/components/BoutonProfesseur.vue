@@ -1,6 +1,13 @@
 <template>
 <div class="BoutonProfesseur">
-    <button type="button" class="btn btn-success">Modification <i class="fas fa-solid fa-gears"></i></button>
+<div class="nav-links">
+    <button type="button" class="btn btn-success">
+        <router-link class="nav-link" to="/calendrier/modification">
+            Modification <i class="fas fa-solid fa-gears"></i>
+        </router-link>
+    </button>
+</div>
+
 </div>
 </template>
 
