@@ -20,6 +20,7 @@
 
 
 <script>
+const url = require("../../url/url.js");
 import '@fullcalendar/core/vdom' // solves problem with Vite
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -90,7 +91,9 @@ export default{
 
   methods : {
     getCLasses(){
-      axios.get("http://localhost:3000/classes")
+
+      let destinationUrl = url.concatUrl("/classes");
+      axios.get(destinationUrl)
 
         .then(response => {
           this.items = response.data;
@@ -116,9 +119,9 @@ export default{
 
       if(this.checkSelect(classe)){
         this.alertMessage = ""
-        const url = `http://localhost:3000/calendrier/${classe}`;
+        const destinationUrl = url.concatUrl(`/calendrier/${classe}`);
 
-        axios.get(url)
+        axios.get(destinationUrl)
 
         .then(response =>{
           this.calendarOptions.events = response.data;

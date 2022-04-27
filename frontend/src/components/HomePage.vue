@@ -4,7 +4,7 @@
             <h1 class="form-title">Actualités</h1>
         </div>
         <div v-if="this.checkLengthItems()">
-            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items.slice(0,5).reverse()" :key="item"/>
+            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items.reverse().slice(0,6)" :key="item"/>
         </div>
         <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
 
@@ -16,6 +16,8 @@
 <script>
     import ActuComponent from "./ActuComponent.vue";
     import axios from 'axios';
+
+    const url = require("../../url/url.js");
 
     export default{
         name : "HomePage",
@@ -48,8 +50,9 @@
             },
 
             async getActualite(){
+                let destinationUrl = url.concatUrl("/");
                 try{
-                    await axios.get("http://localhost:3000/")
+                    await axios.get(destinationUrl)
                     .then(response =>{
                         this.items = response.data;
                         console.log(response.data);

@@ -32,6 +32,8 @@
 <script>
     import axios from 'axios';
     import ModaleComponent from "./ModalComponent.vue"
+
+    const url = require("../../url/url.js");
     export default{
         name: "GestionEleves",
         
@@ -60,7 +62,9 @@
 
         methods:{
             async getClasses(){
-                await axios.get("http://localhost:3000/classes")
+
+                let destinationUrl = url.concatUrl("/classes");
+                await axios.get(destinationUrl)
                 .then(response =>{
                     this.items = response.data;
                 })

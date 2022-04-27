@@ -53,6 +53,8 @@
 <script>
 import axios from 'axios';
 
+const url = require("../../url/url.js");
+
     export default{
         name: "ContactPage",
         data(){
@@ -75,7 +77,9 @@ import axios from 'axios';
         methods:{
 
             getContacts(){
-                axios.get("http://localhost:3000/contacts")
+
+                let destinationUrl = url.concatUrl("/contacts");
+                axios.get(destinationUrl)
 
                     .then(response =>{
                         console.log(response.data);
@@ -109,7 +113,9 @@ import axios from 'axios';
 
             },
             CreateRequest(){
-                axios.post("http://localhost:3000/sendMail",{
+                let destinationUrl = url.concatUrl("/sendMail");
+
+                axios.post(destinationUrl,{
                         nom: this.name,
                         email: this.email,
                         objet: this.objet,

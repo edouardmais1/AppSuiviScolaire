@@ -39,6 +39,8 @@
 import {mapState} from 'vuex';
 import axios from 'axios';
 
+const url = require("../../url/url.js");
+
     export default{
         name : "ConnexionPage",
 
@@ -69,10 +71,10 @@ import axios from 'axios';
         methods: {
 
             checkMailDatabase(mail){
-                const url = `http://localhost:3000/users/${mail}`;
+                const destinationUrl = url.concatUrl(`/users/${mail}`);
 
                 return new Promise((resolve, reject) =>{
-                    axios.get(url)
+                    axios.get(destinationUrl)
                     .then(response =>{
                         this.mail_exist = response.data.length;
                         resolve(response);
@@ -84,10 +86,10 @@ import axios from 'axios';
             },
 
             getPasswordByMail(mail){
-                const url = `http://localhost:3000/passwords/${mail}`;
+                const destinationUrl = url.concatUrl(`/passwords/${mail}`);
 
                 return new Promise((resolve,reject) =>{
-                    axios.get(url)
+                    axios.get(destinationUrl)
                     .then(response =>{
                         this.password_exist = response.data[0].MotDePasse;
                         resolve(response);

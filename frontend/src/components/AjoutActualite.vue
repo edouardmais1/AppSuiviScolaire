@@ -1,5 +1,5 @@
 <template>
-    <form class='add-actualite' v-if="revele" @submit.prevent="insertActu()">
+    <form class='add-actualite' v-if="revele" @submit="insertActu()">
     <h3> Ajout d'une actualité <i class="fas fa-solid fa-calendar-plus"></i></h3>
     <div class="row">
     <div class="col">

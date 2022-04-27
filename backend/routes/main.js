@@ -12,6 +12,8 @@ const router = express.Router();
 const data = require('../controllers/data');
 const mail = require('../controllers/mail');
 
+
+//Middleware de validation de données
 const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');

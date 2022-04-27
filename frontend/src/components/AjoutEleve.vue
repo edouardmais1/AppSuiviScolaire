@@ -43,6 +43,9 @@
 
 <script>
 import axios from 'axios';
+
+const url = require("../../url/url.js");
+
 export default{
     name: 'AjoutEleve',
     props: ['revele', 'toggleModale'],
@@ -72,7 +75,9 @@ export default{
     },
     methods:{
             async getClasses(){
-                await axios.get("http://localhost:3000/classes")
+
+                let destinationUrl = url.concatUrl("/classes");
+                await axios.get(destinationUrl)
                 .then(response =>{
                     this.items = response.data;
                 })
@@ -81,7 +86,9 @@ export default{
                 })
             },
             async insertStudent(){
-                await axios.post("http://localhost:3000/eleves",
+
+                let destinationUrl = url.concatUrl("/eleves")
+                await axios.post(destinationUrl,
                 {
                     Nom:this.nom,
                     Prenom:this.prenom,
