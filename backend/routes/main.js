@@ -52,6 +52,7 @@ router.get('/infos/:token',data.getUserByToken);
 //routes vers comportement 
 router.get('/comportement',data.getAllComportement);
 router.get('/comportement/:id',data.getComportementById);
+router.post('/comportement/:id',data.updateComportementById);
 
 //routes vers le bulletin
 router.get('/bulletin',data.getAllBulletin);

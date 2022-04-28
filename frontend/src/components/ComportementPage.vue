@@ -1,5 +1,5 @@
 <template>
-    <form method="post" >
+    <form @submit="updateComportement()" >
         <div class="container-comportement">
             <div data-aos="zoom-in-left" data-aos-duration="1250">
                 <div class="wrapper">
@@ -21,7 +21,7 @@
                             </div>
                     </div>
                     <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse()" :key="item"/>
-                    <button class="button-send" type="submit" name="button">Envoyer</button>
+                    <button class="button-send" type="submit" name="button">Signer tout</button>
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@ const instance = axios.create({
 baseURL: 'http://localhost:3000/comportement'
 });
 
+const eleve_id ='/'+'5';
 
 export default{
     name : "ComportementPage",
@@ -57,7 +58,24 @@ export default{
     methods : {
         async getAllComportement(){
             try{
-                await instance.get("/5")
+                await instance.get(eleve_id)
+                .then(response =>{
+                    this.items = response.data;
+                    console.log(response.data);
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        },
+
+        async updateComportement(){
+            try{
+                await instance.post("/5")
                 .then(response =>{
                     this.items = response.data;
                     console.log(response.data);
@@ -81,6 +99,7 @@ export default{
 
 
 }
+
 
 </script>
 <style scoped>

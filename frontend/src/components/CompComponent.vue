@@ -13,10 +13,10 @@
         </div>
         
         <div class="col-xl-3 body" v-if="signature == '0'">
-            <input type="checkbox" id="1" class="input-comportement" true-value="1" false-value="0" />
+            <i class="fas fa-times"></i>
         </div>
          <div class="col-xl-3 body" v-else>
-            <input type="checkbox" id="2" class="input-comportement" true-value="1" false-value="0" checked/>
+            <i class="fas fa-check"></i>
         </div>
     </div>
 </template>

@@ -2,7 +2,6 @@
 
 const { json } = require("express");
 const { response } = require("../app");
-
 const {validationResult} = require("express-validator");
 
 
@@ -363,6 +362,32 @@ const getComportementById = (request, response) =>{
     })
 }
 
+const updateComportement = (id,result) =>{
+
+    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
+    db.query("UPDATE tb_Comportements SET Signature = 1  WHERE EleveID = ?;", [id], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+}
+
+const updateComportementById = (request, response) =>{
+    updateComportement(request.params.id, (error,results)=>{
+        if(error){
+            response.send(error);
+        }
+        else{
+            response.status(200).json(results)
+        }
+    })
+}
+
 
 
 
@@ -405,6 +430,9 @@ const getBulletinById = (request, response,next) =>{
         }
     })
 }
+
+
+
 
 //INSERT AN STUDENT 
 const dataStudent = (data,result)=>{
@@ -555,7 +583,9 @@ module.exports = {
     getBulletinById,
     getUserByToken,
     insertActualite,
-    getActuByTitle
+    getActuByTitle,
+    updateComportement,
+    updateComportementById
     
 }
 
