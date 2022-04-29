@@ -3,11 +3,11 @@
 <div class="container">
 <form class="row g-3">
   <div class="col-md-6">
-  <h1 class="title">Votre Profil <i class="fas fa-regular fa-user"></i></h1>
+  <h1 class="title">Votre Profil <div class="site-color"><i class="fas fa-regular fa-user"></i></div></h1>
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <h7>Prénom:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i> <h7>Prénom:</h7>
 
         </div>
         </div>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <h7>Nom:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i><h7>Nom:</h7>
             </div>
         </div>
         <div class="col-sm">
@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <h7>Adresse email:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i><h7>Adresse email:</h7>
         </div>
         </div>
         <div class="col-sm">
@@ -37,36 +37,19 @@
     </div>
 
 
-    <h1 class="title">Vos Enfants <i class="fas fa-solid fa-child"></i></h1>
+    <h1 class="title">Vos Enfants <div class="site-color"><i class="fas fa-solid fa-child"></i></div></h1>
 
 
     
 
     
     <div class="profil-enfant">
-    <div class="row">
-        <div class="col-sm">
-            <h5 > Nom: </h5>
-        </div>
-        <div class="col-sm">
-            <h5> Prénom: </h5>
-        </div>
-
-        <div class="col-sm">
-            <h5> Classe actuelle:</h5>
-        </div>
-
-        <div class="col-sm">
-            <h5> Date de naissance:</h5>
-        </div>
-
-    </div>
             <ProfilEnfant></ProfilEnfant>
     </div>
 
 
-    <div class="right">
-    <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
+    <div class="center">
+    <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
     </div>
 
 </div>
@@ -140,9 +123,11 @@ import ProfilEnfant from './ProfilEnfant.vue'
 
 .container{
     padding: 15px;
-    max-width: 60%;
-    margin-top: 100px;
+    max-width: 750px;;
+    width: auto;
     min-width: 250px;
+    margin-bottom: 150px;;
+    margin-top: 150px;
 }
 
 
@@ -168,6 +153,14 @@ import ProfilEnfant from './ProfilEnfant.vue'
 .right{
     float:right;
 }
+.padding-icone{
+    padding-right: 10px;
+}
+.site-color{
+    color: #6dabe4;
+}
 
-
+.margin-bottom{
+    margin-bottom: 25px;
+}
 </style>
