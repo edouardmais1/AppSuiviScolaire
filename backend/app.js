@@ -1,4 +1,6 @@
 'use strict'
+//importer le modules express-session
+const session = require('express-session');
 
 //importe le module express
 const express = require("express");
@@ -14,6 +16,15 @@ const app = express();
 
 //utiliser json
 app.use(express.json());
+
+//utiliser les sessions
+app.use(session({
+    secret: "secret-key",
+    name: "session-id",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {secure: true, httpOnly: true},
+}))
 
 
 //utiliser cors

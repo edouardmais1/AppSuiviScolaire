@@ -4,6 +4,8 @@ const { json } = require("express");
 const { response } = require("../app");
 const {validationResult} = require("express-validator");
 
+const session = require('express-session');
+
 
 //IMPORTE LE FICHIER DATABASE.JS
 const db = require('../config/database');
@@ -287,7 +289,7 @@ const connexionUser = (request, response,next) =>{
             response.send(error);
         }
         else{
-            response.status(200).json(results)
+            response.status(200).json(results);
         }
     })
 }

@@ -76,7 +76,7 @@ import ProfilEnfant from './ProfilEnfant.vue'
         },
         //trouver un moyen d'éviter les erreurs de chargement.
         created(){
-            this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
+            this.getUserinformations();
         },
 
         /*mounted: function(){
@@ -97,6 +97,10 @@ import ProfilEnfant from './ProfilEnfant.vue'
             logout: function(){
                 this.$store.commit('logout');
                 this.$router.push('/');
+            },
+
+            async getUserinformations(){
+                await this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
             },
         }
     }
