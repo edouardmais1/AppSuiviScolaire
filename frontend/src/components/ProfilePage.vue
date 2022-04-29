@@ -36,7 +36,36 @@
         </div>
     </div>
 
-    <div class="center">
+
+    <h1 class="title">Vos Enfants <i class="fas fa-solid fa-child"></i></h1>
+
+
+    
+
+    
+    <div class="profil-enfant">
+    <div class="row">
+        <div class="col-sm">
+            <h5 > Nom: </h5>
+        </div>
+        <div class="col-sm">
+            <h5> Prénom: </h5>
+        </div>
+
+        <div class="col-sm">
+            <h5> Classe actuelle:</h5>
+        </div>
+
+        <div class="col-sm">
+            <h5> Date de naissance:</h5>
+        </div>
+
+    </div>
+            <ProfilEnfant></ProfilEnfant>
+    </div>
+
+
+    <div class="right">
     <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
     </div>
 
@@ -50,6 +79,7 @@
 
 <script>
 import {mapState} from 'vuex';
+import ProfilEnfant from './ProfilEnfant.vue'
     export default{
         name: 'ProfilePage',
 
@@ -58,7 +88,9 @@ import {mapState} from 'vuex';
                 message: ""
             }
         },
-
+        components: {
+            ProfilEnfant,
+        },
         //trouver un moyen d'éviter les erreurs de chargement.
         created(){
             this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
@@ -94,6 +126,7 @@ import {mapState} from 'vuex';
 .title{
     text-align: center;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 .btn{
@@ -107,7 +140,7 @@ import {mapState} from 'vuex';
 
 .container{
     padding: 15px;
-    max-width: 40%;
+    max-width: 60%;
     margin-top: 100px;
     min-width: 250px;
 }
@@ -127,6 +160,13 @@ import {mapState} from 'vuex';
 .col-md-6{
     margin: 0 auto;
     width: auto;
+}
+
+.profil-enfant{
+    width: auto;
+}
+.right{
+    float:right;
 }
 
 

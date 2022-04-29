@@ -19,6 +19,7 @@
 </template>
 
 
+
 <script>
 const url = require("../../url/url.js");
 import '@fullcalendar/core/vdom' // solves problem with Vite

@@ -3,8 +3,9 @@
         <div class="container-comportement">
             <div data-aos="zoom-in-left" data-aos-duration="1250">
                 <div class="wrapper">
-                    <header>Comportement
+                    <header>Comportement 
                     </header>
+                    
                     
                     <div class="row titles">
                             <div class="col-xl-3 title">
@@ -42,7 +43,7 @@ export default{
     name : "ComportementPage",
 
     components: {
-        CompComponent
+        CompComponent,
     },
 
     data(){

@@ -13,7 +13,7 @@ import SecretariatEleves from '../components/SecretariatEleves.vue'
 import EvenementsPage from '../components/EvenementsPage.vue'
 import ProfilePage from '../components/ProfilePage';
 import CalendrierModification from '../components/CalendrierModification';
-import ComportementModification from '../components/ComportementModification';
+import ProfesseurComportement from '../components/ProfesseurComportement';
 
 
 const routes = [
@@ -90,8 +90,8 @@ const routes = [
     },
     {
         path:'/comportement/modification',
-        name: 'ComportementModification',
-        component: ComportementModification
+        name: 'ProfesseurComportement',
+        component: ProfesseurComportement
     },
 
 ]
