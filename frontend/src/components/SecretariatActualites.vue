@@ -1,7 +1,11 @@
 <template>
 <section class="SecretariatPage">
 <div class="position-center">
-<div class="row">
+    <div class="add-button">
+        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-calendar-plus"></i></button>
+    </div>
+    <AjoutActualite v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutActualite>
+<div class="row top-15">
     <div class="col-sm">
         <div class="text-left">
             <h1 class="form-title">Gestion des Actualités <i class="fas fa-regular fa-calendar-check"></i></h1>
@@ -34,10 +38,6 @@
 
          <GestionActualites></GestionActualites>
     </div>
-    <div class="add-button">
-        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-calendar-plus"></i></button>
-    </div>
-    <AjoutActualite v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutActualite>
 </section>
 </template>
 <script>
@@ -74,6 +74,7 @@
     background-size: contain;
     padding-top: 10%;
     padding-bottom: 10%;
+    margin: auto;
 }
 .containerSecretariatEleves{
     margin-left: 5%;
@@ -91,10 +92,7 @@
 .button-Save{
     margin-left: 85%;
 }
-.add-button{
-    margin-left: 5%;
-    margin-top: 15px;
-}
+
 
 .btn-primary {
     background-color: #6dabe4;
@@ -108,5 +106,13 @@
 .btn-danger{
     background-color: #df5757;
     border-color: #df5757;
+}
+.center{
+    margin: auto;
+    margin-bottom: 200px;
+}
+
+.top-15{
+    margin-top: 15px;
 }
 </style>

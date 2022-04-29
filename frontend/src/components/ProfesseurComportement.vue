@@ -5,7 +5,9 @@
             <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-comment"></i>
         </button>
     </div>
-<AjoutComportement v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutComportement>
+    <div class='center'>
+        <AjoutComportement v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutComportement>
+    </div>
 <div class="row">
     <div class="col-sm">
         <div class="text-left">
@@ -42,6 +44,7 @@
         </div>
         <GestionComportement></GestionComportement>
 
+
     </div>
 </section>
 </template>
@@ -72,5 +75,8 @@ import AjoutComportement from "./AjoutComportement.vue"
 <style>
 .lol{
     margin-bottom:20px;
+}
+.center{
+    margin: auto;
 }
 </style>

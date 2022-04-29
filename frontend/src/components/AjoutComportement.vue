@@ -1,5 +1,5 @@
 <template>
-<form class='add-student' v-if="revele" >
+<form class='add-student center' v-if="revele" >
 <h1> Ajout d'une note <i class="fas fa-solid fa-comment"></i></h1>
 <div class="row">
     <div class="col">

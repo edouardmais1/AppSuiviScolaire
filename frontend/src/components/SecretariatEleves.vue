@@ -1,6 +1,11 @@
 <template>
 <section class="SecretariatPage">
 <div class="position-center">
+<div class="lol">
+            <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-user-plus"></i>
+        </button>
+        </div>
+        <AjoutEleve v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutEleve>
 <div class="row">
     <div class="col-sm">
         <div class="text-left">
@@ -41,13 +46,9 @@
             </div>
         </div>
         <GestionEleves v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:email="item.Mail" v-bind:dateNaissance="this.conversionDate(item.DateDeNaissance)" v-bind:classe="item.Classe" v-for="item in items" :key="item" />
-        <div class="lol">
-            <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-user-plus"></i>
-        </button>
     </div>
 
-    </div>
-    <AjoutEleve v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutEleve>
+  
 </section>
 </template>
 
@@ -99,6 +100,7 @@
 <style>
 .lol{
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 .SecretariatPage{
     /*

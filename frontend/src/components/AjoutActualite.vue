@@ -1,6 +1,6 @@
 <template>
-    <form class='add-actualite' v-if="revele" @submit="insertActu()">
-    <h3> Ajout d'une actualité <i class="fas fa-solid fa-calendar-plus"></i></h3>
+    <form class='add-actualite center' v-if="revele" @submit="insertActu()">
+    <h1> Ajout d'une actualité <i class="fas fa-solid fa-calendar-plus"></i></h1>
     <div class="row">
     <div class="col">
       <div class="mb-3">
@@ -82,8 +82,10 @@
     height: 250px;
     margin-top: 50px;
     margin-bottom: 100px;
-    margin-left: 5%;
-    margin-right: 5%;
+    }
+
+    .center{
+      margin: auto;
     }
     </style>
     
