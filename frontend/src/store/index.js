@@ -1,6 +1,9 @@
 import 'es6-promise/auto';
 import {createStore} from 'vuex';
 
+//importer le fichier pour l'url dynamique
+const url = require('../../url/url');
+
 
 const axios = require('axios');
 
@@ -8,33 +11,13 @@ const instance = axios.create({
     baseURL: 'http://localhost:3000/'
   });
 
-let user = localStorage.getItem('user');
-
-if(!user){
-    user = {
-        userId: -1,
-        token: '',
-    };
-}
-else{
-    try{
-        user = JSON.parse(user);
-        instance.defaults.headers.common['Authorization'] = user.Token;
-    }
-    catch{
-        user = {
-            userId: -1,
-            token: '',
-        };
-    }
-}
 
 const store = createStore({
     state: {
         status: '',
-        user: user,
+        user: '',
 
-        //modif ceci
+        //contient le Mail, role, prenom,
         userInfos: [],
     },
 
@@ -44,7 +27,6 @@ const store = createStore({
         },
         logUser: function(state, user){
             instance.defaults.headers.common['Authorization'] = user.Token;
-            localStorage.setItem('user', JSON.stringify(user));
             state.user = user;
         },
         userInfos: function (state, userInfos) {
@@ -52,11 +34,8 @@ const store = createStore({
           },
 
         logout: function(state){
-            state.user = {
-                userId: -1,
-                token: '',
-            }
-            localStorage.removeItem('user');
+            state.user = {};
+            state.status = '';
         }
     },
 
@@ -80,13 +59,14 @@ const store = createStore({
         },
         login: ({commit}, userInfos) => {
 
+            let destinationUrl = url.concatUrl(`/connexion/${userInfos}`);
+
             commit('setStatus', 'loading');
-            const url = `http://localhost:3000/connexion/${userInfos}`
 
             return new Promise((resolve, reject) =>{
-                instance.get(url)
+                instance.get(destinationUrl)
                 .then(response =>{
-                    commit('setStatus', '');
+                    commit('setStatus', 'logged');
                     commit('logUser', response.data);
                     resolve(response);
                 })
@@ -99,10 +79,11 @@ const store = createStore({
         },
         
         getUserInfos: ({commit},userInfos) =>{
-            const url = `http://localhost:3000/infos/${userInfos}`;
+
+            let destinationUrl = url.concatUrl(`/infos/${userInfos}`)
 
             return new Promise((resolve, reject) =>{
-                instance.get(url)
+                instance.get(destinationUrl)
                 .then(response =>{
                     commit('userInfos', response.data)
                     resolve(response);

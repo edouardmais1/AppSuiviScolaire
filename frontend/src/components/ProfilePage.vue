@@ -12,7 +12,8 @@
         </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos">{{user[0].Prenom}}</p>
+            <p class="users-infos" v-if="this.active == true">{{user[0].Prenom}}</p>
+            <p v-else></p>
         </div>
     </div>
     <div class="row">
@@ -22,7 +23,8 @@
             </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos">{{user[0].Nom}}</p>
+            <p class="users-infos" v-if="this.active == true" >{{user[0].Nom}}</p>
+            <p v-else></p>
         </div>
     </div>
     <div class="row">
@@ -32,7 +34,8 @@
         </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos">{{user[0].Mail}}</p>
+            <p class="users-infos" v-if="this.active == true" >{{user[0].Mail}}</p>
+            <p v-else></p>
         </div>
     </div>
 
@@ -68,7 +71,8 @@ import ProfilEnfant from './ProfilEnfant.vue'
 
         data(){
             return{
-                message: ""
+                message: "",
+                active: false,
             }
         },
         components: {
@@ -76,16 +80,14 @@ import ProfilEnfant from './ProfilEnfant.vue'
         },
         //trouver un moyen d'éviter les erreurs de chargement.
         created(){
-            this.getUserinformations();
-        },
-
-        /*mounted: function(){
-
-            if(this.$store.state.user == ""){
+            if(this.$store.state.status == ""){
                 this.$router.push('/');
             }
-            this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
-        },*/
+            else{
+                this.getUserinformations();
+                console.log(this.$store.state.status);
+            }
+        },
 
         computed:{
             ...mapState({
@@ -101,6 +103,7 @@ import ProfilEnfant from './ProfilEnfant.vue'
 
             async getUserinformations(){
                 await this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
+                this.active == true;
             },
         }
     }

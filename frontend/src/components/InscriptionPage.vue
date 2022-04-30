@@ -56,6 +56,8 @@
 import { mapState } from 'vuex'
 import axios from 'axios';
 
+const url = require('../../url/url.js');
+
 export default{
     name: 'InscriptionPage',
 
@@ -100,10 +102,10 @@ export default{
         },
 
         checkAccountExist(mail){
-            const url = `http://localhost:3000/users/${mail}`;
+            let destinationUrl = url.concatUrl(`/users/${mail}`)
 
             return new Promise((resolve, reject)=>{
-                axios.get(url)
+                axios.get(destinationUrl)
                 .then(response =>{
                     this.mail_exist = response.data.length;
                     resolve(response);
