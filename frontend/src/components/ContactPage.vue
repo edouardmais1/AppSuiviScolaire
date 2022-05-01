@@ -4,11 +4,11 @@
     <div class="wrapper">
         <header>Contact</header>
 
-        <form action="#" @submit.prevent="">
+        <form action="#" @submit.prevent="sendMail()">
         <div class="items-1">
             <div class="dbl-field">
                 <div class="field">
-                    <input type="text" placeholder="Entrez votre nom" class="contact-input-1" v-model="name">
+                    <input type="text" placeholder="Entrez votre nom" class="contact-input-1" v-model="nom">
                     <i class="fas fa-user"></i>
                 </div>
             </div>
@@ -34,10 +34,10 @@
             </div>
         </div>
             <div class="message">
-                <textarea placeholder="Ecrivez votre message"></textarea>
+                <textarea placeholder="Ecrivez votre message" v-model="contenu"></textarea>
             </div>
             <div class="button-area">
-                <button type="submit">Envoyer</button>
+                <button type="submit" :disabled="validatedFields">Envoyer</button>
                 <p class="message-alert">{{message}}</p>
             </div>
         </form>
@@ -52,23 +52,36 @@
 
 //const url = require("../../url/url.js");
 
-    export default{
-        name: "ContactPage",
-        data(){
-            return{
-                name:'',
-                objet:'',
-                telephone:'',
-                email:'',
-                message:'',
-                items: [],
+export default{
+    name: "ContactPage",
+    data(){
+        return{
+            nom:'',
+            objet:'',
+            telephone:'',
+            email:'',
+            contenu: '',
+            message:'',
+            items: [],
+        }
+    },
+    computed: {
+        validatedFields : function(){
+            if(this.nom != "" && this.objet != "" && this.telephone != "" && this.email != "" && this.contenu != ""){
+                return false;
+            }
+            else{
+                return true;
             }
         },
+    },
 
-        methods:{
-
-        },
-    }
+    methods:{
+        sendMail(){
+            console.log("tetsetsst");
+        }
+    },
+}
 
 </script>
 <style>

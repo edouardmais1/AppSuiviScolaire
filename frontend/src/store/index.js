@@ -87,6 +87,7 @@ const store = createStore({
                 .then(response =>{
                     commit('userInfos', response.data)
                     resolve(response);
+
                 })
                 .catch(error =>{
                     commit('setStatus', 'error_create')

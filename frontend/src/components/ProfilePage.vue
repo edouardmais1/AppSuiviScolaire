@@ -46,9 +46,10 @@
     
 
     
-    <div class="profil-enfant">
-            <ProfilEnfant></ProfilEnfant>
+    <div class="profil-enfant" v-if="this.active = true">
+        <ProfilEnfant />
     </div>
+    <div v-else></div>
 
 
     <div class="center">
@@ -73,10 +74,12 @@ import ProfilEnfant from './ProfilEnfant.vue'
             return{
                 message: "",
                 active: false,
+                items: [],
+                childs: [],
             }
         },
         components: {
-            ProfilEnfant,
+            ProfilEnfant
         },
         //trouver un moyen d'éviter les erreurs de chargement.
         created(){
@@ -85,7 +88,6 @@ import ProfilEnfant from './ProfilEnfant.vue'
             }
             else{
                 this.getUserinformations();
-                console.log(this.$store.state.status);
             }
         },
 
@@ -103,8 +105,13 @@ import ProfilEnfant from './ProfilEnfant.vue'
 
             async getUserinformations(){
                 await this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
-                this.active == true;
+                this.active = true;
+
             },
+            getChildsData(){
+                //récupérer les informations d'un enfant
+
+            }
         }
     }
 

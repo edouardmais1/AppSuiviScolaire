@@ -33,6 +33,7 @@ router.get('/users/:mail',data.getUserByMail);
 //récupération des infos d'un elève
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
+router.get('/eleves/:mail',data.getEleveByMail);
 
 //récupération des informations d'un calendrier
 router.get('/calendrier/:classe',data.getCalendarByClasse);

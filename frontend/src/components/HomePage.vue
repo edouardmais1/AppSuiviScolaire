@@ -3,7 +3,7 @@
         <div class="text-center">
             <h1 class="form-title">Actualités</h1>
         </div>
-        <div v-if="this.checkLengthItems()">
+        <div v-if="this.active = true">
             <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items.reverse().slice(0,6)" :key="item"/>
         </div>
         <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
@@ -30,6 +30,7 @@
             return {
                 items: [],
                 alerMessage : "",
+                active: false,
             }
         },
 
@@ -41,11 +42,11 @@
             checkLengthItems(){
                 if(this.items.length == 0){
                     this.alerMessage = "PAS D'ACTUALITE..."
-                    return false;
+                    this.active = false;
                 }
                 else{
                     this.alerMessage = ""
-                    return true;
+                    this.active = true;
                 }
             },
 
@@ -64,6 +65,7 @@
                 catch(error){
                     console.log(error);
                 }
+                this.checkLengthItems();
 
             },
 

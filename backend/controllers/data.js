@@ -97,6 +97,34 @@ const getAllUsers = (request,response)=>{
 };
 
 
+//GET Eleve BY MAIL
+
+//recuperer les données d'un user sur base de son mail.
+const getDataEleveByMail= (mail, result) => {
+    
+    //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
+    db.query("SELECT Prenom, Nom, Classe, DateDeNaissance FROM tb_Eleves WHERE Mail = ?", [mail], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+//requete finale sur base de la précédente.
+const getEleveByMail = (req, res) => {
+    getDataEleveByMail(req.params.mail, (err, results) => {
+        if (err){
+            res.send(err);
+        }else{
+            res.status(200).json(results);
+        }
+    });
+}
+
+
 //GET USER BY MAIL
 
 //recuperer les données d'un user sur base de son mail.
@@ -285,34 +313,6 @@ const getComportementById = (request, response) =>{
         }
     })
 }
-
-const updateComportement = (id,result) =>{
-
-    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("UPDATE tb_Comportements SET Signature = 1  WHERE EleveID = ?;", [id], (err,results)=>{
-        if(err){
-            console.log(err);
-            result(err,null);
-        }
-        else{
-            result(null,results);
-            console.log("Request send with success");
-        }
-    });
-}
-
-const updateComportementById = (request, response) =>{
-    updateComportement(request.params.id, (error,results)=>{
-        if(error){
-            response.send(error);
-        }
-        else{
-            response.status(200).json(results)
-        }
-    })
-}
-
-
 
 
 //Routes bulletin
@@ -556,6 +556,7 @@ module.exports = {
     getBulletinById,
     getUserByToken,
     insertActualite,
-    getActuByTitle,  
+    getActuByTitle, 
+    getEleveByMail,
 }
 

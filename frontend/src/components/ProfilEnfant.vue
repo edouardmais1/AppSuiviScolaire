@@ -6,19 +6,19 @@
         </div>
 
         <div class="col-sm text-align-center">
-            <p> Momin </p>
+            <p>{{nom}}</p>
         </div>
 
         <div class="col-sm text-align-center">
-            <p>  Maxime </p>
+            <p>{{prenom}}</p>
         </div>
 
         <div class="col-sm text-align-center">
-            <p> 5E </p>
+            <p>{{classe}}</p>
         </div>
 
         <div class="col-sm text-align-center">
-            <p> 12/08/2000</p>
+            <p>{{date}}</p>
         </div>
     </div>
 </div>
@@ -26,10 +26,15 @@
 
 <script>
 
-    export default{
-        name : "ProfilEnfant",
-    
+export default{
+    name : "ProfilEnfant",
 
+    props: {
+        nom : String,
+        prenom: String,
+        classe: String,
+        date: String,
+    }
 
 }
 
