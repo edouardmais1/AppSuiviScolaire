@@ -1,6 +1,11 @@
 'use strict'
-//importer le modules express-session
+
+//importer le module express-session
 const session = require('express-session');
+//importer le module body-parser
+const bodyParser = require('body-parser');
+//importer le module cookie-parser
+const cookieParser = require('cookie-parser');
 
 //importe le module express
 const express = require("express");
@@ -14,21 +19,34 @@ const Route = require("./routes/main");
 //initisaliser express
 const app = express();
 
+
+
+
 //utiliser json
 app.use(express.json());
+//utiliser cors
+app.use(cors({
+    origin: ["http://localhost:8080"],
+    methods: ["GET", "POST", "PUT", "DELETE", "UPDATE"],
+    credentials: true,
+}));
+
+app.use(cookieParser());
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 //utiliser les sessions
 app.use(session({
-    secret: "secret-key",
-    name: "session-id",
+    key : "userId",
+    secret : "secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: {secure: true, httpOnly: true},
+    cookie: {
+        expires: 60 * 60 * 24,
+    },
 }))
 
 
-//utiliser cors
-app.use(cors());
 
 
 //middleware intéraction serveur frontend && backend

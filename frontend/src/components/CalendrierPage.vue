@@ -4,7 +4,7 @@
         <div class="col-sm">
             <select @change="getEventsByClasse($event)" id="object">
               <option value="NOPE" selected>Choisissez une classe</option>
-              <option v-for="item in items" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
+              <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
             </select>
         </div>
         <div class="col-sm">
@@ -91,10 +91,11 @@ export default{
   },
 
   methods : {
-    getCLasses(){
+
+    async getCLasses(){
 
       let destinationUrl = url.concatUrl("/classes");
-      axios.get(destinationUrl)
+      await axios.get(destinationUrl)
 
         .then(response => {
           this.items = response.data;
@@ -126,7 +127,6 @@ export default{
 
         .then(response =>{
           this.calendarOptions.events = response.data;
-          console.log(response.data);
         })
         .catch(error =>{
           console.log(error);
@@ -177,6 +177,7 @@ export default{
 .alertMessage{
   color : red;
   margin-top: 5px;
+  margin-left: 42%;
 }
 
   </style>

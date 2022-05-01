@@ -1,5 +1,5 @@
 <template>
-    <form @submit="updateComportement()" >
+    <form @submit.prevent="" >
         <div class="container-comportement">
             <div data-aos="zoom-in-left" data-aos-duration="1250">
                 <div class="wrapper">
@@ -74,22 +74,6 @@ export default{
 
         },
 
-        async updateComportement(){
-            try{
-                await instance.post("/5")
-                .then(response =>{
-                    this.items = response.data;
-                    console.log(response.data);
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            }
-            catch(error){
-                console.log(error);
-            }
-
-        },
         conversionDate(date){
             let result = new Date(date);
 

@@ -4,7 +4,7 @@
     <div class="wrapper">
         <header>Contact</header>
 
-        <form action="#" @submit.prevent="sendMail()">
+        <form action="#" @submit.prevent="">
         <div class="items-1">
             <div class="dbl-field">
                 <div class="field">
@@ -29,9 +29,6 @@
             <div class="dbl-field">
                 <div class="field">
                     <input type="mail" placeholder="Mail du destinataire" class="contact-input-4" v-model="email" list="test">
-                    <datalist id="test">
-                        <option v-for="item in items" :key="item.Mail">{{item.Mail}}</option>
-                    </datalist>
                     <i class="fas fa-envelope" id="item"></i>
                 </div>
             </div>
@@ -51,9 +48,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 
-const url = require("../../url/url.js");
+//const url = require("../../url/url.js");
 
     export default{
         name: "ContactPage",
@@ -68,66 +65,8 @@ const url = require("../../url/url.js");
             }
         },
 
-        created(){
-
-            this.getContacts();
-
-        },
-
         methods:{
 
-            getContacts(){
-
-                let destinationUrl = url.concatUrl("/contacts");
-                axios.get(destinationUrl)
-
-                    .then(response =>{
-                        console.log(response.data);
-                        this.items = response.data
-                    })
-                    .catch(error =>{
-                        console.log(error);
-                    });
-
-            },
-
-            sendMail(){
-                if(this.checkInputs()){
-                    this.message ="";
-                    this.CreateRequest();
-                }
-                else{
-                    console.log("nope");
-                    this.message = "VEUILLEZ COMPLETER CHAQUE CHAMPS DU FORMULAIRE !"
-                }
-            
-            },
-
-            checkInputs(){
-                if(this.name.length != 0 && this.objet.length != 0 && this.email.length != 0 && this.telephone.length != 0){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-
-            },
-            CreateRequest(){
-                let destinationUrl = url.concatUrl("/sendMail");
-
-                axios.post(destinationUrl,{
-                        nom: this.name,
-                        email: this.email,
-                        objet: this.objet,
-                        telephone: this.telephone,
-                    })
-                    .then(response =>{
-                        console.log(response);
-                    })
-                    .catch(error =>{
-                        console.log(error);
-                    });
-                },
         },
     }
 

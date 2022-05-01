@@ -14,7 +14,7 @@
         <div class="col-sm">
             <select class="custom-select" id="inputGroupSelect01">
                 <option v-bind:value="classe" selected>{{classe}}</option>
-                <option v-for="item in items" :key="item.Classe">{{item.Classe}}</option>
+                <option v-for="item in items[0]" :key="item.Classe">{{item.Classe}}</option>
             </select>
         </div>
         <div class="col-sm">

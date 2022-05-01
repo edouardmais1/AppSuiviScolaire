@@ -90,7 +90,6 @@
 
                     await axios.get(destinationUrl)
                     .then(response =>{
-                        console.log(response.data);
                         this.itemsByTitle = response.data;
                     })
                     .catch(error =>{

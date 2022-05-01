@@ -4,7 +4,13 @@ const { json } = require("express");
 const { response } = require("../app");
 const {validationResult} = require("express-validator");
 
+//importer le module express-session
 const session = require('express-session');
+//importer le module body-parser
+const BodyParser = require('body-parser');
+//importer le module cookie-parser
+const cookieParser = require('cookie-parser');
+
 
 
 //IMPORTE LE FICHIER DATABASE.JS
@@ -16,7 +22,9 @@ db.connect();
 
 //GET ALL CLASSES 
 const getAllClasses = (request, response) =>{
-    db.query('SELECT Classe from tb_Classe', (error, results)=>{
+
+    let sql = `CALL getAllClasses()`
+    db.query(sql, (error, results)=>{
         if(error){
             throw error;
         }
@@ -29,13 +37,13 @@ const getAllClasses = (request, response) =>{
 
 
 
-
-
 //GET ALL ELEVES
 const getAllEleves = (request,response)=>{
 
-    //RECUPERER LES ETUDIANTS DANS LA BASE DE DONNEES
-    db.query('SELECT * FROM tb_Eleves',(err,results)=>{
+    let sql = `CALL getAllEleves()`
+
+    //RECUPERER LES ETUDIANTS DANS LA BASE DE DONNEEs
+    db.query(sql,(err,results)=>{
         if(err){
             throw err;
         }
@@ -117,24 +125,6 @@ const getUserByMail = (req, res) => {
 }
 
 
-
-//GET CALENDAR DATA 
-
-//recuperer les données de la table calendrier
-const getCalendarData = (request,response)=>{
-
-    //RECUPERER TOUS LES EVENEMENTS DES CALENDRIERS
-    db.query('SELECT * FROM tb_Calendrier',(err,results)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            response.status(200).json(results);
-        }
-    });
-}
-
-
 //GET CALENDAR BY CLASSE
 const getDataCalendarByClass = (classe, result) => {
 
@@ -158,23 +148,6 @@ const getCalendarByClasse = (request, response) => {
         }
     });
 }
-
-
-
-//GET DIRECTION-SECRETARIAT CONTACTS
-const getContactDirectionSecretariat = (request,response)=>{
-    
-    //RECUPERER LES MAILS DES MEMBRES DU PERSONNEL
-    db.query("SELECT Mail from tb_Utilisateurs where Roles = 2 or Roles = 3",(err,results)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            response.status(200).json(results);
-        }
-    });
-}
-
 
 //GET ACTUALITY OF SCHOOL
 const getActualite = (request,response)=>{
@@ -214,57 +187,6 @@ const getActuByTitle = (request, response) => {
     });
 }
 
-
-//POST 
-
-
-
-//INSERT AN USER 
-const dataUser = (data,result)=>{
-
-    //INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
-    db.query("INSERT INTO tb_Utilisateurs SET ?", [data], (err,results)=>{
-        if(err){
-            console.log(err);
-            result(err,null);
-        }
-        else{
-            result(null,results);
-            console.log("Request send with success");
-        }
-    });
-};
-
-const insertUser = (request,response,next)=>{
-    const data = request.body;
-
-    try{
-        const errors = validationResult(request);
-
-        if(!errors.isEmpty()){
-            return response.status(400).json({
-                success: false,
-                errors: errors.array(),
-            });
-        }
-        
-        dataUser(data,(err,results)=>{
-            if(err){
-                response.send(err);
-            }
-            else{
-                response.status(200).json(results);
-            }
-        });
-
-    }
-
-    catch(error){
-        console.log(error);
-        next(error);
-    }
-
-}
 
 
 //recuper le token d'un utilisateur et son mail
@@ -511,6 +433,9 @@ const getUserByToken = (req, res) => {
 }
 
 
+//POST
+
+
 //INSERT AN Actuality
 const dataActualite = (data,result)=>{
 
@@ -560,6 +485,54 @@ const insertActualite = (request,response,next)=>{
 }
 
 
+//INSERT AN USER 
+const dataUser = (data,result)=>{
+
+//INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
+    db.query("INSERT INTO tb_Utilisateurs SET ?", [data], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+};
+
+const insertUser = (request,response,next)=>{
+    const data = request.body;
+
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataUser(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
+
 
 
 
@@ -568,14 +541,12 @@ const insertActualite = (request,response,next)=>{
 module.exports = {
     getAllEleves,
     getAllUsers,
-    getCalendarData,
     getCalendarByClasse,
     getActualite,
     getEleveById,
     getUserByMail,
     insertStudent,
     insertUser,
-    getContactDirectionSecretariat,
     getAllClasses,
     getPasswordByMail,
     connexionUser,
@@ -585,9 +556,6 @@ module.exports = {
     getBulletinById,
     getUserByToken,
     insertActualite,
-    getActuByTitle,
-    updateComportement,
-    updateComportementById
-    
+    getActuByTitle,  
 }
 

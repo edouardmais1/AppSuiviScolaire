@@ -7,7 +7,7 @@
                         <div class="col-md title">Contenu</div>
                         <div class="col-md title">Date</div>
                 </div>
-                <BullComponent v-bind:contenu="item.Contenu" v-bind:date="this.conversionDate(item.Date)" v-for="item in items" :key="item"/>
+                <BullComponent v-bind:contenu="this.messageMaj" v-bind:date="this.conversionDate(item.Date)" v-for="item in items" :key="item"/>
             </div>
         </div>
     </div>
@@ -30,6 +30,7 @@
         data(){
             return {
                 items: [],
+                messageMaj : "à implémenter et pas mettre du bullshit inutile",
             }
         },
 

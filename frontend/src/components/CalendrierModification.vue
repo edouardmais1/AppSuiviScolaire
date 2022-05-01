@@ -9,9 +9,9 @@
     <div class="col">
     <div class="mb-3">
     <h5>Classe:</h5>
-        <select @change="getEventsByClasse($event)" id="object">
+        <select id="object">
             <option value="NOPE" selected>Choisissez une classe</option>
-            <option v-for="item in items" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
+            <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
         </select>
     </div>
     </div>
@@ -41,32 +41,6 @@
     </form>
     </div>
 
-
-    <div class="col-sm">
-        <form class='add-event'>
-    <h3 class="title"> Modification d'une activité <i class="fas fa-solid fa-gear"></i></h3>
-    <div class="row">
-    <div class="col">
-    <div class="mb-3">
-    <h5>Date de l'evenement:</h5>
-        <input type="date" class="form-control date-input">
-    </div>
-    </div>
-
-    <div class="mb-3">
-        <h5>Choix de l'evenement à supprimer:</h5>
-        <select @change="getEventsByClasse($event)" id="object">
-            <option value="NOPE" selected>Choisissez un évènement</option>
-            <option v-for="item in items" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
-        </select>
-    </div>
-    </div>
-
-
-    <button type="button" class="btn btn-danger delete" v-on:click="toggleModale">Supprimer <i class="fas fa-solid fa-trash"></i></button>
-    </form>
-
-    </div>
 </div>
 </template>
 
@@ -96,20 +70,21 @@ export default{
         this.getClasses()
     },
     methods:{
-            async getClasses(){
+        async getClasses(){
 
-                let destinationUrl = url.concatUrl("/classes");
-                await axios.get(destinationUrl)
-                .then(response =>{
-                    this.items = response.data;
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            },
-            toggleModale: function(){
-                this.revele=!this.revele;
-            },
+            let destinationUrl = url.concatUrl("/classes");
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.items = response.data;
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+
+        toggleModale: function(){
+            this.revele=!this.revele;
+        },
 
         
     }
@@ -131,6 +106,10 @@ export default{
 .date-input{
     min-width: 287px;
     max-width: 394px;
+}
+
+.row{
+    margin-right :  15%;
 }
 
 </style>

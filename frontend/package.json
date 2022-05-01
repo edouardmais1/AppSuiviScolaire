@@ -25,6 +25,7 @@
     "bootstrap-icons": "^1.8.1",
     "bulma": "^0.9.3",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "core-js": "^3.22.2",
     "es6-promise": "^4.2.8",
     "express-session": "^1.17.2",

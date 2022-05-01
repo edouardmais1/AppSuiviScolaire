@@ -10,7 +10,12 @@ const router = express.Router();
 
 //importe le fichier requests.js (contient le requetes vers la base de données)
 const data = require('../controllers/data');
+
+//fichier pour l'envoi de mails
 const mail = require('../controllers/mail');
+
+//fichier pour de la modification de données
+const dataUpdate = require('../controllers/dataUpdate');
 
 
 //Middleware de validation de données
@@ -30,14 +35,12 @@ router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
 
 //récupération des informations d'un calendrier
-router.get('/calendrier',data.getCalendarData);
 router.get('/calendrier/:classe',data.getCalendarByClasse);
 
 //récupérer l'actualité
 router.get('/',data.getActualite);
 router.get('/actualite/:titre',data.getActuByTitle);
 
-router.get('/contacts',data.getContactDirectionSecretariat);
 router.get('/classes',data.getAllClasses);
 
 //récuperer le mot de passe en fonction du mail
@@ -52,7 +55,6 @@ router.get('/infos/:token',data.getUserByToken);
 //routes vers comportement 
 router.get('/comportement',data.getAllComportement);
 router.get('/comportement/:id',data.getComportementById);
-router.post('/comportement/:id',data.updateComportementById);
 
 //routes vers le bulletin
 router.get('/bulletin',data.getAllBulletin);
@@ -79,7 +81,7 @@ router.post('/sendMail',mail.sendMail);
 //DELETE METHODS
 
 
-//PUT METHODS
+//UPDATE METHODS
 
 
 module.exports = router;

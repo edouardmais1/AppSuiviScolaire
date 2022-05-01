@@ -33,7 +33,7 @@
   <h6>Classe de l'élève:</h6>
     <select  v-model="classe" class="custom-select" id="inputGroupSelect01">
         <option v-bind:value="classe" selected>Choisissez la classe ...</option>
-        <option  v-for="item in items" :key="item.Classe">{{item.Classe}}</option>
+        <option  v-for="item in items[0]" :key="item.Classe">{{item.Classe}}</option>
     </select>
   </div>
 
@@ -74,37 +74,37 @@ export default{
         },
     },
     methods:{
-            async getClasses(){
+        async getClasses(){
 
-                let destinationUrl = url.concatUrl("/classes");
-                await axios.get(destinationUrl)
-                .then(response =>{
-                    this.items = response.data;
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            },
-            async insertStudent(){
+            let destinationUrl = url.concatUrl("/classes");
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.items = response.data;
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+        async insertStudent(){
 
-                let destinationUrl = url.concatUrl("/eleves")
-                await axios.post(destinationUrl,
-                {
-                    Nom:this.nom,
-                    Prenom:this.prenom,
-                    Mail:this.email,
-                    Classe:this.classe,
-                    DateDeNaissance:this.date,
-                })
-                .then(response =>{
-                    console.log(response.data);
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            }
-
+            let destinationUrl = url.concatUrl("/eleves")
+            await axios.post(destinationUrl,
+            {
+                Nom:this.nom,
+                Prenom:this.prenom,
+                Mail:this.email,
+                Classe:this.classe,
+                DateDeNaissance:this.date,
+            })
+            .then(response =>{
+                console.log(response.data);
+            })
+            .catch(error =>{
+                console.log(error)
+            })
         }
+
+    }
 }
 </script>
 
