@@ -157,7 +157,7 @@ const getUserByMail = (req, res) => {
 const getDataCalendarByClass = (classe, result) => {
 
     //RECUPERER LES EVENEMENTS EN FONCTION DES CLASSES
-    db.query("SELECT Contenu as 'title', Date as 'date' FROM tb_Calendrier Where Classe = ?", [classe], (err, results) => {             
+    db.query("SELECT Titre as 'description', Contenu as 'title', StartTime as 'start', StopTime as 'end' FROM tb_Calendrier Where Classe = ?", [classe], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
