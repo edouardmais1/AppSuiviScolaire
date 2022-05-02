@@ -26,7 +26,7 @@ const app = express();
 app.use(express.json());
 //utiliser cors
 app.use(cors({
-    origin: ["http://localhost:8080"],
+    //origin: ["http://localhost:8080"],
     methods: ["GET", "POST", "PUT", "DELETE", "UPDATE"],
     credentials: true,
 }));

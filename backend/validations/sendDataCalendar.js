@@ -5,8 +5,7 @@ const calendarDataValidationSchema = [
       .exists({ checkFalsy: true })
       .withMessage("Title is required")
       .isString()
-      .withMessage("Title should be a string")
-      .isLength({min: 3, max: 40}),
+      .withMessage("Title should be a string"),
       
     body("Contenu")
       .exists({ checkFalsy: true })
@@ -18,8 +17,15 @@ const calendarDataValidationSchema = [
     body("Date")
       .exists({ checkFalsy: true })
       .withMessage("Date is required")
-      .isDate()
-      .withMessage("input should be Date"),
+      .isString()
+      .withMessage("input should be String"),
+
+    body("Titre")
+      .exists({ checkFalsy: true })
+      .withMessage("Titre is required")
+      .isString()
+      .withMessage("input should be String")
+      .isLength({min: 3, max: 15}),
     
 ];
 

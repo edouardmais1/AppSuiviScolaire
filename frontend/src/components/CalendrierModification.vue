@@ -3,38 +3,81 @@
 
 <div class="row">
     <div class="col-sm">
-    <form class='add-event' @submit="sendData()">
-    <h3 class="title"> Ajout d'une activité <i class="fas fa-solid fa-calendar-plus"></i></h3>
-    <div class="row">
-    <div class="col">
-    <div class="mb-3">
-    <h5>Classe:</h5>
-        <select id="object" v-model="classe">
-            <option value="" selected>Choisissez une classe</option>
-            <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
-        </select>
-    </div>
-    </div>
-    <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
-    <div class="col">
-    <div class="mb-3">
-        <h5>Date:</h5>
-        <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
-    </div>
-    </div>
+        <form class='event' @submit="sendData()">
+        <h3 class="title"> Ajout d'une activité <i class="fas fa-solid fa-calendar-plus"></i></h3>
+        <div class="row">
+            <div class="col-5">
+            <h5>Titre:</h5>
+                <input type="text" class="form-control class-select" id="exampleInputEmail1" v-model="titre" placeholder="Choisissez un titre...">
+            </div>
+            <div class="col-5">
+            <h5>Classe:</h5>
+                <select id="object" v-model="classe">
+                    <option value="" selected>Choisissez une classe</option>
+                    <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
+                </select>
+            
+            </div>
+            </div>
+            <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
+        <div class="row">
+            <div class="col-5">
+                <h5>Date:</h5>
+                <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
+            </div>
+            <div class="col-5">
+                <h5>Heure:</h5>
+                <input type="time" class="form-control" id="exampleInputPassword1" v-model="time">
+            </div>
+
+        </div>
+
+        <div class='row'>
+            <div class="col-10">
+                <h5>Contenu:</h5>
+                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" v-model="contenu"></textarea>
+            </div>
+        </div>
+            
+
+        <button type="submit" class="btn btn-success"  :disabled="validatedFields" >Ajouter <i class="fas fa-solid fa-plus"></i></button>
+        </form>
+        </div>
 
 
-    <div class="col">
-        <div class="mb-3">
-        <h5>Contenu:</h5>
-        <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" v-model="contenu"></textarea>
-    </div>
-    </div>
-    </div>
 
-    <button type="submit" class="btn btn-success"  :disabled="validatedFields" >Ajouter <i class="fas fa-solid fa-plus"></i></button>
-    </form>
-    </div>
+        <div class="col-sm">
+        <form class='event'>
+        <h3 class="title"> Suppression d'une activité <i class="fas fa-solid fa-trash"></i></h3>
+        <div class="row">
+
+            <div class="col-5">
+            <h5>Classe:</h5>
+                <select id="object" v-model="classeDelete">
+                    <option value="" selected>Choisissez une classe</option>
+                    <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
+                </select>
+            </div>
+            <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
+        
+            <div class="col-5">
+                <h5>Date:</h5>
+                <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-10">
+                <h5>Titre:</h5>
+                <select id="object">
+                    <option value="" selected>Choisissez l'activité...</option>
+                </select>
+            </div>
+        <h8 class="advice"> *Chercher par classe et date pour trouver l'activité à supprimer </h8>
+        </div>
+            
+        <button type="submit" class="btn btn-danger" >Supprimer <i class="fas fa-solid fa-trash"></i></button>
+        </form>
+        </div>
 
 </div>
 </template>
@@ -50,9 +93,13 @@ export default{
     data(){
         return{
             items : [],
+            classeDelete: [],
             contenu: '',
             date: '',
+            time:'',
             classe:'',
+            titre:'',
+            fullDate: "",
             revele: false,
         }
     },
@@ -65,7 +112,7 @@ export default{
 
     computed: {
         validatedFields : function(){
-            if(this.contenu != "" && this.time!= "" && this.date != "" && this.classe != ""){
+            if(this.contenu != "" && this.titre!= "" && this.date != "" && this.classe != ""){
                 return false;
             }
             else{
@@ -96,8 +143,9 @@ export default{
             let destinationUrl = url.concatUrl('/calendrier');
             await axios.post(destinationUrl,{
                 Classe : this.classe,
-                Date: this.date,
+                Date: this.concatDate(this.date, this.time),
                 Contenu: this.contenu,
+                Titre: this.titre,
             })
             .then(function(){
                 console.log("request send");
@@ -107,6 +155,11 @@ export default{
             })
         },
 
+        concatDate(DATE, TIME){
+            let fullDate = DATE + ' ' + TIME + ':00';
+            return fullDate;
+        },
+
         
     }
 
@@ -114,11 +167,12 @@ export default{
 </script>
 
 <style scoped>
-.add-event{
+.event{
     height: 250px;
     margin-top: 150px;
     margin-bottom: 100px;
-    margin-left: 15%;
+    margin-left: 10%;
+    min-width: 700px;
 }
 .title{
     margin-bottom: 40px;
@@ -130,7 +184,13 @@ export default{
 }
 
 .row{
-    margin-right :  15%;
+    padding-bottom: 20px;
+}
+.advice{
+    padding-bottom: 20px;
+    color: #6dabe4;
+    font-style: italic;
+    margin-top: 10px;
 }
 </style>
     

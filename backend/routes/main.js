@@ -22,6 +22,7 @@ const dataUpdate = require('../controllers/dataUpdate');
 const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');
+const calendarDataValidationSchema = require('../validations/sendDataCalendar');
 
 //API REST
 //GET METHODS
@@ -69,7 +70,7 @@ router.get('/bulletin/:id',data.getBulletinById);
 router.post('/actualite',actuDataValidationSchema,data.insertActualite)
 
 //route permettant de rajouter un événement en DB
-router.post('/calendrier', data.insertDataCalendar);
+router.post('/calendrier',calendarDataValidationSchema,data.insertDataCalendar);
 
 //route permettant de rajouter un élève dans la base de donnée + middleware
 router.post('/eleves',elevesDataValidationSchema,data.insertStudent);
