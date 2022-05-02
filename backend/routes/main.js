@@ -68,6 +68,9 @@ router.get('/bulletin/:id',data.getBulletinById);
 //route permettant de rajouter une actualité + middleware
 router.post('/actualite',actuDataValidationSchema,data.insertActualite)
 
+//route permettant de rajouter un événement en DB
+router.post('/calendrier', data.insertDataCalendar);
+
 //route permettant de rajouter un élève dans la base de donnée + middleware
 router.post('/eleves',elevesDataValidationSchema,data.insertStudent);
 

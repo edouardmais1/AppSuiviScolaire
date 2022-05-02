@@ -485,6 +485,56 @@ const insertActualite = (request,response,next)=>{
 }
 
 
+
+//INSERT AN Actuality
+const dataCalendar = (data,result)=>{
+
+    //INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
+    db.query("INSERT INTO tb_Calendrier SET ?", [data], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+};
+
+const insertDataCalendar = (request,response,next)=>{
+    const data = request.body;
+
+
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataCalendar(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
+
 //INSERT AN USER 
 const dataUser = (data,result)=>{
 
@@ -558,5 +608,6 @@ module.exports = {
     insertActualite,
     getActuByTitle, 
     getEleveByMail,
+    insertDataCalendar,
 }
 

@@ -3,14 +3,14 @@
 
 <div class="row">
     <div class="col-sm">
-    <form class='add-event'>
+    <form class='add-event' @submit="sendData()">
     <h3 class="title"> Ajout d'une activité <i class="fas fa-solid fa-calendar-plus"></i></h3>
     <div class="row">
     <div class="col">
     <div class="mb-3">
     <h5>Classe:</h5>
-        <select id="object">
-            <option value="NOPE" selected>Choisissez une classe</option>
+        <select id="object" v-model="classe">
+            <option value="" selected>Choisissez une classe</option>
             <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
         </select>
     </div>
@@ -19,25 +19,20 @@
     <div class="col">
     <div class="mb-3">
         <h5>Date:</h5>
-        <input type="date" class="form-control" id="exampleInputPassword1">
+        <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
     </div>
     </div>
-    <div class="col">
-    <div class="mb-3">
-        <h5>Heure:</h5>
-        <input type="time" class="form-control" id="exampleInputPassword1">
-    </div>
-    </div>
-    </div>
+
 
     <div class="col">
         <div class="mb-3">
         <h5>Contenu:</h5>
-        <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
+        <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" v-model="contenu"></textarea>
+    </div>
     </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Ajouter <i class="fas fa-solid fa-plus"></i></button>
+    <button type="submit" class="btn btn-success"  :disabled="validatedFields" >Ajouter <i class="fas fa-solid fa-plus"></i></button>
     </form>
     </div>
 
@@ -55,9 +50,7 @@ export default{
     data(){
         return{
             items : [],
-            nom: '',
-            prenom: '',
-            email: '',
+            contenu: '',
             date: '',
             classe:'',
             revele: false,
@@ -69,6 +62,18 @@ export default{
     created(){
         this.getClasses()
     },
+
+    computed: {
+        validatedFields : function(){
+            if(this.contenu != "" && this.time!= "" && this.date != "" && this.classe != ""){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    },
+
     methods:{
         async getClasses(){
 
@@ -84,6 +89,22 @@ export default{
 
         toggleModale: function(){
             this.revele=!this.revele;
+        },
+
+        async sendData(){
+
+            let destinationUrl = url.concatUrl('/calendrier');
+            await axios.post(destinationUrl,{
+                Classe : this.classe,
+                Date: this.date,
+                Contenu: this.contenu,
+            })
+            .then(function(){
+                console.log("request send");
+            })
+            .catch(error =>{
+                console.log(error);
+            })
         },
 
         
@@ -111,6 +132,5 @@ export default{
 .row{
     margin-right :  15%;
 }
-
 </style>
     
