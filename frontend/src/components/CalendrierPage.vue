@@ -87,12 +87,12 @@ export default{
   },
 
   created(){
-    this.getCLasses();
+    this.getClasses();
   },
 
   methods : {
 
-    async getCLasses(){
+    async getClasses(){
 
       let destinationUrl = url.concatUrl("/classes");
       await axios.get(destinationUrl)
