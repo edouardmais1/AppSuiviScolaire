@@ -51,6 +51,9 @@
     </li>
     <li>
       <a href="#classes">Classes</a>
+      <ul>
+        <li>classes</li>
+      </ul>
     </li>
   </ol>
 </details>
@@ -113,8 +116,6 @@ route : "/actualite" qui nous permettra d'aller insérer du contenu au format JS
   <br><br>  
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong><br>
-
-<strong>Frontend</strong>
   
 Recupération des actualités
 ```js
@@ -274,7 +275,6 @@ route : "/calendrier" qui nous permettra d'aller insérer du contenu dans notre 
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong><br>
 
-<strong>Frontend</strong><br><br>
 <br>
 
 Récupération des événements en fonction d'une classe
@@ -387,8 +387,6 @@ route: "/sendMail" ou l'on envoi nos données récoltées dans le formulaire de 
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
-
-<strong>Frontend</strong><br><br>
 <strong>.../contacts</strong>
 ```js
 axios.get("http://localhost:3000/contacts")
@@ -490,7 +488,6 @@ cette route recois un objet JSON en paramètres de type : {Nom : "String", Preno
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
-<strong>Frontend</strong><br><br>
 
 Récupération des utilisateurs
 ```js
@@ -723,8 +720,6 @@ cette route recoit en paramètre un objet JSON de type : {Nom: "String", Prenom:
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
-<strong>Frontend</strong><br><br>
-
   
 Récupération des élèves
 ```js
@@ -925,7 +920,7 @@ Le point "classe" ne se trouve dans aucune ressource mais reste essentiel pour l
 ```
 
 <strong>GET</strong><br>
->A. une requête GET "/classes" qui nous permettra de consulter l'ensemble des classe et les informations liées à cette classe.<br>
+>A. une requête GET "/classes" qui nous permettra de consulter l'ensemble des classes.<br>
 route : "/classes" qui nous permet de récupérer les ressources des différentes classe sous format JSON.<br>
 
 <strong>POST</strong>br>
@@ -939,15 +934,17 @@ route: "/classes" qui nous permet d'encoder une nouvelle classe sous format JSON
 
 <strong>.../classes</strong>
 ```js
-axios.get("http://localhost:3000/classes")
+ async getClasses(){
 
-   .then(reponse =>{
-   this.items = reponse.data;
-   })
-
-   .catch(error =>{
-   console.log(error);
-   });
+      let destinationUrl = url.concatUrl("/classes");
+      await axios.get(destinationUrl)
+      .then(response =>{
+          this.items = response.data;
+      })
+      .catch(error =>{
+          console.log(error)
+      })
+  },
 ```
 
 <br>
@@ -966,4 +963,10 @@ Status: 200 OK
     }
 ]
 ```
+
 <br><br>
+  
+  
+Insérer une classe <br>
+  
+EN COURS DE DEVELOPPEMENT...
