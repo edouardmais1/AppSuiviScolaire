@@ -72,6 +72,7 @@ export default{
           //{ title: 'event 1', date: '2022-03-30' },
           //{ title: 'event 2', date: '2022-03-30' }
         ],
+        borderColor: '#FF1493',
 
         eventColor: '#6dabe4',
         eventClick: function(info) {

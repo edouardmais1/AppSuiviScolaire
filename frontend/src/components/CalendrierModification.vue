@@ -22,12 +22,12 @@
             <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
         <div class="row">
             <div class="col-5">
-                <h5>Date:</h5>
-                <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
+                <h5>Heure de départ:</h5>
+                <input type="datetime-local" v-model="start">
             </div>
             <div class="col-5">
-                <h5>Heure:</h5>
-                <input type="time" class="form-control" id="exampleInputPassword1" v-model="time">
+                <h5>Heure de fin:</h5>
+                <input type="datetime-local" v-model="stop">
             </div>
 
         </div>
@@ -95,11 +95,10 @@ export default{
             items : [],
             classeDelete: [],
             contenu: '',
-            date: '',
-            time:'',
+            start:'',
+            stop:'',
             classe:'',
             titre:'',
-            fullDate: "",
             revele: false,
         }
     },
@@ -112,7 +111,7 @@ export default{
 
     computed: {
         validatedFields : function(){
-            if(this.contenu != "" && this.titre!= "" && this.date != "" && this.classe != ""){
+            if(this.contenu != "" && this.titre!= ""  && this.classe != ""){
                 return false;
             }
             else{
@@ -143,9 +142,11 @@ export default{
             let destinationUrl = url.concatUrl('/calendrier');
             await axios.post(destinationUrl,{
                 Classe : this.classe,
-                Date: this.concatDate(this.date, this.time),
+                Date: this.start,
                 Contenu: this.contenu,
                 Titre: this.titre,
+                StartTime: this.start,
+                StopTime: this.stop,
             })
             .then(function(){
                 console.log("request send");
@@ -154,12 +155,6 @@ export default{
                 console.log(error);
             })
         },
-
-        concatDate(DATE, TIME){
-            let fullDate = DATE + ' ' + TIME + ':00';
-            return fullDate;
-        },
-
         
     }
 

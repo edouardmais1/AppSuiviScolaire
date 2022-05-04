@@ -14,11 +14,6 @@ const calendarDataValidationSchema = [
       .withMessage("Contenu should be a string")
       .isLength({min: 15}),
 
-    body("Date")
-      .exists({ checkFalsy: true })
-      .withMessage("Date is required")
-      .isString()
-      .withMessage("input should be String"),
 
     body("Titre")
       .exists({ checkFalsy: true })
