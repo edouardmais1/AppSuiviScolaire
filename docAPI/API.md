@@ -4,21 +4,50 @@
   <ol>
     <li>
       <a href="#actualite">Actualité</a>
+      <ul>
+        <li>"/"</li>
+        <li>"/actualite/:titre"</li>
+        <li>"/actualite"</li>
+      </ul>      
     </li>
     <li>
       <a href="#calendrier">Calendrier</a>
+      <ul>
+        <li>"/calendrier"</li>
+        <li>"/calendrier/:classe"</li>
+      </ul> 
     </li>
     <li>
           <a href="#contacts">Contact</a>
+          <ul>
+            <li>"/contacts"</li>
+      </ul>
     </li>
     <li>
       <a href="#users">Users</a>
+          <ul>
+            <li>"/users"</li>
+            <li>"users/:mail"</li>
+            <li>"inscription"</li>
+            <li>"connexion/userInfos"</li>
+            <li>"password/:mail"</li>
+         </ul>      
     </li>
     <li>
       <a href="#eleves">Eleves</a>
+        <ul>
+            <li>"/eleves"</li>
+            <li>"users/:id"</li>
+         </ul> 
     </li>
     <li>
       <a href="#commentaires">Commentaires </a>
+        <ul>
+            <li>"/comportement"</li>
+            <li>"/comportement/:id"</li>
+          <li>"/bulletins"</li>
+          <li>"/bulletins/:id</li>
+         </ul> 
     </li>
     <li>
       <a href="#classes">Classes</a>
@@ -51,6 +80,7 @@ Une ressource actualité est composée d'un titre, d'une date (afin de connaitre
 <br>
 
 <strong>GET</strong> <br>
+  
 >A. une requête GET accessible via "/" lorsque que n'importe quel utilisateur se rend sur la page principale de notre site.<br>
 route : "/" qui nous fournit les informations décrites ci-dessus, c'est à dire : titre, date et corps de l'article sous format JSON.<br><br>
   
@@ -65,19 +95,28 @@ route : "/actualite/titre: qui nous fournit les information associées à un obj
   
 <strong> Paramètres attendus : </strong><br>
   
-  cette route s'attend à recevoir un paramètre de type "string" afin de permettre d'effectuer une requete sur base d'un critère spécifique
+  cette route s'attend à recevoir un paramètre de type "string" afin de permettre d'effectuer une requete sur base d'un critère spécifique et de récupérer les           actualités sur base de leur titre.
   
   <br><br>
   
 
 
 <strong>POST</strong> <br>
+  
 >A. une requête POST accessible uniquement via le secrétariat afin de rajouter de l'actualité concernant l'école dans la base de données ou les informations seront réinjectées par la suite dans la rubrique actualité du site.<br>
 route : "/actualite" qui nous permettra d'aller insérer du contenu au format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route s'attend à recevoir un object Json comportant : {Date: "Date", Titre: "String", Contenu: "String"} à envoyé en paramètre lors de la requete axios.
+  
+  <br><br>  
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong><br>
 
 <strong>Frontend</strong>
+  
+Recupération des actualités
 ```js
 axios.get("http://localhost:3000/")
 
@@ -93,9 +132,12 @@ axios.get("http://localhost:3000/")
 <br>
 <strong>Réponse</strong>
 
+Status de la requete : 
 ```js
 Status: 200 OK
 ```
+  
+Réponse : 
 ```js
 [
     {
@@ -112,7 +154,71 @@ Status: 200 OK
     }
 ]
 ```
+<br>
+  
+Envoi de données via une méthode POST vers "/actualite"
+ 
+```js
+async insertActu(){
+  const destinationUrl = url.concatUrl("/actualite");
 
+  await axios.post(destinationUrl,{
+    Date: this.date,
+    Titre: this.titre,
+    Contenu: this.contenu
+  })
+  .then(response =>{
+    console.log(response.data);
+  })
+  .catch(error =>{
+    console.log(error);
+  })
+}
+
+```
+  
+Satus de la requete : 
+  
+```js
+Status: 200 OK
+```
+  
+<br>
+  
+  
+Recupération des actualités par Titre
+```js
+axios.get(`http://localhost:3000/${titre}`)
+
+   .then(reponse =>{
+   this.items = reponse.data;
+   })
+
+   .catch(error =>{
+   console.log(error);
+   });
+```
+
+<br>
+<strong>Réponse</strong>
+
+Status de la requete : 
+```js
+Status: 200 OK
+```
+  
+Réponse : 
+```js
+[
+    {
+        "ActualiteId": 1,
+        "Date":"2022-03-23T23:00:00.000Z",
+        "Titre":"Actu 1",
+        "Contenu":"\"Mon nom est Maximus Decimus Meredius, commandant en chef des armées du Nord, général des légions Felix, fidèle serviteur du vrai empereur Marc Aurèle.Père d'un fils assassiné, époux d'une femme assassinée, et j'aurai ma vengeance, dans cette vie ou dans l'autre.\""
+    },
+]
+```
+<br>
 
 
 <br><br>
@@ -137,24 +243,44 @@ une ressource située dans le calendrier est constituée d'un Id d'évènement, 
 
 >A. une requête GET accessible via "/calendrier/:classe" qui permet de récupérer les évènements concernant une classe spécifique et afficher uniquement les ressources nécessaire aux élèves d'une certaine classe et non un simple Amat d'évènements mélangés.<br>
 route : "/calendrier/:classe" ou l'on peut récupérer les évènement concernant une classe donnée sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route s'attend à recevoir un paramètre de type "String" permettant d'effectuer une requete sur base d'un critère spécifique
+  
+  <br><br>  
 
 >B. une requête GET accessible via "/calendrier qui permet de récupérer tous les évènement contenus dans la table "calendrier" afin d'effectuer des test coté backend. cette route, pour le moment est à titre indicatif une façon d'effectuer différents test et consultation de table dans la base de données.<br>
 route : "/calendrier" ou l'on peut récupérer tous les évènements listés dans la base de données sous format JSON.<br>
+  
+
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route ne recois aucun paramètre mais fera appel à une procédure stockée permettant de récupérer l'ensemble des événements sous format Json
+  
+  <br><br>  
 
 
 <strong>POST</strong> <br>
 
 >A. une requête POST accessible uniquement pour les professeurs qui souhaiteront rajoutés des événements à venir concernant certaines de leurs classes dans le calendrier accessible pas les utilisateurs.<br>
 route : "/calendrier" qui nous permettra d'aller insérer du contenu dans notre table "calendrier".<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route s'attend à recevoir un object Json comportant : {Date: "Date", Titre: "String", Classe: "String", StartTime: "Date", StopTime: "Date"} à envoyé en         paramètre lors de la requete axios.
+  
+  <br><br>  
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong><br>
 
 <strong>Frontend</strong><br><br>
 <br>
-<strong>.../calendrier/:classe</strong>
+
+Récupération des événements en fonction d'une classe
 
 ```js
-axios.get("http://localhost:3000/calendrier/1A")
+axios.get(`http://localhost:3000/calendrier/${classe}`)
 
    .then(reponse =>{
    this.items = reponse.data;
@@ -189,7 +315,37 @@ Status: 200 OK
 
 ]
 ```
+<br>
+  
+Envoi de données via une méthode POST vers "/calendrier"
+ 
+```js
+async sendData(){
 
+    let destinationUrl = url.concatUrl('/calendrier');
+    await axios.post(destinationUrl,{
+        Classe : this.classe,
+        Date: this.start,
+        Contenu: this.contenu,
+        Titre: this.titre,
+        StartTime: this.start,
+        StopTime: this.stop,
+    })
+    .then(function(){
+        console.log("request send");
+    })
+    .catch(error =>{
+        console.log(error);
+    })
+},
+
+```
+  
+Satus de la requete : 
+  
+```js
+Status: 200 OK
+```
 
 
 
@@ -212,10 +368,22 @@ Le point "Contact" situé dans la rubrique "Contact" de l'application se présen
 <strong>GET</strong> <br>
 >A. une requête GET accessible via "/contacts" ayant pour but de charger dans un champ de formulaire les mails des membres du personnel de l'établissement et ainsi proposer au parent, une liste des contacts joignables au sein de l'établissement.<br>
 route : "/contacts" ou l'on récupère toute la liste des mails des membres du personnel sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route ne recois aucuns paramètre et fait appel à une procédure stockée en DB.
+  
+  <br><br>   
 
 <strong>POST</strong> <br>
 >A. une requête POST accessible via "/sendMail" ayant pour but d'envoyer une requête contenant nos informations récoltées dans le formulaire de contacts pour ensuite utiliser ces données pour transmettre le mail via un serveur mail.<br>
 route: "/sendMail" ou l'on envoi nos données récoltées dans le formulaire de contact.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route s'attend à recevoir un object Json comportant : {Expediteur: "String", DEstinataire: "String", Phone: "String", Nom: "String", Contenu: "String"} à         envoyé en paramètre lors de la requete axios.
+  
+  <br><br>   
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
@@ -251,7 +419,7 @@ Status: 200 OK
 ]
 ```
 <br><br>
-
+<br>
 <hr>
 
 ## Users
@@ -273,22 +441,58 @@ Le point "Users" ne se trouvent dans aucunes rubriques à proprement parlé mais
 
 >A. une requete GET accessible via "/users" qui nous permet de récuperer la liste complète des utilisateurs enregistrés dans la base de données qui nous permettrons d'effectuer certains tests lors de l'inscription d'un nouvel utilisateur par exemple. <br>
 route : "/users" nous permettant de récupérer l'ensemble des utilisateurs sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route ne recois aucuns paramètre et fait appel à une procédure stockée en DB.
+  
+  <br><br>  
 
 >B. une requete GET accessible via "/users/:mail" qui nous permet de recuperer les informations d'un utilisateur sur base de son mail. c'est à dire, prénom, nom, mail, mot de passe, role et token.<br>
 route : "/users/:mail" nous permettant de recuperer l'ensemble des données d'un utilisateur sur base de son mail sous format JSON.<br>
+  
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>  
+  
+>C. une requete GET accessible via "connexion/:userinfos" qui nous permet de recuperer les informations d'un utilisateur lors de son login. c'est à dire, prénom, nom, mail, mot de passe, role et token apres que toutes les conditions de login ai été validées<br>
+route : "/connexion" nous permettant de recuperer l'ensemble des données d'un utilisateur sur base de son mail sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+  cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>  
+  
+>D. une requete GET accessible via "/password/:mail" qui nous permet de recuperer le mot de passe d'un utilisateur sur base de son mail lors des vérification de login ou encore de création de compte.
+route : "/password/:mail" nous permettant de recuperer l'ensemble des données d'un utilisateur sur base de son mail sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>  
 
 <strong>POST</strong> <br>
 
 >A. une requete POST accessible via "/inscription" qui nous permettra d'aller enregistrer les données d'un nouvel utilisateur dans la base de données.<br><br>
 route : "/inscription" nous permettant d'envoyer nos données sous format JSON.<br><br>
 
->B. les endpoints "/connexion" et "/password/:mail" sont purement de l'ordre de validation et n'ont pas réellement un but direct mais nous permettent d'effectuer nos vérifications de données.
+<strong> Paramètres attendus : </strong><br>
+  
+cette route recois un objet JSON en paramètres de type : {Nom : "String", Prenom : "String", Mail: "String", Password: "String", Role : "INT", Token : "String"}
+  
+  <br><br>
 
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
 <strong>Frontend</strong><br><br>
-<strong>.../users</strong>
+
+Récupération des utilisateurs
 ```js
 axios.get("http://localhost:3000/users")
 
@@ -328,22 +532,31 @@ Status: 200 OK
         
     }
 ]
+  
 ```
 <br>
-<strong>.../inscription</strong>
+
+Envoi de données vers la ../inscription
 
 ```js
-logUser(){
-   const self = this;
+createAccount(){
+    const self = this;
 
-   this.$store.dispatch('login',this.email)
-   .then(function(){
-      self.$router.push('/profile');
+    this.$store.dispatch('createAccount',{
+        Nom: this.nom,
+        Prenom: this.prenom,
+        Mail : this.email,
+        MotDePasse: this.password,
+        Token: this.token()
+    })
+    .then(function(){
+        console.log('ok');
+        self.logUser();
     })
     .catch(error =>{
-      console.log(error);
-   })
-}
+        console.log(error);
+    })
+},
 ```
 
 ```js
@@ -365,6 +578,61 @@ createAccount: ({commit}, userInfos) => {
   });
 },
 ```
+  
+
+
+<br>
+<strong>Réponse</strong>
+
+```js
+Status: 200 OK
+```
+  
+<br>
+Récupération des données utilisateur apres connexion (../connexion/${userInfos}")
+
+```js
+login: ({commit}, userInfos) => {
+
+    let destinationUrl = url.concatUrl(`/connexion/${userInfos}`);
+
+    commit('setStatus', 'loading');
+
+    return new Promise((resolve, reject) =>{
+        instance.get(destinationUrl)
+        .then(response =>{
+            commit('setStatus', 'logged');
+            commit('logUser', response.data);
+            resolve(response);
+        })
+        .catch(error =>{
+            commit('setStatus', 'error_login')
+            reject(error);
+        });
+
+    });
+},
+```
+
+<br>
+<strong>Réponse</strong>
+
+```js
+Status: 200 OK
+```
+  
+Récupération de utilisateurs en fonction de leur mail 
+```js
+axios.get(`http://localhost:3000/users/${mail}`)
+
+   .then(reponse =>{
+   this.items = reponse.data;
+   })
+
+   .catch(error =>{
+   console.log(error);
+   });
+```
 
 <br>
 <strong>Réponse</strong>
@@ -375,17 +643,30 @@ Status: 200 OK
 ```js
 [
     {
-     "Prenom": "xxx",
-     "Nom": "xxx",
-     "MotDePasse": "xxx",
-     "Mail": "xxx",
-     "Roles" : "xxx",
-     "Token": "xxx",
+        "Prenom": "Guillaume",
+        "Nom":"Vasseur",
+        "Mail":"g.vasseur@gmail.com",
+        "MotDePasse":"test",
+        "Roles" : "1",
+        "Token" : "testBonsoir",
+        
+    },
+    {
+        "Prenom": "nathalie",
+        "Nom":"zebi",
+        "Mail":"n.zebi@secretariat.be",
+        "MotDePasse":"test",
+        "Roles" : "2",
+        "Token" : "testBonsoir",
+        
     }
 ]
+  
 ```
+  
 
-
+  
+  
 <br><br>
 
 
@@ -408,20 +689,44 @@ Le point "Eleves" ne se trouvent dans aucune rubrique à proprement parlé mais 
 
 >A. une requête GET accessible via "/eleves" qui nous permet de récupérer la liste complètes des élèves stockés dans la base de données. cet endpoint à pour but de consulter l'ensemble des données des élèves ainsi que pour effectuer des tests sur nos données.<br>
 route : "/eleves" qui nous permet de récupérer l'ensemble des données des élèves sous format JSON.<br>
+  
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route fait appel à une procédure stockée en DB et ne nécéssite aucun paramètre.
+  
+  <br><br>  
 
 >B. une requete GET accessible via "/eleves/:id" qui nous permet de récupérer les données d'un élève sur base de son id. cette ressource est fondamental dans la réalisation des rubriques "comportement" et "remarque" qui se feront sur un élèves spécifique. ces données nous serons aussi nécessaire pour les parents situés dans la gestion de leurs compte contenant les informations de leur(s) enfant(s). Ce endpoint à été crée afin d'éviter un tas de calcul au sein de la base de données et de permettre de récupérer instantanément les données voulues sur base d'un id.<br>
 route : "/eleves/:id" qui nous permet de récupérer les données d'un enfant sur base de son Id sous format JSON.<br>
+  
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>  
+  
 
 <strong>POST</strong> <br>
 
 >A. une requete POST accessible via "/eleves" qui permettra au secrétariat d'encoder un nouvel élève et ses données associées dans la base de données.<br>
 route : "/eleves" qui nous permettra d'envoyer les données d'un nouvel élève sous format JSON.<br>
+  
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route recoit en paramètre un objet JSON de type : {Nom: "String", Prenom: "String", DateDeNaissance: "Date", Mail :"String", Classe : "String"}
+  
+  <br><br>  
 
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
 <strong>Frontend</strong><br><br>
-<strong>.../eleves</strong>
+
+  
+Récupération des élèves
 ```js
 axios.get("http://localhost:3000/eleves")
 
@@ -454,6 +759,37 @@ Status: 200 OK
 ]
 ```
 <br><br>
+  
+  
+Ajout d'un élève 
+```js
+async insertStudent(){
+
+    let destinationUrl = url.concatUrl("/eleves")
+    await axios.post(destinationUrl,
+    {
+        Nom:this.nom,
+        Prenom:this.prenom,
+        Mail:this.email,
+        Classe:this.classe,
+        DateDeNaissance:this.date,
+    })
+    .then(response =>{
+        console.log(response.data);
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+}
+```
+
+<br>
+<strong>Réponse</strong>
+
+```js
+Status: 200 OK
+```
+<br><br>
 
 
 <hr>
@@ -468,32 +804,110 @@ Les points "comportement" et "Bulletin" situés les rubriques "comportement" et 
 
 ```
 .../bulletins/:id
-.../remarques/:id
+.../comportement/:id
 .../bulletins
-.../remarques
+.../comportement
 ```
 
 <strong>GET</strong> <br>
 
 >A. une requete GET "/bulletins/:id" qui nous permettra d'aller récupérer dans la base de données, le bulletin de l'élève correspondant.<br>
 route : "/bulletins/:id" pour récupérer le bulletin dans un format encore indéterminé.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>
 
->B. une requete GET "/remarques/:id" qui nous permettra d'aller récupérer les remarques effectuées par un professeur sur base de l'id d'un eleve dans la base de données.<br>
-route : "/remarques/:id" pour récupérer les remarques sous format JSON.<br>
+>B. une requete GET "/comportement/:id" qui nous permettra d'aller récupérer les remarques effectuées par un professeur sur base de l'id d'un eleve dans la base de données.<br>
+route : "/comportement/:id" pour récupérer les remarques sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+cette route fait appel à un paramètre de type "String" permettant d'effecteur une requete sur base d'un critère précis.
+  
+  <br><br>
 
 <strong>POST</strong> <br>
 
 >A. une requete POST "/bulletins" afin de permettre au professeur de pouvoir enregistré une nouvelle ressource "bulletin" dans la base de donnée à partir d'un formulaire.<br>
 route : "/bulletins" nous permettra d'envoyer les données dans un format encore indéterminé pour le moment.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+EN COURS DE DEVELOPPEMENT...
+  
+  <br><br>
 
->B. une requete POST "/remarques" afin de permettre au professeur de pouvoir enregistré une nouvelle ressource "remarque" dans la base de donnée à partir d'un formulaire.<br>
+>B. une requete POST "/comportement" afin de permettre au professeur de pouvoir enregistré une nouvelle ressource "remarque" dans la base de donnée à partir d'un formulaire.<br>
 route : "/remarques" nous permettra d'envoyer les données d'une nouvelle remarque sous format JSON.<br>
+  
+<strong> Paramètres attendus : </strong><br>
+  
+EN COURS DE DEVELOPPEMENT...
+  
+  <br><br>
 
 <strong><h3>Exemples liés à cette ressource : </h3><strong>
 
+  
+Récupération des remarques en fonction d'un élève
+```js
+  async getAllComportement(){
+      try{
+          await instance.get(eleve_id)
+          .then(response =>{
+              this.items = response.data;
+              console.log(response.data);
+          })
+          .catch(error =>{
+              console.log(error)
+          })
+      }
+      catch(error){
+          console.log(error);
+      }
+
+  },
 ```
----> EN COURS DE CONSTRUCTION
+
+<br>
+<strong>Réponse</strong>
+
+```js
+Status: 200 OK
 ```
+```js
+[
+  {
+    "ComportementID": 1,
+    "Mail": "Simon.test@gmail.com",
+    "Contenu": "C'est un test pour le backend vers le frontend.",
+    "EleveID": 5,
+    "Date": "2022-04-21T22:00:00.000Z",
+    "Signature": 1
+  },
+  {
+    "ComportementID": 2,
+    "Mail": "Simon.test@gmail.com",
+    "Contenu": "TEST 2",
+    "EleveID": 5,
+    "Date": "2022-04-21T22:00:00.000Z",
+    "Signature": 1
+  },
+  {
+    "ComportementID": 4,
+    "Mail": "Simon.test@gmail.com",
+    "Contenu": "test3",
+    "EleveID": 5,
+    "Date": "2022-04-24T22:00:00.000Z",
+    "Signature": 1
+  },
+  
+]
+```
+
 
 <br><br>
 
