@@ -6,48 +6,44 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 //importer le module cookie-parser
 const cookieParser = require('cookie-parser');
-
 //importe le module express
 const express = require("express");
-
 //import le module cors
 const cors = require("cors");
-
 //importe le fichier main.js
 const Route = require("./routes/main");
-
 //initisaliser express
 const app = express();
 
 
-
-
 //utiliser json
 app.use(express.json());
+
+
 //utiliser cors
 app.use(cors({
-    //origin: ["http://localhost:8080"],
+    origin: ["http://localhost:8080"], //location of the VueJS app
     methods: ["GET", "POST", "PUT", "DELETE", "UPDATE"],
     credentials: true,
+    exposedHeaders: ['set-cookie']
 }));
 
-app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //utiliser les sessions
 app.use(session({
-    key : "userId",
     secret : "secret-key",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-        expires: 60 * 60 * 24,
+        maxAge: 60000,
+        secure: true,
+        httpOnly: true,
     },
 }))
 
-
-
+app.use(cookieParser());
 
 //middleware intéraction serveur frontend && backend
 app.use((req,res,next)=>{
@@ -59,6 +55,26 @@ app.use(express.urlencoded({extended: true}));
 
 //utiliser le router NodeJS
 app.use('/',Route);
+
+
+const user = {
+    edouard : "zebu",
+    maisin: "juif",
+
+}
+
+var test_session;
+
+app.get('/test', (request,response)=>{
+    request.session.user = user;
+    response.send("ok")
+
+})
+
+app.get('/user', (request,response)=>{
+    response.send(request.session.user);
+
+})
 
 
 app.listen(3000, () => console.log('Server running at http://localhost:3000'));

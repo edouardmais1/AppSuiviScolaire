@@ -154,7 +154,6 @@ export default{
                 Token: this.token()
             })
             .then(function(){
-                console.log('ok');
                 self.logUser();
             })
             .catch(error =>{

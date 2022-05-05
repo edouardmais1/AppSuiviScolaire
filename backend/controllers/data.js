@@ -4,13 +4,6 @@ const { json } = require("express");
 const { response } = require("../app");
 const {validationResult} = require("express-validator");
 
-//importer le module express-session
-const session = require('express-session');
-//importer le module body-parser
-const BodyParser = require('body-parser');
-//importer le module cookie-parser
-const cookieParser = require('cookie-parser');
-
 
 
 //IMPORTE LE FICHIER DATABASE.JS
@@ -569,6 +562,7 @@ const insertUser = (request,response,next)=>{
                 response.send(err);
             }
             else{
+                initializeSession
                 response.status(200).json(results);
             }
         });
@@ -579,6 +573,11 @@ const insertUser = (request,response,next)=>{
         console.log(error);
         next(error);
     }
+
+}
+
+const initializeSession = (request, response) =>{
+    let sess = request.session;
 
 }
 
