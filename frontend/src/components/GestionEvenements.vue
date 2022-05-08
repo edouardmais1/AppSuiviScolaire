@@ -1,5 +1,4 @@
 <template>
-<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
     <div class="listeEvenements">
     <div class="row">
         <div class="col-sm">
@@ -15,12 +14,12 @@
 </template>
 
 <script>
-    import ModaleComponent from "./ModalComponent.vue"
+
     export default{
         name: "GestionEvenements",
         
         components: {
-            ModaleComponent
+            
         },
 
         data(){

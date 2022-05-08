@@ -1,5 +1,4 @@
 <template>
-<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
             <div class="listeActualites">
         <div class="row">
             <div class="col-sm">
@@ -27,14 +26,12 @@
 
 <script>
     import axios from 'axios';
-    import ModaleComponent from "./ModalComponent.vue"
 
     const url = require('../../url/url.js');
     export default{
         name: "GestionEleves",
         
         components: {
-            ModaleComponent
         },
 
         data(){

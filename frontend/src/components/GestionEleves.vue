@@ -1,28 +1,30 @@
 <template>
-<ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
+<ModaleDeleteEleve v-bind:id="id" v-bind:nom="nom" v-bind:prenom="prenom" v-bind:reveleDelete="reveleDelete" v-bind:toggleModaleDelete="toggleModaleDelete"></ModaleDeleteEleve>
+<ModaleUpdateEleve v-bind:id="id" v-bind:nom="linkNom" v-bind:prenom="linkPrenom" v-bind:email="linkEmail" v-bind:classe="linkClasse" v-bind:dateNaissance="linkDateNaissance" v-bind:reveleUpdate="reveleUpdate" v-bind:toggleModaleUpdate="toggleModaleUpdate"></ModaleUpdateEleve>
     <div class="listeEleves">
     <div class="row">
         <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-bind:value="nom">
+            <input type="text" id="inputNomData" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-model="linkNom">
         </div>
         <div class="col-sm">
-            <input type="text" class="form-control" placeholder="Prénom" aria-label="Prénom" aria-describedby="basic-addon1" v-bind:value="prenom">
+            <input type="text" id="inputPrenomData" class="form-control" placeholder="Prénom" aria-label="Prénom" aria-describedby="basic-addon1" v-model="linkPrenom">
         </div>
         <div class="col-sm">
-            <input type="email" class="form-control" placeholder="Email " aria-label="Email" aria-describedby="basic-addon1" v-bind:value="email">
+            <input type="email" id="inputMailData" class="form-control" placeholder="Email " aria-label="Email" aria-describedby="basic-addon1" v-model="linkEmail">
         </div>
         <div class="col-sm">
-            <select class="custom-select" id="inputGroupSelect01">
-                <option v-bind:value="classe" selected>{{classe}}</option>
+            <select v-model="linkClasse" class="custom-select" id="inputClasseData">
+                <option selected>{{classe}}</option>
                 <option v-for="item in items[0]" :key="item.Classe">{{item.Classe}}</option>
             </select>
         </div>
         <div class="col-sm">
-            <input type="text" class="form-control"  aria-label="Date" aria-describedby="basic-addon1" v-bind:value="dateNaissance">
+            <input type="text" class="form-control"  id="inputDateData" aria-label="Date" aria-describedby="basic-addon1" v-model="linkDateNaissance">
         </div>
         <div class="col-sm">
-            <button v-on:click="toggleModale" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-            <button v-on:click="toggleModale" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button v-on:click="toggleModaleUpdate" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+            <!-- <button v-on:click="updateEleve()" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button> --> 
+            <button v-on:click="toggleModaleDelete" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     
@@ -31,20 +33,28 @@
 
 <script>
     import axios from 'axios';
-    import ModaleComponent from "./ModalComponent.vue"
+    import ModaleDeleteEleve from "./ModalDeleteEleve.vue"
+    import ModaleUpdateEleve from "./ModalUpdateEleve.vue"
 
     const url = require("../../url/url.js");
     export default{
         name: "GestionEleves",
         
         components: {
-            ModaleComponent
+            ModaleDeleteEleve,
+            ModaleUpdateEleve,
         },
 
         data(){
             return{
                 items : [],
-                revele: false,
+                reveleDelete: false,
+                reveleUpdate: false,
+                linkNom: this.nom,
+                linkPrenom: this.prenom,
+                linkEmail: this.email,
+                linkClasse: this.classe,
+                linkDateNaissance: this.dateNaissance,
             }
         },
 
@@ -54,6 +64,7 @@
             email: String,
             dateNaissance: Date,
             classe: String,
+            id: Number,
         },
 
         created(){
@@ -72,10 +83,12 @@
                     console.log(error)
                 })
             },
-            toggleModale: function(){
-                this.revele=!this.revele;
+            toggleModaleDelete: function(){
+                this.reveleDelete=!this.reveleDelete;
             },
-
+            toggleModaleUpdate: function(){
+                this.reveleUpdate=!this.reveleUpdate;
+            },
         }
     }
 

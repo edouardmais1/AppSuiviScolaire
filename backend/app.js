@@ -22,7 +22,7 @@ app.use(express.json());
 
 //utiliser cors
 app.use(cors({
-    origin: ["http://localhost:8080"], //location of the VueJS app
+    //origin: ["http://localhost:8080"], //location of the VueJS app
     methods: ["GET", "POST", "PUT", "DELETE", "UPDATE"],
     credentials: true,
     exposedHeaders: ['set-cookie']

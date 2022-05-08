@@ -16,6 +16,7 @@ const mail = require('../controllers/mail');
 
 //fichier pour de la modification de données
 const dataUpdate = require('../controllers/dataUpdate');
+const dataDelete = require('../controllers/dataDelete');
 
 
 //Middleware de validation de données
@@ -84,9 +85,9 @@ router.post('/sendMail',mail.sendMail);
 
 
 //DELETE METHODS
-
+router.delete('/deleteEleve/:id', dataDelete.deleteEleveById);
 
 //UPDATE METHODS
-
+router.post('/updateEleve/:id', dataUpdate.updateEleveById);
 
 module.exports = router;

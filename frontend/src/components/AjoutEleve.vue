@@ -32,7 +32,7 @@
   <div class="mb-3">
   <h6>Classe de l'élève:</h6>
     <select  v-model="classe" class="custom-select" id="inputGroupSelect01">
-        <option v-bind:value="classe" selected>Choisissez la classe ...</option>
+        <option  selected>Choisissez la classe ...</option>
         <option  v-for="item in items[0]" :key="item.Classe">{{item.Classe}}</option>
     </select>
   </div>

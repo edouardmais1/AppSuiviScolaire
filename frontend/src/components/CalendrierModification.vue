@@ -19,7 +19,6 @@
             
             </div>
             </div>
-            <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
         <div class="row">
             <div class="col-5">
                 <h5>Heure de départ:</h5>
@@ -86,7 +85,6 @@
 const url = require("../../url/url.js");
 
 import axios from 'axios';
-import ModaleComponent from "./ModalComponent.vue"
 export default{
     name: 'CalendrierModification',
     classe: String,
@@ -103,7 +101,7 @@ export default{
         }
     },
     components: {
-            ModaleComponent,
+            
     },
     created(){
         this.getClasses()

@@ -45,7 +45,7 @@
             <div class="col-sm">
             </div>
         </div>
-        <GestionEleves v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:email="item.Mail" v-bind:dateNaissance="this.conversionDate(item.DateDeNaissance)" v-bind:classe="item.Classe" v-for="item in items[0]" :key="item" />
+        <GestionEleves v-bind:id="item.EleveID" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:email="item.Mail" v-bind:dateNaissance="this.conversionDate(item.DateDeNaissance)" v-bind:classe="item.Classe" v-for="item in items[0]" :key="item" />
     </div>
 
   
