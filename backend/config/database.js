@@ -12,6 +12,7 @@ let db = mysql.createConnection({
     database : 'appscolaire'
 });
 
+//connection à la DB
 db.connect(function(err) {
     if (err) {
       return console.error('error: ' + err.message);

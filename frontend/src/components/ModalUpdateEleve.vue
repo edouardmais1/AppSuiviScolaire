@@ -18,29 +18,30 @@ export default{
     props: ['reveleUpdate', 'toggleModaleUpdate', 'id', 'nom', 'prenom', 'classe', 'email', 'dateNaissance'],
 
     methods:{
-            conversionDate(date){
-                let splitedDate = date.split('/');
-                return(splitedDate[2] + '-' + splitedDate[1] + '-' + splitedDate[0]);
-            },
-            async updateEleve(){
-                let destinationUrl = url.concatUrl('/updateEleve/' + this.id);
-                await axios.post(destinationUrl,
-                {
-                    id:this.id,
-                    Nom:this.nom,
-                    Prenom:this.prenom,
-                    Mail:this.email,
-                    Classe:this.classe,
-                    DateDeNaissance:this.conversionDate(this.dateNaissance),
-                })
-                .then(response =>{
-                    console.log(response.data);
-                    location.reload();
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            },
+        conversionDate(date){
+            let splitedDate = date.split('/');
+            return(splitedDate[2] + '-' + splitedDate[1] + '-' + splitedDate[0]);
+        },
+        
+        async updateEleve(){
+            let destinationUrl = url.concatUrl('/updateEleve/' + this.id);
+            await axios.post(destinationUrl,
+            {
+                id:this.id,
+                Nom:this.nom,
+                Prenom:this.prenom,
+                Mail:this.email,
+                Classe:this.classe,
+                DateDeNaissance:this.conversionDate(this.dateNaissance),
+            })
+            .then(response =>{
+                console.log(response.data);
+                location.reload();
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
     }
 }
 </script>

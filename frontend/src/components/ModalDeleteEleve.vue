@@ -20,16 +20,16 @@ export default{
     methods:{
         async deleteEleve(){
 
-                let destinationUrl = url.concatUrl("/deleteEleve/" + this.id);
-                await axios.delete(destinationUrl)
-                .then(response =>{
-                    console.log(response.data);
-                    location.reload();
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            },
+            let destinationUrl = url.concatUrl("/deleteEleve/" + this.id);
+            await axios.delete(destinationUrl)
+            .then(response =>{
+                console.log(response.data);
+                location.reload();
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
     }
 }
 </script>

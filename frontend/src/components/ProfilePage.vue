@@ -81,7 +81,7 @@ import ProfilEnfant from './ProfilEnfant.vue'
         components: {
             ProfilEnfant
         },
-        //trouver un moyen d'éviter les erreurs de chargement.
+        
         created(){
             if(this.$store.state.status == ""){
                 this.$router.push('/');
@@ -98,11 +98,13 @@ import ProfilEnfant from './ProfilEnfant.vue'
         },
 
         methods: {
+            //appel de l'action 'logout' dans le Store 
             logout: function(){
                 this.$store.commit('logout');
                 this.$router.push('/');
             },
 
+            //appel de l'action 'getUserinformations' dans le store
             async getUserinformations(){
                 await this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
                 this.active = true;
