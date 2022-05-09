@@ -91,5 +91,6 @@ router.delete('/deleteActualite/:id', dataDelete.deleteActualiteById)
 
 //UPDATE METHODS
 router.post('/updateEleve/:id', dataUpdate.updateEleveById);
+router.post('/updateSignature/:id', dataUpdate.updateComportementById);
 
 module.exports = router;

@@ -21,7 +21,7 @@
                             </div>
                     </div>
                     <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse()" :key="item"/>
-                    <button class="button-send" type="submit" name="button">Signer tout</button>
+                    <button class="button-send" v-on:click="updateSignature()"  name="button">Signer tout</button>
                 </div>
             </div>
         </div>
@@ -31,12 +31,12 @@
 <script>
 import CompComponent from "./CompComponent.vue";
 import axios from 'axios';
-
+const url = require("../../url/url.js");
 const instance = axios.create({
 baseURL: 'http://localhost:3000/comportement'
 });
 
-const eleve_id ='/'+'5';
+const eleve_id ='/'+'23';
 
 export default{
     name : "ComportementPage",
@@ -71,6 +71,17 @@ export default{
                 console.log(error);
             }
 
+        },
+         async updateSignature(){
+            let destinationUrl = url.concatUrl('/updateSignature' + eleve_id);
+            await axios.post(destinationUrl)
+            .then(response =>{
+                console.log(response.data);
+                location.reload();
+            })
+            .catch(error =>{
+                console.log(error)
+            })
         },
 
         conversionDate(date){

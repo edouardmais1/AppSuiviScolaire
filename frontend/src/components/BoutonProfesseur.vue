@@ -20,7 +20,9 @@ float:right;
 <script>
 
 export default{
-        name: 'BoutonProfesseur',
-        props: ['revele'],
+    //Nom de composant actuel
+    name: 'BoutonProfesseur',
+    //Props contenant des variables utilisées pour la gestion de données dans le html
+    props: ['revele'],
     }
 </script>

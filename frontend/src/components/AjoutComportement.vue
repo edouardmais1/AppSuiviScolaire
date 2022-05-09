@@ -29,7 +29,9 @@
 <script>
 
 export default{
+    //Nom de composant actuel
     name: 'AjoutComportement',
+    //Props contenant des variables utilisées pour la gestion de données dans le html
     props: ['revele', 'toggleModale'],
 }
 
