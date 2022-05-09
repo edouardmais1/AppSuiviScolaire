@@ -37,7 +37,7 @@
       <a href="#eleves">Eleves</a>
         <ul>
             <li>"/eleves"</li>
-            <li>"users/:id"</li>
+            <li>"eleves/:id"</li>
          </ul> 
     </li>
     <li>

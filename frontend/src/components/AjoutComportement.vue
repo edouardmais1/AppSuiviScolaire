@@ -1,5 +1,5 @@
 <template>
-<form class='add-student center' v-if="revele" >
+<form class='add-comportement center' v-if="revele" >
 <h1> Ajout d'une note <i class="fas fa-solid fa-comment"></i></h1>
 <div class="row">
     <div class="col">
@@ -38,10 +38,10 @@ export default{
 </script>
 
 <style scoped>
-.add-student{
+.add-comportement{
     max-width: 750px;
     height: 250px;
-    margin-bottom: 150px;
+    margin-bottom: 300px;
     margin-top: 50px;
 }
 </style>

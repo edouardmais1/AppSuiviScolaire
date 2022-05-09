@@ -1,5 +1,5 @@
 <template>
-    <div class="container-bulletin">
+    <!-- <div class="container-bulletin">
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="wrapper">
                 <header>Bulletin</header>
@@ -10,10 +10,12 @@
                 <BullComponent v-bind:contenu="this.messageMaj" v-bind:date="this.conversionDate(item.Date)" v-for="item in items" :key="item"/>
             </div>
         </div>
-    </div>
+    </div> -->
+    <div class="enCoursDeCreation"> <h3><i class="fas fa-solid fa-wrench"></i> Désolé, cette fonctionnalité est en cours d'implémentation ... </h3></div>
+
 </template>
 <script>
-import BullComponent from "./BullComponent.vue";
+//import BullComponent from "./BullComponent.vue";
 import axios from 'axios';
 
 //Lien avec axios et la base URL
@@ -26,7 +28,7 @@ baseURL: 'http://localhost:3000/bulletin'
         name : "BulletinPage",
         //Components exteernes importés et utilisé sur la page
         components: {
-            BullComponent
+            //BullComponent
         },
 
         data(){
@@ -71,7 +73,7 @@ baseURL: 'http://localhost:3000/bulletin'
     }
 
 </script>
-<style scoped>
+<style>
 
 *{
     margin: 0;
@@ -79,6 +81,12 @@ baseURL: 'http://localhost:3000/bulletin'
     box-sizing: border-box;
     font-family: 'Poppins'
 }
+.enCoursDeCreation{
+        margin-top: 150px;
+        margin-left: 150px;
+
+}
+/*
 .container-bulletin {
     margin-top: 150px;
     padding-bottom: 10%;
@@ -121,6 +129,6 @@ baseURL: 'http://localhost:3000/bulletin'
     .wrapper {
         width: 90%;
     }
-}
+}*/
 
 </style>

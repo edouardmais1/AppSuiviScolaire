@@ -36,7 +36,7 @@ const instance = axios.create({
 baseURL: 'http://localhost:3000/comportement'
 });
 
-const eleve_id ='/'+'23';
+const eleve_id ='/'+'23=5';
 
 export default{
     name : "ComportementPage",

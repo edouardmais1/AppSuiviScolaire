@@ -1,5 +1,5 @@
 <template>
-<div class="container-contact">
+<!-- <div class="container-contact">
 <div data-aos="zoom-in-left" data-aos-duration="1250">
     <div class="wrapper">
         <header>Contact</header>
@@ -43,8 +43,8 @@
         </form>
     </div>
 </div>
-</div>
-
+</div> -->
+ <div class="enCoursDeCreation"> <h3><i class="fas fa-solid fa-wrench"></i> Désolé, cette fonctionnalité est en cours d'implémentation ... </h3></div>
 </template>
 
 <script>

@@ -1,25 +1,25 @@
 <template>
 <!-- <ModaleDeleteActualite v-if="this.items_available == true" v-bind:id="this.itemsByTitle[0].ActualiteID" v-bind:reveleDelete="reveleDelete" v-bind:toggleModaleDelete="toggleModaleDelete"></ModaleDeleteActualite> -->
 
-            <div class="listeActualites">
+    <div class="listeActualites center">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-3">
                 <select class="form-control" placeholder="Titre" aria-label="Titre" aria-describedby="basic-addon1" @change="getActuByTitle($event)">
                     <option value="NOPE" selected>Choisissez une actualité ...</option>
                     <option v-bind:value="item.Titre" v-for="item in items" :key="item.Titre">{{item.Titre}}</option>
                 </select>
             </div>
-            <div class="col-sm">
+            <div class="col-3">
                 <input type="text" v-if="this.items_available == false" class="form-control" aria-label="Date" aria-describedby="basic-addon1" placeholder="Date de l'événement">
                 <input type="text" class="form-control" v-else aria-label="Date" aria-describedby="basic-addon1" placeholder="Date de l'événement" v-bind:value="conversionDate(this.itemsByTitle[0].Date)"> 
             </div>
-            <div class="col-sm">
+            <div class="col-4">
                 <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" v-if="this.items_available == false"></textarea>
-                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" v-else v-bind:value="this.itemsByTitle[0].Contenu"></textarea>
+                <textarea class="form-control" placeholder="Contenu de l'actualité..." aria-label="With textarea" col="45" rows="7" v-else v-bind:value="this.itemsByTitle[0].Contenu"></textarea>
             </div>
-            <div class="col-sm">
+            <div class="col-2">
                 <!-- <button v-on:click="toggleModale" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button> --> 
-                <button v-on:click="deleteActualite(this.itemsByTitle[0].ActualiteID)" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+                <button v-if="this.items_available == true" v-on:click="deleteActualite(this.itemsByTitle[0].ActualiteID)" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
             </div>
         </div>
         </div>
@@ -52,7 +52,6 @@
             this.getActualite();
         },
 
-        
         methods:{
             toggleModale: function(){
                 this.revele=!this.revele;
@@ -102,6 +101,7 @@
                 }
 
             },
+
 
             conversionDate(date){
                 let result = new Date(date);
