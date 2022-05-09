@@ -5,8 +5,7 @@
                 <div class="wrapper">
                     <header>Comportement 
                     </header>
-                    
-                    
+
                     <div class="row titles">
                             <div class="col-xl-3 title">
                                 Mail du professeur

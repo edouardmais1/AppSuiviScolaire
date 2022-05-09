@@ -21,8 +21,10 @@
 <script>
 
     export default{
+        //Nom de composant actuel
         name : "ActuComponent",
 
+        //Props contenant des variables utilisées pour la gestion de données dans le html
         props: {
             titre : String,
             date: Date,

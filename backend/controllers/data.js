@@ -188,7 +188,7 @@ const getActualite = (request,response)=>{
 const getDataActuByTitle = (titre, result)=>{
 
     //recuperer les actualités sur base de leurs titres
-    db.query("SELECT Contenu, Date from tb_Actualites where Titre = ?", [titre], (err, results) =>{
+    db.query("SELECT Contenu, Date, ActualiteID from tb_Actualites where Titre = ?", [titre], (err, results) =>{
         if(err){
             result(err,null)
         }
@@ -347,6 +347,7 @@ const getBulletinById = (request, response,next) =>{
         }
     })
 }
+
 
 
 

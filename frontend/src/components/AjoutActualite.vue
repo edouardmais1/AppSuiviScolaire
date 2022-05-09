@@ -33,9 +33,13 @@
     import axios from 'axios';
 
     export default{
+        //Nom de composant actuel
         name: 'AjoutActualite',
+
+         //Props contenant des variables utilisées pour la gestion de données dans le html
         props: ['revele', 'toggleModale'],
 
+        //Retourne les variables au chargement de la page.
         data(){
           return{
             titre: "",
@@ -43,9 +47,9 @@
             contenu:""
           }
         },
-
-
+        //Check constant durant la durée de vie de la page
         computed: {
+          //Fonction permettant de vérifier si les champs 'titre', 'date' et 'contenu' sont remplis ou non
           checkValidatedFields: function(){
             if(this.titre != "" && this.date != "" && this.contenu != ""){
               return false;
@@ -57,6 +61,7 @@
         },
 
         methods: {
+          //Fonction asynchone permettant l'insertion d'une actualité dans 
           async insertActu(){
             const destinationUrl = url.concatUrl("/actualite");
 

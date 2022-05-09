@@ -63,6 +63,7 @@ router.get('/comportement/:id',data.getComportementById);
 router.get('/bulletin',data.getAllBulletin);
 router.get('/bulletin/:id',data.getBulletinById);
 
+//routes vers classe
 
 
 //POST METHODS
@@ -86,6 +87,7 @@ router.post('/sendMail',mail.sendMail);
 
 //DELETE METHODS
 router.delete('/deleteEleve/:id', dataDelete.deleteEleveById);
+router.delete('/deleteActualite/:id', dataDelete.deleteActualiteById)
 
 //UPDATE METHODS
 router.post('/updateEleve/:id', dataUpdate.updateEleveById);
