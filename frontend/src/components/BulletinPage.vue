@@ -13,16 +13,18 @@
     </div>
 </template>
 <script>
- import BullComponent from "./BullComponent.vue";
-    import axios from 'axios';
+import BullComponent from "./BullComponent.vue";
+import axios from 'axios';
 
-    const instance = axios.create({
-    baseURL: 'http://localhost:3000/bulletin'
-  });
+//Lien avec axios et la base URL
+const instance = axios.create({
+baseURL: 'http://localhost:3000/bulletin'
+});
 
     export default{
+        //Nom de composant actuel
         name : "BulletinPage",
-
+        //Components exteernes importés et utilisé sur la page
         components: {
             BullComponent
         },
@@ -33,13 +35,13 @@
                 messageMaj : "à implémenter et pas mettre du bullshit inutile",
             }
         },
-
+        //Appel de fonctions au chargement de la page
         created(){
             this.getBulletinById();
         },
-
+        //Méthode utilisées sur la pag
         methods : {
-
+            //Fonction asynchrone récupérant le contenu d'un bulletin par rapport à un id
             async getBulletinById(){
                 try{
                     await instance.get("/1")

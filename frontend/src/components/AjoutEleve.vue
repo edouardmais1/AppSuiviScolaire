@@ -47,7 +47,9 @@ import axios from 'axios';
 const url = require("../../url/url.js");
 
 export default{
+    //Nom de composant actuel
     name: 'AjoutEleve',
+    //Props contenant des variables utilisées pour la gestion de données dans le html
     props: ['revele', 'toggleModale'],
             classe: String,
     data(){
@@ -60,9 +62,11 @@ export default{
             classe:'',
             }
     },
+    //Appel de fonctions au chargement de la page
     created(){
         this.getClasses()
     },
+    //Check constant durant la durée de vie de la page
     computed: {
         validatedFields : function(){
             if(this.prenom != "" && this.nom != "" && this.email != "" && this.date != "" && this.classe != ""){
@@ -73,7 +77,9 @@ export default{
             }
         },
     },
+    //Méthode utilisées sur la page 
     methods:{
+        //Récupère toutes les classes présentes dans la base de données
         async getClasses(){
 
             let destinationUrl = url.concatUrl("/classes");
@@ -85,6 +91,7 @@ export default{
                 console.log(error)
             })
         },
+        //Insert un nouvel étudiant dans la base de données
         async insertStudent(){
 
             let destinationUrl = url.concatUrl("/eleves")

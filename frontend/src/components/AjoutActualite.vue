@@ -39,7 +39,7 @@
          //Props contenant des variables utilisées pour la gestion de données dans le html
         props: ['revele', 'toggleModale'],
 
-        //Retourne les variables au chargement de la page.
+
         data(){
           return{
             titre: "",
