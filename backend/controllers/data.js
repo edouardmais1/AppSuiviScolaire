@@ -11,6 +11,9 @@ const db = require('../config/database');
 db.connect();
 
 
+const token = require('./token');
+
+
 //GET
 
 //GET ALL CLASSES 
@@ -211,10 +214,10 @@ const getActuByTitle = (request, response) => {
 
 
 //recuper le token d'un utilisateur et son mail
-const getTokenMail = (mail,result) =>{
+const getDataByMail = (mail,result) =>{
 
     //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("SELECT Token, Mail from tb_Utilisateurs where Mail = ?", [mail], (err,results)=>{
+    db.query("SELECT Mail, Roles, Nom, Prenom from tb_Utilisateurs where Mail = ?", [mail], (err,results)=>{
         if(err){
             console.log(err);
             result(err,null);
@@ -227,11 +230,13 @@ const getTokenMail = (mail,result) =>{
 }
 
 const connexionUser = (request, response,next) =>{
-    getTokenMail(request.params.mail, (error,results)=>{
+    getDataByMail(request.params.mail, (error,results)=>{
         if(error){
             response.send(error);
         }
         else{
+            const access_token = token.generateAccessToken(request.body);
+            console.log(access_token);
             response.status(200).json(results);
         }
     })
@@ -574,11 +579,6 @@ const insertUser = (request,response,next)=>{
         console.log(error);
         next(error);
     }
-
-}
-
-const initializeSession = (request, response) =>{
-    let sess = request.session;
 
 }
 
