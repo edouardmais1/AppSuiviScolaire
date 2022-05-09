@@ -120,13 +120,8 @@ export default{
     width: 750px;
     height: 250px;
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 300px;
 }
-.center{
-      margin: auto;
-      margin-bottom: 200px;
-    }
-.row{
-    margin-top: 15px;
-}
+
+
 </style>
