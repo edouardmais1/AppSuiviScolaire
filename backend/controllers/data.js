@@ -229,14 +229,14 @@ const getDataByMail = (mail,result) =>{
     });
 }
 
-const connexionUser = (request, response,next) =>{
+const connexionUser = (request, response) =>{
     getDataByMail(request.params.mail, (error,results)=>{
         if(error){
             response.send(error);
         }
         else{
-            const access_token = token.generateAccessToken(request.body);
-            console.log(access_token);
+            const access_token = token.generateAccessToken(results[0]);
+            results[0].token = access_token;
             response.status(200).json(results);
         }
     })

@@ -14,6 +14,9 @@ const data = require('../controllers/data');
 //fichier pour l'envoi de mails
 const mail = require('../controllers/mail');
 
+//middleware de vérification de requete
+const checkToken = require("../controllers/token")
+
 //fichier pour de la modification de données
 const dataUpdate = require('../controllers/dataUpdate');
 const dataDelete = require('../controllers/dataDelete');
@@ -24,6 +27,7 @@ const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');
 const calendarDataValidationSchema = require('../validations/sendDataCalendar');
+const { response } = require('../app');
 
 //API REST
 //GET METHODS
@@ -66,6 +70,13 @@ router.get('/bulletin/:id',data.getBulletinById);
 //routes vers classe
 
 
+//route test
+//implémenter cette logique pour savoir qui fait quoi et s'il à le droit de le faire...
+router.get('/test',checkToken.authenticateToken, (request, response)=>{
+    response.send(request.user);
+})
+
+
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware
@@ -79,6 +90,9 @@ router.post('/eleves',elevesDataValidationSchema,data.insertStudent);
 
 //route vers l'inscription 
 router.post('/inscription',userDataValidationSchema,data.insertUser);
+
+//rafraichir le token utilisateur
+router.post('/refreshToken',checkToken.refreshToken);
 
 
 //route pour l'envoi de mails
