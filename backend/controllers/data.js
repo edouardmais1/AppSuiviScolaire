@@ -276,7 +276,7 @@ const getPasswordByMail = (req, res) => {
 
 const getAllComportement = (request,response)=>{
 
-    db.query('SELECT * FROM tb_Comportements',(err,results)=>{
+    db.query('SELECT ComportementID, Mail, Contenu, EleveID, Date, Signature FROM tb_Comportements',(err,results)=>{
         if(err){
             throw err;
         }
@@ -289,7 +289,7 @@ const getAllComportement = (request,response)=>{
 const getComportement = (id,result) =>{
 
     //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("SELECT * FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
+    db.query("SELECT Mail, Contenu, Date, Signature FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
         if(err){
             console.log(err);
             result(err,null);

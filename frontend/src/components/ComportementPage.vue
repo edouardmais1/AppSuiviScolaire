@@ -20,7 +20,7 @@
                                 Signature
                             </div>
                     </div>
-                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse()" :key="item"/>
+                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse().slice(0,20)" :key="item"/>
                     <button class="button-send" v-on:click="updateSignature()"  name="button">Signer tout</button>
                 </div>
             </div>
@@ -36,7 +36,7 @@ const instance = axios.create({
 baseURL: 'http://localhost:3000/comportement'
 });
 
-const eleve_id ='/'+'23=5';
+const eleve_id ='/'+'25';
 
 export default{
     name : "ComportementPage",
