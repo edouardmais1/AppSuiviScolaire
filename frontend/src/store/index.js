@@ -26,8 +26,9 @@ const store = createStore({
             state.status = status;
         },
         logUser: function(state, user){
-            instance.defaults.headers.common['Authorization'] = user.Token;
-            state.user = user;
+            //instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+            state.status = 'logged'
+            state.user = user[0];
         },
         userInfos: function (state, userInfos) {
             state.userInfos = userInfos;
@@ -36,6 +37,7 @@ const store = createStore({
         logout: function(state){
             state.user = {};
             state.status = '';
+            localStorage.clear();
         }
     },
 
@@ -69,7 +71,7 @@ const store = createStore({
                 .then(response =>{
                     commit('setStatus', 'logged');
                     commit('logUser', response.data);
-                    console.log(response.data);
+                    localStorage.setItem('token', response.data[0].token);
                     resolve(response);
                 })
                 .catch(error =>{
@@ -80,27 +82,7 @@ const store = createStore({
             });
         },
         
-        getUserInfos: ({commit},userInfos) =>{
-
-            let destinationUrl = url.concatUrl(`/infos/${userInfos}`)
-
-            return new Promise((resolve, reject) =>{
-                instance.get(destinationUrl)
-                .then(response =>{
-                    commit('userInfos', response.data)
-                    resolve(response);
-
-                })
-                .catch(error =>{
-                    commit('setStatus', 'error_create')
-                    reject(error);
-                });
-
-            });
-        }
-        
     }
 });
-
 
 export default store;

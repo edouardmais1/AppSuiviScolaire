@@ -57,7 +57,7 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 router.get('/connexion/:mail',data.connexionUser);
 
 //récupérer les informations d'un user sur base de son Token
-router.get('/infos/:token',data.getUserByToken);
+router.get('/infos/:mail',checkToken.authenticateToken,data.getUserInfosByMail);
 
 //routes vers comportement 
 router.get('/comportement',data.getAllComportement);
@@ -68,13 +68,6 @@ router.get('/bulletin',data.getAllBulletin);
 router.get('/bulletin/:id',data.getBulletinById);
 
 //routes vers classe
-
-
-//route test
-//implémenter cette logique pour savoir qui fait quoi et s'il à le droit de le faire...
-router.get('/test',checkToken.authenticateToken, (request, response)=>{
-    response.send(request.user);
-})
 
 
 //POST METHODS

@@ -2,6 +2,7 @@ import { createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueCookies from 'vue3-cookies';
 
 
 
@@ -12,4 +13,4 @@ app.AOS = new AOS.init({ disable: "phone" });
 
 
 
-createApp(App).use(router).use(store).mount('#app');
+createApp(App).use(router).use(store).use(VueCookies,{expireTimes: 60 * 60 * 24 , secure: true}).mount('#app');
