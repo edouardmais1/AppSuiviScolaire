@@ -86,7 +86,7 @@
             </div>
             <div class="table-container">
             <div>
-                <GestionCalendrier v-for="event in this.events[0]" :key="event" v-bind:titreDelete="event"></GestionCalendrier>
+                <GestionCalendrier v-for="event in this.events[0]" :key="event" v-bind:eventData="event"></GestionCalendrier>
             </div>
             </div>
         </div>

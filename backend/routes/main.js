@@ -98,7 +98,8 @@ router.post('/sendMail',mail.sendMail);
 
 //DELETE METHODS
 router.delete('/deleteEleve/:id', dataDelete.deleteEleveById);
-router.delete('/deleteActualite/:id', dataDelete.deleteActualiteById)
+router.delete('/deleteActualite/:id', dataDelete.deleteActualiteById);
+router.delete('/deleteEvent/:id', dataDelete.deleteEventById);
 
 //UPDATE METHODS
 router.post('/updateEleve/:id', dataUpdate.updateEleveById);

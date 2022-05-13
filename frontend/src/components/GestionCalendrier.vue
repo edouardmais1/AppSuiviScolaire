@@ -2,16 +2,16 @@
 <div class="listeCalendrier">
     <div class="row">
         <div class="col-4">
-            <p v-bind= "titreDelete">{{titreDelete.Titre}}</p>
+            <p v-bind= "titreDelete">{{eventData.Titre}}</p>
         </div>
         <div class="col-3">
-            <p v-bind= "startTime">{{convertDateOnTime(titreDelete.StartTime)}}</p>
+            <p v-bind= "startTime">{{convertDateOnTime(eventData.StartTime)}}</p>
         </div>
         <div class="col-3">
-            <p v-bind= "stopTime">{{convertDateOnTime(titreDelete.StopTime)}}</p>
+            <p v-bind= "stopTime">{{convertDateOnTime(eventData.StopTime)}}</p>
         </div>
         <div class="col-2">
-            <button  type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button  v-on:click="deleteEventById()"  type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-    //import axios from 'axios';
-    //const url = require("../../url/url.js");
+    import axios from 'axios';
+    const url = require("../../url/url.js");
     export default{
         name: "GestionCalendrier",
         
@@ -28,9 +28,7 @@
     
         },
         props:{
-            titreDelete: String,
-            stopTime: String,
-            startTime: String,
+            eventData: String,
         },
         methods:{
             convertDateOnTime(dateTime){
@@ -40,7 +38,21 @@
                 let add = parseInt((thirdSplit[0])) + 2;
                 let final = add.toString() + ":" + thirdSplit[1] + ":" + thirdSplit[2];
                 return final;
-            }
+            },
+
+        
+            async deleteEventById(){
+
+                let destinationUrl = url.concatUrl("/deleteEvent/" + this.eventData.EvenementID);
+                await axios.delete(destinationUrl)
+                .then(response =>{
+                    console.log(response.data);
+                    location.reload();
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            },
         }
     }
 
