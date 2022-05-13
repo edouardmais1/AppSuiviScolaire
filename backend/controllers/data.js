@@ -31,6 +31,35 @@ const getAllClasses = (request, response) =>{
     })
 }
 
+//GET ALL CLASSES AND PROF MAIL
+const getAllClassesAndMailProf = (request, response) =>{
+
+    let sql = `CALL getAllClassesAndMailProf()`
+    db.query(sql, (error, results)=>{
+        if(error){
+            throw error;
+        }
+
+        else{
+            response.status(200).json(results);
+        }
+    })
+}
+
+//GET PROF MAIL
+const getAllMailProf = (request, response) =>{
+
+    let sql = `CALL getAllMailProf()`
+    db.query(sql, (error, results)=>{
+        if(error){
+            throw error;
+        }
+
+        else{
+            response.status(200).json(results);
+        }
+    })
+}
 
 
 //GET ALL ELEVES
@@ -621,5 +650,7 @@ module.exports = {
     getEleveByMail,
     insertDataCalendar,
     getEventByClassAndDate,
+    getAllClassesAndMailProf,
+    getAllMailProf,
 }
 

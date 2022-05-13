@@ -72,8 +72,8 @@ router.get('/bulletin',data.getAllBulletin);
 router.get('/bulletin/:id',data.getBulletinById);
 
 //routes vers classe
-
-
+router.get('/allclassdata', data.getAllClassesAndMailProf);  
+router.get('/allmailprof', data.getAllMailProf);
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware

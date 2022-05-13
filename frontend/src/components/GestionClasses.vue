@@ -2,13 +2,13 @@
         <div class="listeClasse">
         <div class="row">
             <div class="col-sm">
-            Classe de 6A
+            {{classeData.Classe}}
             </div>
             <div class="col-sm">
                 <select class="custom-select" id="inputGroupSelect01">
-                    <option value="test@mail.be">prof1@mail.be</option>
-                    <option value="test2@mail.be">prof2@mail.be</option>
-                    <option value="test3@mail.be">prof3@mail.be</option>
+                    <option selected>{{classeData.Mail}}</option>
+                    <option v-for="item in items[0]" :key="item.Mail">{{item.Mail}}</option>
+
                 </select>
             </div>
         </div>
@@ -16,9 +16,37 @@
 </template>
 
 <script>
+    const url = require('../../url/url.js');
+        import axios from 'axios';
     export default{
         name: "GestionClasses",
-        }
+        props: {
+            classeData: String,
+
+        },
+        data(){
+            return{
+                items : [],
+            }
+        },
+        created(){
+            this.getProfMail();
+        },
+        methods: {
+            async getProfMail(){
+
+                    let destinationUrl = url.concatUrl("/allmailprof");
+                    await axios.get(destinationUrl)
+                    .then(response =>{
+                        this.items = response.data;
+                    })
+                    .catch(error =>{
+                        console.log(error)
+                    })
+                },
+        },
+    }
+
     
 </script>
 

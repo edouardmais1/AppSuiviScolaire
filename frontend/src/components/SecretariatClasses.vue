@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <GestionClasses></GestionClasses>
+        <GestionClasses v-for="item in this.items[0]" :key="item" v-bind:classeData="item"></GestionClasses>
         <button type="button" class="btn btn-success btn-lg"><i class="fas fa-solid fa-check"></i></button>
     </div>
 </section>
@@ -31,11 +31,36 @@
 
 <script>
     import GestionClasses from "./GestionClasses.vue"
+    import axios from 'axios';
+    const url = require("../../url/url.js");
     export default{
         name: "SecretariatClasses",
 
         components: {
             GestionClasses
+        },
+        
+        created(){
+            this.getAllClassesAndMailProf();
+        },
+        data(){
+            return{
+                items : [],
+            }
+        },
+        methods: {
+            async getAllClassesAndMailProf(){
+
+                    let destinationUrl = url.concatUrl("/allclassdata");
+                    await axios.get(destinationUrl)
+                    .then(response =>{
+                        this.items = response.data;
+                        console.log(this.items);
+                    })
+                    .catch(error =>{
+                        console.log(error)
+                    })
+                },
         },
     }
 </script>
