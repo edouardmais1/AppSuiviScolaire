@@ -236,7 +236,9 @@ const connexionUser = (request, response) =>{
         }
         else{
             const access_token = token.generateAccessToken(results[0]);
+            const refresh_token = token.generateRefreshToken(results[0]);
             results[0].token = access_token;
+            results[0].refresh_token = refresh_token;
             response.status(200).json(results);
         }
     })
@@ -418,10 +420,10 @@ const insertStudent = (request,response,next)=>{
 
 
 //GET USER BY TOKEN
-const getDataUserByToken = (token, result) => {
+const getDataUserByMail = (mail, result) => {
     
     //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
-    db.query("SELECT Nom, Prenom, Mail, Roles  FROM tb_Utilisateurs WHERE Token = ?", [token], (err, results) => {             
+    db.query("SELECT Nom, Prenom, Mail  FROM tb_Utilisateurs WHERE Mail = ?", [mail], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -431,8 +433,8 @@ const getDataUserByToken = (token, result) => {
     });   
 }
 
-const getUserByToken = (req, res) => {
-    getDataUserByToken(req.params.token, (err, results) => {
+const getUserInfosByMail = (req, res) => {
+    getDataUserByMail(req.params.mail, (err, results) => {
         if (err){
             res.send(err);
         }else{
@@ -578,7 +580,6 @@ const insertUser = (request,response,next)=>{
                 response.send(err);
             }
             else{
-                initializeSession
                 response.status(200).json(results);
             }
         });
@@ -614,7 +615,7 @@ module.exports = {
     getComportementById,
     getAllBulletin,
     getBulletinById,
-    getUserByToken,
+    getUserInfosByMail,
     insertActualite,
     getActuByTitle, 
     getEleveByMail,

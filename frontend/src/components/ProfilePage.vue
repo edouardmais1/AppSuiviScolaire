@@ -12,8 +12,8 @@
         </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos" v-if="this.active == true">{{user[0].Prenom}}</p>
-            <p v-else></p>
+            <p class="users-infos" v-if="this.user != []" >{{user.Prenom}}</p>
+            <p v-else>{{this.items.Prenom}}</p>
         </div>
     </div>
     <div class="row">
@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos" v-if="this.active == true" >{{user[0].Nom}}</p>
-            <p v-else></p>
+            <p class="users-infos" v-if="this.user != []" >{{user.Nom}}</p>
+            <p v-else>{{this.items.Nom}}</p>
         </div>
     </div>
     <div class="row">
@@ -34,8 +34,8 @@
         </div>
         </div>
         <div class="col-sm">
-            <p class="users-infos" v-if="this.active == true" >{{user[0].Mail}}</p>
-            <p v-else></p>
+            <p class="users-infos" v-if="this.user != []" >{{user.Mail}}</p>
+            <p v-else>{{this.items.Mail}}</p>
         </div>
     </div>
 
@@ -44,9 +44,7 @@
 
 
     
-
-    
-    <div class="profil-enfant" v-if="this.active = true">
+    <div class="profil-enfant" v-if="this.user != null">
         <ProfilEnfant />
     </div>
     <div v-else></div>
@@ -54,6 +52,10 @@
 
     <div class="center">
     <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
+    </div>
+
+    <div class="center">
+    <button type="submit" @click.prevent="test()" value="test" class="btn btn-danger margin-bottom">test <i class="fas fa-solid fa-door-open"></i></button>
     </div>
 
 </div>
@@ -65,17 +67,29 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import ProfilEnfant from './ProfilEnfant.vue'
+import axios from 'axios';
+import ProfilEnfant from './ProfilEnfant.vue';
+import { useCookies } from "vue3-cookies";
+
+const url = require("../../url/url.js");
+
+//vérification du headers de la requete
+require("../store/axios.js");
+
     export default{
         name: 'ProfilePage',
+
+        setup() {
+            const { cookies } = useCookies();
+            return { cookies };
+        },
 
         data(){
             return{
                 message: "",
-                active: false,
                 items: [],
                 childs: [],
+                user : this.$store.state.user,
             }
         },
         components: {
@@ -83,18 +97,18 @@ import ProfilEnfant from './ProfilEnfant.vue'
         },
         
         created(){
-            if(this.$store.state.status == ""){
+            if(localStorage.getItem('token') == null ){
                 this.$router.push('/');
             }
             else{
-                this.getUserinformations();
+                this.generateCookies();
+                this.getUserinfos();
+                
             }
         },
 
         computed:{
-            ...mapState({
-                user: 'userInfos',
-            }),
+
         },
 
         methods: {
@@ -102,17 +116,37 @@ import ProfilEnfant from './ProfilEnfant.vue'
             logout: function(){
                 this.$store.commit('logout');
                 this.$router.push('/');
+                this.$cookies.remove('mail');
+                this.$cookies.remove('token');
             },
-
-            //appel de l'action 'getUserinformations' dans le store
-            async getUserinformations(){
-                await this.$store.dispatch('getUserInfos',this.$store.state.user[0].Token);
-                this.active = true;
-
-            },
+            
             getChildsData(){
                 //récupérer les informations d'un enfant
 
+            },
+
+            async getUserinfos(){
+                let destinationUrl = url.concatUrl(`/infos/${this.$cookies.get('mail')}`);
+                await axios.get(destinationUrl)
+                .then(response=>{
+                    this.items = response.data[0];
+                })
+                .catch(error=>{
+                    console.log(error);
+                })
+            },
+
+            test(){
+                let destinationUrl = url.concatUrl(`/test`)
+                axios.get(destinationUrl)
+                .then(response =>{console.log(response)}).catch();
+            },
+
+            generateCookies(){
+                if (this.user != []){
+                    this.$cookies.set("mail", this.user.Mail);
+                    this.$cookies.set("token", this.user.token);
+                }
             }
         }
     }

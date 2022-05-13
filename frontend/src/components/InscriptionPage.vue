@@ -93,14 +93,6 @@ export default{
 
     methods : {
 
-        rand(){
-            return Math.random().toString(36).substr(2);
-        },
-
-        token(){
-            return this.rand() + this.rand();
-        },
-
         checkAccountExist(mail){
             let destinationUrl = url.concatUrl(`/users/${mail}`)
 
@@ -151,7 +143,6 @@ export default{
                 Prenom: this.prenom,
                 Mail : this.email,
                 MotDePasse: this.password,
-                Token: this.token()
             })
             .then(function(){
                 self.logUser();

@@ -3,6 +3,8 @@
 const jwt = require('jsonwebtoken');
 const { response } = require('../app');
 
+
+//sécuriser les clés... (variables d'environnement)
 const access_token = '54654621HGJAHLKJZLEKJA';
 const refresh_token = '215675651321JAHKAJZHEKAJZH';
 
@@ -18,7 +20,7 @@ function generateRefreshToken(user) {
 
 //middleware permettant de regarder si l'utilisateur à accès à la requete ou non
 function authenticateToken(request, response, next){
-    const authHeader = request.headers['authorization']
+    const authHeader = request.headers['authorization'];
 
     const token = authHeader && authHeader.split(' ')[1]; // Bearer _ Token 
 
@@ -33,26 +35,27 @@ function authenticateToken(request, response, next){
     request.user = user; 
     next();
     });
+
 }
 
 function refreshToken(request, response){
-    const authHeader = req.headers['authorization'];
+    const authHeader = request.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-      return res.sendStatus(401);
+      return response.sendStatus(401);
     }
   
     jwt.verify(token, refresh_token, (err, user) => {
       if (err) {
-        return res.sendStatus(401);
+        return response.sendStatus(401);
       }
       // TODO : check en bdd que le user a toujours les droit et qu'il existe toujours
       delete user.iat;
       delete user.exp;
 
       const refreshedToken = generateAccessToken(user);
-      res.send({
+      response.send({
         accessToken: refreshedToken,
       });
     });
@@ -61,6 +64,7 @@ function refreshToken(request, response){
 
 module.exports = {
     generateAccessToken,
+    generateRefreshToken,
     authenticateToken,
     refreshToken
 }
