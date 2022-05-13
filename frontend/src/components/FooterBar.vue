@@ -11,11 +11,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-.navbar {
-    height: 45px;
+.nav{
     width: 100%;
     background-color: #6dabe4;
-    position: sticky;
+    margin-top: 50px;
+}
+
+.navbar{
+  position: sticky;
 }
 
 .footer-title {
@@ -24,7 +27,7 @@
   font-weight : 0;
   color: rgba(240, 240, 240, 0.8);
   margin: auto;
-  margin: auto;
+
 }
 
 .my-primary {

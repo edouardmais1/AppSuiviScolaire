@@ -50,6 +50,10 @@ router.get('/actualite/:titre',data.getActuByTitle);
 
 router.get('/classes',data.getAllClasses);
 
+//récupérer evenement de classe
+router.get('/calendrier/:class/:date',data.getEventByClassAndDate);
+
+
 //récuperer le mot de passe en fonction du mail
 router.get('/passwords/:mail',data.getPasswordByMail);
 

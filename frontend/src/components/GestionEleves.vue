@@ -23,7 +23,6 @@
         </div>
         <div class="col-sm">
             <button v-on:click="toggleModaleUpdate" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-            <!-- <button v-on:click="updateEleve()" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button> --> 
             <button v-on:click="toggleModaleDelete" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>

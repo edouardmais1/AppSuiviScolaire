@@ -354,7 +354,17 @@ const getBulletinById = (request, response,next) =>{
 }
 
 
-
+const getEventByClassAndDate = (request,response)=>{
+    let sql = 'CALL getEventByClassAndDate (?,?)'
+    db.query(sql, [request.params.class, request.params.date],(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
 
 
 //INSERT AN STUDENT 
@@ -609,5 +619,6 @@ module.exports = {
     getActuByTitle, 
     getEleveByMail,
     insertDataCalendar,
+    getEventByClassAndDate,
 }
 

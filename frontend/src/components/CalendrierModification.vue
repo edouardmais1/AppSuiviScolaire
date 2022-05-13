@@ -1,6 +1,6 @@
 
 <template>
-
+<div class="calendrier-modification">
 <div class="row">
     <div class="col-sm">
         <form class='event' @submit="sendData()">
@@ -12,7 +12,7 @@
             </div>
             <div class="col-5">
             <h5>Classe:</h5>
-                <select id="object" v-model="classe">
+                <select class="defautSelect" id="object" v-model="classe">
                     <option value="" selected>Choisissez une classe</option>
                     <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
                 </select>
@@ -21,11 +21,11 @@
             </div>
         <div class="row">
             <div class="col-5">
-                <h5>Heure de départ:</h5>
+                <h5>Jour et heure de départ:</h5>
                 <input type="datetime-local" v-model="start">
             </div>
             <div class="col-5">
-                <h5>Heure de fin:</h5>
+                <h5>Jour et heure de fin:</h5>
                 <input type="datetime-local" v-model="stop">
             </div>
 
@@ -49,58 +49,79 @@
         <form class='event'>
         <h3 class="title"> Suppression d'une activité <i class="fas fa-solid fa-trash"></i></h3>
         <div class="row">
-
+            
             <div class="col-5">
             <h5>Classe:</h5>
-                <select id="object" v-model="classeDelete">
+                <select id="object" class="defautSelect" v-model="classeDelete">
                     <option value="" selected>Choisissez une classe</option>
                     <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
                 </select>
             </div>
-            <ModaleComponent v-bind:revele="revele" v-bind:toggleModale="toggleModale"></ModaleComponent>
         
             <div class="col-5">
                 <h5>Date:</h5>
-                <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
+                <input type="date" class="form-control" id="exampleInputPassword1" v-model="dateDelete">
             </div>
+            </div>
+            <p class="advice"> *Chercher par classe et date pour trouver l'activité à supprimer </p>
+            <div class="row">
+                <div class="col-sm">
+                    <button type="button" v-on:click="getEventByClassAndDate()" class="btn btn-success" >Rechercher</button>
+                </div>
             </div>
             <div class="row">
             <div class="col-10">
-                <h5>Titre:</h5>
-                <select id="object">
-                    <option value="" selected>Choisissez l'activité...</option>
-                </select>
+                <h5>Activités trouvées:</h5>
             </div>
-        <h8 class="advice"> *Chercher par classe et date pour trouver l'activité à supprimer </h8>
+            <div class="row">
+                <div class="col-4">
+                    <h6> Titre: </h6>
+                </div>
+                <div class="col-3">
+                    <h6> Début: </h6>
+                </div>
+                <div class="col-3">
+                    <h6> Fin: </h6>
+                </div>
+            </div>
+            <div class="table-container">
+            <div>
+                <GestionCalendrier v-for="event in this.events[0]" :key="event" v-bind:titreDelete="event"></GestionCalendrier>
+            </div>
+            </div>
         </div>
-            
-        <button type="submit" class="btn btn-danger" >Supprimer <i class="fas fa-solid fa-trash"></i></button>
         </form>
         </div>
 
+</div>
 </div>
 </template>
 
 <script>
 const url = require("../../url/url.js");
-
+import GestionCalendrier from "./GestionCalendrier.vue"
 import axios from 'axios';
 export default{
     name: 'CalendrierModification',
     classe: String,
+
     data(){
         return{
             items : [],
-            classeDelete: [],
+            events: [],
             contenu: '',
             start:'',
             stop:'',
             classe:'',
             titre:'',
             revele: false,
+            classeDelete: '',
+            dateDelete:'',
+            titreDelete:'',
         }
     },
     components: {
+        GestionCalendrier,
             
     },
     created(){
@@ -124,7 +145,9 @@ export default{
             let destinationUrl = url.concatUrl("/classes");
             await axios.get(destinationUrl)
             .then(response =>{
+                console.log(response.data);
                 this.items = response.data;
+                console.log(this.items);
             })
             .catch(error =>{
                 console.log(error)
@@ -153,31 +176,50 @@ export default{
                 console.log(error);
             })
         },
-        
+        async getEventByClassAndDate(){
+            
+            let destinationUrl = url.concatUrl('/calendrier' + '/' + this.classeDelete + '/' + this.dateDelete) ;
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.events = response.data;
+                console.log((this.events[0][0]).Titre);
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },      
+
     }
 
 }
 </script>
 
 <style scoped>
+    .table-container {
+        display:flex;
+        flex-direction:column;
+        overflow-x:scroll;
+        overflow-y:scroll;
+        height:200px;
+    }
 .event{
     height: 250px;
     margin-top: 150px;
     margin-bottom: 100px;
     margin-left: 10%;
-    min-width: 700px;
+    min-width: 500px;
 }
 .title{
     margin-bottom: 40px;
 }
 
 .date-input{
-    min-width: 287px;
     max-width: 394px;
 }
 
 .row{
     padding-bottom: 20px;
+    min-width: 250px;
 }
 .advice{
     padding-bottom: 20px;
@@ -185,5 +227,9 @@ export default{
     font-style: italic;
     margin-top: 10px;
 }
+.defautSelect{
+    height: 37.5px;
+}
+
 </style>
     

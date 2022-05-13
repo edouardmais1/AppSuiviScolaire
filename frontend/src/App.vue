@@ -27,6 +27,9 @@ export default {
     min-height: 100vh;
     background-color: rgba(240, 240, 240, 0.8); 
     height: 100%;
+    width: 100%;
+    padding:0;
+    margin:0;
   }
 
   ::-webkit-scrollbar {

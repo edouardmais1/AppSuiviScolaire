@@ -39,6 +39,9 @@
   .carousel { 
     z-index: -99; 
     margin-top: 25px;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
     }
 
   .carousel-item {
@@ -48,8 +51,9 @@
   }
 
   .img-fluid {
+    min-height: 100%;
     max-width: 100%;
-    height: auto;
+    height: 100%;;
   }
 
   .carousel-item .img-fluid {
