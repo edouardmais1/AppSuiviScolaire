@@ -8,6 +8,9 @@
         </div>
         <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
 
+        <p v-if="this.role == 1">{{test}}</p>
+        <p v-else>prout</p>
+
     </section>
 
 
@@ -31,11 +34,15 @@
                 items: [],
                 alerMessage : "",
                 active: false,
+
+                test : "mabite",
+                role : "",
             }
         },
 
         created(){
             this.getActualite();
+            this.getRole();
         },
 
         methods : {
@@ -73,6 +80,18 @@
 
                 return result.toLocaleDateString();
             },
+
+            getRole(){
+                let destinationUrl = url.concatUrl(`/role/${this.$cookies.get('mail')}`);
+                axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                    console.log(response.data[0].Roles)
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            }
         
         }
 

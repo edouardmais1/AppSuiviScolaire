@@ -13,4 +13,4 @@ app.AOS = new AOS.init({ disable: "phone" });
 
 
 
-createApp(App).use(router).use(store).use(VueCookies,{expireTimes: 60 * 60 * 24 , secure: true}).mount('#app');
+createApp(App).use(router).use(store).use(VueCookies,{expireTimes: 60 * 60 * 24 }).mount('#app');

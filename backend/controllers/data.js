@@ -3,6 +3,8 @@
 const { json } = require("express");
 const { response } = require("../app");
 const {validationResult} = require("express-validator");
+const Cookies = require("js-cookie");
+
 
 
 
@@ -246,7 +248,7 @@ const getActuByTitle = (request, response) => {
 const getDataByMail = (mail,result) =>{
 
     //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("SELECT Mail, Roles, Nom, Prenom from tb_Utilisateurs where Mail = ?", [mail], (err,results)=>{
+    db.query("SELECT Mail, Roles, Nom, Prenom, Jeton from tb_Utilisateurs where Mail = ?", [mail], (err,results)=>{
         if(err){
             console.log(err);
             result(err,null);
@@ -268,6 +270,45 @@ const connexionUser = (request, response) =>{
             const refresh_token = token.generateRefreshToken(results[0]);
             results[0].token = access_token;
             results[0].refresh_token = refresh_token;
+            response.status(200).json(results);
+        }
+    })
+}
+
+
+//obtenir le role d'un utilisateur
+const getDataRole = (mail, result) => {
+    
+    //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
+    db.query("SELECT Roles FROM tb_Utilisateurs WHERE Mail = ?", [mail], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+const getRoleByMail = (req, res) => {
+    getDataRole(req.params.mail, (err, results) => {
+        if (err){
+            res.send(err);
+        }else{
+            res.status(200).json(results);
+        }
+    });
+}
+
+
+//validation identité d'un utilisateur
+const getAuthentification = (request, response)=>{
+    let sql = `CALL getAuthentification (?, ?)`
+    db.query(sql, [request.params.mail, request.params.jeton], (error, results)=>{
+        if(error){
+            throw error;
+        }
+        else{
             response.status(200).json(results);
         }
     })
@@ -449,10 +490,10 @@ const insertStudent = (request,response,next)=>{
 
 
 //GET USER BY TOKEN
-const getDataUserByMail = (mail, result) => {
+const getDataUserByAuth = (auth, result) => {
     
     //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
-    db.query("SELECT Nom, Prenom, Mail  FROM tb_Utilisateurs WHERE Mail = ?", [mail], (err, results) => {             
+    db.query("SELECT Nom, Prenom, Mail  FROM tb_Utilisateurs WHERE Jeton = ?", [auth], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -462,8 +503,8 @@ const getDataUserByMail = (mail, result) => {
     });   
 }
 
-const getUserInfosByMail = (req, res) => {
-    getDataUserByMail(req.params.mail, (err, results) => {
+const getUserInfosByAuth = (req, res) => {
+    getDataUserByAuth(req.params.auth, (err, results) => {
         if (err){
             res.send(err);
         }else{
@@ -644,7 +685,7 @@ module.exports = {
     getComportementById,
     getAllBulletin,
     getBulletinById,
-    getUserInfosByMail,
+    getUserInfosByAuth,
     insertActualite,
     getActuByTitle, 
     getEleveByMail,
@@ -652,5 +693,7 @@ module.exports = {
     getEventByClassAndDate,
     getAllClassesAndMailProf,
     getAllMailProf,
+    getRoleByMail,
+    getAuthentification
 }
 
