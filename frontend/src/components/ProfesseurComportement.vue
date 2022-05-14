@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <section class="SecretariatPage">
 <div class="position-center">
         <div class="lol">
@@ -50,13 +53,15 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue'
 import GestionComportement from "./GestionComportement.vue"
 import AjoutComportement from "./AjoutComportement.vue"
  export default{
     name: 'ProfesseurComportement',
     components:{
         GestionComportement,
-        AjoutComportement
+        AjoutComportement,
+        NavBar,
     },
     
     data(){

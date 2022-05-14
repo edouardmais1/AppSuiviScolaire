@@ -1,4 +1,7 @@
 <template>
+        <div id="nav">
+        <NavBar/> 
+        </div>
         <!--formualaire d'inscription-->
         <section class="inscription">
         <div data-aos="zoom-in-left" data-aos-duration="1250">
@@ -55,6 +58,7 @@
 <script>
 import { mapState } from 'vuex'
 import axios from 'axios';
+import NavBar from './NavBar.vue'
 
 const url = require('../../url/url.js');
 
@@ -72,6 +76,9 @@ export default{
 
             mail_exist: '',
         }
+    },
+    components: {
+        NavBar,
     },
 
     computed: {

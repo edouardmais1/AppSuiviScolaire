@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <section class="SecretariatPage">
 <div class="position-center">
 <div class="lol">
@@ -53,6 +56,7 @@
 </template>
 
 <script>
+    import NavBar from './NavBar.vue'
     import axios from 'axios';
     import GestionEleves from "./GestionEleves.vue"
     import AjoutEleve from "./AjoutEleve.vue"
@@ -61,7 +65,8 @@
 
         components: {
             GestionEleves,
-            AjoutEleve
+            AjoutEleve,
+            NavBar,
         },
 
         data(){

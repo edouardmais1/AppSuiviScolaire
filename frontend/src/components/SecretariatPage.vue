@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
     <section class="SecretariatPage">
         <div class="text-center">
                 <h1 class="form-title">Secrétariat</h1>
@@ -40,6 +43,15 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue'
+
+    export default{
+        name: 'SecretariatPage',
+
+        components: {
+            NavBar
+        },
+    }
 
 
 </script>

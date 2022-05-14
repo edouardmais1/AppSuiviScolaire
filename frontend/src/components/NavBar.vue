@@ -12,7 +12,9 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
-            <div class="nav-links">
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
               <li class="nav-item">
                 <div>
                   <i class="fas fa-calendar-alt imgs"></i>
@@ -20,7 +22,9 @@
                 <router-link class="nav-link" to="/calendrier">Calendrier</router-link>
               </li>
             </div>
-            <div class="nav-links">
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
               <li class="nav-item">
               <div>
                 <i class="fas fa-exclamation imgs comportement"></i>
@@ -28,7 +32,9 @@
                 <router-link class="nav-link" to="/comportement">Comportement</router-link>
               </li>
             </div>
-            <div class="nav-links">
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
               <li class="nav-item">
                 <div>
                   <i class="fas fa-file imgs"></i>
@@ -36,7 +42,9 @@
                 <router-link class="nav-link" to="/bulletin">Bulletin</router-link>
               </li>
             </div>
-            <div class="nav-links">
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
               <li class="nav-item">
                 <div>
                   <i class="fas fa-envelope imgs"></i>
@@ -73,16 +81,16 @@
                 <router-link class="nav-link" to="/connexion" id="connexion">Connexion</router-link>
               </li>
             </div>
-            <!--
-            <div class="nav-links">
+
+            <div class="nav-links-profile" v-if="this.status == true">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-align-left imgs"></i>
                 </div>
-                <router-link class="nav-link" to="/connexion">Connexion</router-link>
+                <router-link class="nav-link" to="/profile">Profile</router-link>
               </li>
             </div>
-            -->
+    
           </ul>
         </div>  
       </div>
@@ -92,25 +100,66 @@
 
 
 <script>
+import axios from 'axios'
 
+const url = require("../../url/url.js")
 export default{
     name : "NavBar",
 
     data(){
       return{
-        status: false
+        status: false,
+        checkData: [],
       }
     },
 
     created(){
 
         if(localStorage.getItem('Auth') == '' || localStorage.getItem('Auth') == null || localStorage.getItem('mail') == null || localStorage.getItem('token') == null){
-            this.$router.push('/');
             this.status = false;
             localStorage.clear();
         }
         else{
-            this.status = true; 
+            this.status = true;
+            this.checkAuthentification(localStorage.getItem('mail'), localStorage.getItem('Auth')); 
+        }
+    },
+
+    methods:{
+        getRole(){
+
+        },
+        
+        logout: function(){
+            this.$store.commit('logout');
+            this.$router.push('/');
+        },
+
+        async checkAuthentification(mail, jeton){
+            let destinationUrl = url.concatUrl(`/authentification/${mail}/${jeton}`);
+
+            await axios.get(destinationUrl)
+
+            .then(response=>{
+                if(response.data[0].length == 0){
+                    this.checkData[0] = false;
+                }
+                else{
+                    this.checkData[0] = true;
+                }
+            })
+            .catch(function(){
+                this.checkData[0] = false;
+            })
+
+            if(this.checkData[0] == false){
+                this.logout();
+            }
+
+            else{
+              this.getRole();
+            }
+
         }
     }
 
@@ -175,6 +224,10 @@ export default{
 
 .nav-links {
   margin-left: 30px;
+}
+
+.nav-links-profile {
+  margin-right: 30px;
 }
 
 .navbar .navbar-nav .nav-item {

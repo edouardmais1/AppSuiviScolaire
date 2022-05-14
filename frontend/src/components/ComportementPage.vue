@@ -1,4 +1,8 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
+
     <form @submit.prevent="" >
         <div class="container-comportement">
             <div data-aos="zoom-in-left" data-aos-duration="1250">
@@ -29,6 +33,7 @@
     </form>
 </template>
 <script>
+import NavBar from './NavBar.vue'
 import CompComponent from "./CompComponent.vue";
 import axios from 'axios';
 const url = require("../../url/url.js");
@@ -43,6 +48,7 @@ export default{
 
     components: {
         CompComponent,
+        NavBar
     },
 
     data(){

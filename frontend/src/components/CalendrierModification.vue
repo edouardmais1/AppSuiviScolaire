@@ -1,5 +1,7 @@
-
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <div class="calendrier-modification">
 <div class="row">
     <div class="col-sm">
@@ -99,6 +101,7 @@
 
 <script>
 const url = require("../../url/url.js");
+import NavBar from './NavBar.vue'
 import GestionCalendrier from "./GestionCalendrier.vue"
 import axios from 'axios';
 export default{
@@ -122,6 +125,7 @@ export default{
     },
     components: {
         GestionCalendrier,
+        NavBar
             
     },
     created(){

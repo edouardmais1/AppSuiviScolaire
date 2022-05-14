@@ -1,4 +1,8 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
+
     <section class="connexion">
             <div data-aos="zoom-in-left" data-aos-duration="1250">
         <div class="container">
@@ -38,6 +42,7 @@
 <script>
 import {mapState} from 'vuex';
 import axios from 'axios';
+import NavBar from './NavBar.vue'
 
 const url = require("../../url/url.js");
 
@@ -54,6 +59,10 @@ const url = require("../../url/url.js");
 
                 message: "",
             }
+        },
+
+        components:{
+            NavBar,
         },
 
         computed:{

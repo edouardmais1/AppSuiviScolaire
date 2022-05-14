@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <section class="SecretariatPage">
 <div class="position-center">
 <div class="row">
@@ -30,6 +33,7 @@
 </template>
 
 <script>
+    import NavBar from './NavBar.vue'
     import GestionClasses from "./GestionClasses.vue"
     import axios from 'axios';
     const url = require("../../url/url.js");
@@ -37,7 +41,8 @@
         name: "SecretariatClasses",
 
         components: {
-            GestionClasses
+            GestionClasses,
+            NavBar,
         },
         
         created(){

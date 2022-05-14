@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <!-- <div class="container-contact">
 <div data-aos="zoom-in-left" data-aos-duration="1250">
     <div class="wrapper">
@@ -48,6 +51,7 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue'
 //import axios from 'axios';
 
 //const url = require("../../url/url.js");
@@ -64,6 +68,10 @@ export default{
             message:'',
             items: [],
         }
+    },
+    
+    components: {
+        NavBar,
     },
     computed: {
         validatedFields : function(){

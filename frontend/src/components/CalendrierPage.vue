@@ -1,4 +1,8 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
+
     <div class ="calendar">
       <div class="row">
         <div class="col-sm">
@@ -30,13 +34,15 @@ import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import axios from 'axios'
 import BoutonProfesseur from './BoutonProfesseur.vue'
+import NavBar from './NavBar.vue'
 
 export default{
     name : "CalendrierPage",
 
     components: {
       FullCalendar,
-      BoutonProfesseur
+      BoutonProfesseur,
+      NavBar,
     },
 
     data(){

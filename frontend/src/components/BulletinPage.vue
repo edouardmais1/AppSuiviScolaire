@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
     <!-- <div class="container-bulletin">
         <div data-aos="zoom-in-left" data-aos-duration="1250">
             <div class="wrapper">
@@ -16,6 +19,7 @@
 </template>
 <script>
 //import BullComponent from "./BullComponent.vue";
+import NavBar from './NavBar.vue'
 import axios from 'axios';
 
 //Lien avec axios et la base URL
@@ -29,6 +33,7 @@ baseURL: 'http://localhost:3000/bulletin'
         //Components exteernes importés et utilisé sur la page
         components: {
             //BullComponent
+            NavBar,
         },
 
         data(){

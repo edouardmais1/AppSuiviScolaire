@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <section class="EvenementPage">
 <div class="position-center">
 <div class="row">
@@ -29,13 +32,14 @@
 </template>
 
 <script>
-
+    import NavBar from './NavBar.vue'
     import GestionEvenements from "./GestionEvenements.vue"
     export default{
         name: "EvenementsPage",
 
         components: {
-            GestionEvenements
+            GestionEvenements,
+            NavBar
         },
 
         data(){

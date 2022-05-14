@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
     <section class="HomePage">
         <div class="text-center">
             <h1 class="form-title">Actualités</h1>
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+    import NavBar from './NavBar.vue'
     import ActuComponent from "./ActuComponent.vue";
     import axios from 'axios';
 
@@ -26,7 +30,8 @@
         name : "HomePage",
 
         components: {
-            ActuComponent
+            ActuComponent,
+            NavBar,
         },
 
         data(){

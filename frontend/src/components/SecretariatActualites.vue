@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <section class="SecretariatPage">
 <div class="position-center">
     <div class="add-button">
@@ -41,6 +44,7 @@
 </section>
 </template>
 <script>
+    import NavBar from './NavBar.vue'
     import AjoutActualite from "./AjoutActualite.vue"
     import GestionActualites from "./GestionActualites.vue"
     export default{
@@ -48,7 +52,8 @@
 
         components: {
             AjoutActualite,
-            GestionActualites
+            GestionActualites,
+            NavBar,
         },
 
         data(){

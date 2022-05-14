@@ -1,8 +1,5 @@
 <template>
   <body>
-    <div id="nav">
-      <NavBar/> 
-    </div>
     <CarouselBackground/>
     <router-view />
   </body>
@@ -10,18 +7,17 @@
 </template>
  
 <script>
-import NavBar from './components/NavBar.vue'
+//import NavBar from './components/NavBar.vue'
 import FooterBar from './components/FooterBar.vue'
 import CarouselBackground from './components/CarouselBackground.vue'
 export default {
   name: "App",
   components : {
-    NavBar,
+    //NavBar,
     FooterBar,
     CarouselBackground,
   },
 
-  
 };
 </script>
 <style>

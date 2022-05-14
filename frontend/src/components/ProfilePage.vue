@@ -1,4 +1,7 @@
 <template>
+    <div id="nav">
+      <NavBar/> 
+    </div>
 <div data-aos="zoom-in-left" data-aos-duration="1250">
 <div class="container">
 <form class="row g-3">
@@ -63,6 +66,7 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue'
 import axios from 'axios';
 import ProfilEnfant from './ProfilEnfant.vue';
 
@@ -87,7 +91,8 @@ require("../store/axios.js");
             }
         },
         components: {
-            ProfilEnfant
+            ProfilEnfant,
+            NavBar
         },
         
         created(){
