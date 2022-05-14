@@ -45,7 +45,7 @@
 
     
     <div class="profil-enfant" v-if="this.user != null">
-        <ProfilEnfant />
+        <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-for="item in childs" :key="item"/>
     </div>
     <div v-else></div>
 
@@ -82,6 +82,8 @@ require("../store/axios.js");
                 items: [],
                 childs: [],
                 user : this.$store.state.user,
+
+                checkData: [],
             }
         },
         components: {
@@ -89,7 +91,7 @@ require("../store/axios.js");
         },
         
         created(){
-            if(localStorage.getItem('Auth') == null ){
+            if(localStorage.getItem('Auth') == '' || localStorage.getItem('Auth') == null || localStorage.getItem('mail') == null || localStorage.getItem('token') == null){
                 this.$router.push('/');
                 localStorage.clear();
             }
@@ -109,14 +111,28 @@ require("../store/axios.js");
                 this.$router.push('/');
             },
             
-            getChildsData(){
-                //récupérer les informations d'un enfant
+            async getChildsData(mail){
+                let destinationUrl = url.concatUrl(`/elevesByMail/${mail}`);
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.childs = response.data;
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
 
             },
 
-            async getUserinfos(){
-                let destinationUrl = url.concatUrl(`/infos/${localStorage.getItem('Auth')}`);
-                await axios.get(destinationUrl)
+            conversionDate(date){
+                let result = new Date(date);
+
+                return result.toLocaleDateString();
+            },
+
+            getUserinfos(jeton){
+                let destinationUrl = url.concatUrl(`/infos/${jeton}`);
+                axios.get(destinationUrl)
                 .then(response=>{
                     this.items = response.data[0];
                 })
@@ -128,21 +144,28 @@ require("../store/axios.js");
             async checkAuthentification(mail, jeton){
                 let destinationUrl = url.concatUrl(`/authentification/${mail}/${jeton}`);
 
-                console.log(destinationUrl);
-                //trouver un moyen de regler le bug
                 await axios.get(destinationUrl)
 
-                .then(function(response){
+                .then(response=>{
                     if(response.data[0].length == 0){
-                        this.logout()
+                        this.checkData[0] = false;
                     }
-
                     else{
-                        this.getUserinfos();
+                        this.checkData[0] = true;
                     }
                 })
                 .catch(function(){
+                    this.checkData[0] = false;
                 })
+
+                if(this.checkData[0] == false){
+                    this.logout();
+                }
+
+                else{
+                    this.getUserinfos(localStorage.getItem('Auth'));
+                    this.getChildsData(localStorage.getItem('mail'));
+                }
 
             }
         }

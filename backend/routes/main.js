@@ -38,7 +38,7 @@ router.get('/users/:mail',data.getUserByMail);
 //récupération des infos d'un elève
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
-router.get('/eleves/:mail',data.getEleveByMail);
+router.get('/elevesByMail/:mail',data.getEleveByMail);
 
 //récupération des informations d'un calendrier
 router.get('/calendrier/:classe',data.getCalendarByClasse);
@@ -59,7 +59,6 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 //récuperer le token et le mail de l'utilisateur
 router.get('/connexion/:mail',data.connexionUser);
 
-//récupérer les informations d'un user sur base de son Token
 //router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
 router.get('/infos/:auth',data.getUserInfosByAuth);
 
@@ -82,6 +81,7 @@ router.get("/role/:mail",data.getRoleByMail);
 router.get("/authentification/:mail/:jeton", data.getAuthentification);
 
 
+//route de test pour les tokens
 router.get('/test',checkToken.authenticateToken, (request, response)=>{
     response.send("ok");
 })

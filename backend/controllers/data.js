@@ -125,12 +125,10 @@ const getAllUsers = (request,response)=>{
 
 
 //GET Eleve BY MAIL
-
-//recuperer les données d'un user sur base de son mail.
-const getDataEleveByMail= (mail, result) => {
+const getDataEleveByMail = (mail, result) => {
     
-    //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
-    db.query("SELECT Prenom, Nom, Classe, DateDeNaissance FROM tb_Eleves WHERE Mail = ?", [mail], (err, results) => {             
+    //RECUPERER UN eleve EN FONCTION DE SON MAIL
+    db.query("SELECT Nom, Prenom, DateDeNaissance, Classe FROM tb_Eleves WHERE Mail = ?", [mail], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -688,12 +686,12 @@ module.exports = {
     getUserInfosByAuth,
     insertActualite,
     getActuByTitle, 
-    getEleveByMail,
     insertDataCalendar,
     getEventByClassAndDate,
     getAllClassesAndMailProf,
     getAllMailProf,
     getRoleByMail,
-    getAuthentification
+    getAuthentification,
+    getEleveByMail,
 }
 
