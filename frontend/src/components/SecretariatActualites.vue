@@ -2,7 +2,7 @@
 <section class="SecretariatPage">
 <div class="position-center">
     <div class="add-button">
-        <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-calendar-plus"></i></button>
+        <button type="button" id="ajout" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-calendar-plus"></i></button>
     </div>
     <AjoutActualite v-bind:revele="revele" v-bind:toggleModale="toggleModale" ></AjoutActualite>
 <div class="row top-15">

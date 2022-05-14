@@ -4,8 +4,8 @@
     <div class="modale card" >
         <div class="btn-modale btn btn-danger" v-on:click="toggleModaleDelete">X</div>
         <h3>Êtes-vous sur de vouloir supprimer cet élève ? </h3>
-        <div class="btn-modale-check btn btn-success" v-on:click="deleteEleve()"> Oui <i class="fas fa-solid fa-check"></i></div>
-        <div class="btn-modale-cancel btn btn-danger" v-on:click="toggleModaleDelete">Annulé <i class="fas fa-solid fa-ban"></i></div>
+        <div class="btn-modale-check btn btn-success" id='oui' v-on:click="deleteEleve()"> Oui <i class="fas fa-solid fa-check"></i></div>
+        <div class="btn-modale-cancel btn btn-danger" id="non" v-on:click="toggleModaleDelete">Annulé <i class="fas fa-solid fa-ban"></i></div>
     </div>
     </div>
 </template>

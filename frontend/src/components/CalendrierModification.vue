@@ -12,7 +12,7 @@
             </div>
             <div class="col-5">
             <h5>Classe:</h5>
-                <select class="defautSelect" id="object" v-model="classe">
+                <select class="defautSelect" id="object1" v-model="classe">
                     <option value="" selected>Choisissez une classe</option>
                     <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
                 </select>
@@ -22,11 +22,11 @@
         <div class="row">
             <div class="col-5">
                 <h5>Jour et heure de départ:</h5>
-                <input type="datetime-local" v-model="start">
+                <input type="datetime-local" id="départ" v-model="start">
             </div>
             <div class="col-5">
                 <h5>Jour et heure de fin:</h5>
-                <input type="datetime-local" v-model="stop">
+                <input type="datetime-local" id="fin" v-model="stop">
             </div>
 
         </div>
@@ -52,7 +52,7 @@
             
             <div class="col-5">
             <h5>Classe:</h5>
-                <select id="object" class="defautSelect" v-model="classeDelete">
+                <select id="object2" class="defautSelect" v-model="classeDelete">
                     <option value="" selected>Choisissez une classe</option>
                     <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
                 </select>

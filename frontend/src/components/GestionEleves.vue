@@ -4,26 +4,26 @@
     <div class="listeEleves">
     <div class="row">
         <div class="col-sm">
-            <input type="text" id="inputNomData" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-model="linkNom">
+            <input type="text" v-bind:id="id+'nom'" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="basic-addon1" v-model="linkNom">
         </div>
         <div class="col-sm">
-            <input type="text" id="inputPrenomData" class="form-control" placeholder="Prénom" aria-label="Prénom" aria-describedby="basic-addon1" v-model="linkPrenom">
+            <input type="text" v-bind:id="id+'prenom'" class="form-control" placeholder="Prénom" aria-label="Prénom" aria-describedby="basic-addon1" v-model="linkPrenom">
         </div>
         <div class="col-sm">
-            <input type="email" id="inputMailData" class="form-control" placeholder="Email " aria-label="Email" aria-describedby="basic-addon1" v-model="linkEmail">
+            <input type="email" v-bind:id="id+'mail'" class="form-control" placeholder="Email " aria-label="Email" aria-describedby="basic-addon1" v-model="linkEmail">
         </div>
         <div class="col-sm">
-            <select v-model="linkClasse" class="custom-select" id="inputClasseData">
+            <select v-model="linkClasse" class="custom-select" v-bind:id="id+'classe'">
                 <option selected>{{classe}}</option>
                 <option v-for="item in items[0]" :key="item.Classe">{{item.Classe}}</option>
             </select>
         </div>
         <div class="col-sm">
-            <input type="text" class="form-control"  id="inputDateData" aria-label="Date" aria-describedby="basic-addon1" v-model="linkDateNaissance">
+            <input type="text" class="form-control"  v-bind:id="id+'date'" aria-label="Date" aria-describedby="basic-addon1" v-model="linkDateNaissance">
         </div>
         <div class="col-sm">
-            <button v-on:click="toggleModaleUpdate" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-            <button v-on:click="toggleModaleDelete" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button v-on:click="toggleModaleUpdate" type="button" v-bind:id="id +'A'" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+            <button v-on:click="toggleModaleDelete" type="button" v-bind:id="id" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     

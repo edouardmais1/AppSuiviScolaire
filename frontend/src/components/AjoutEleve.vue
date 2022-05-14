@@ -5,13 +5,13 @@
     <div class="col">
         <div class="mb-3">
         <h6>Nom de l'élève:</h6>
-            <input v-model="nom" type="text" class="form-control" id="exampleInputEmail1">
+            <input v-model="nom" type="text" class="form-control" id="exampleInputName1">
     </div>
         </div>
     <div class="col">
         <div class="mb-3">
             <h6>Prenom de l'élève:</h6>
-            <input v-model="prenom" type="text" class="form-control" id="exampleInputPassword1">
+            <input v-model="prenom" type="text" class="form-control" id="exampleInputPrenom1">
         </div>
     </div>
 </div>
@@ -19,13 +19,13 @@
 <div class="col">
     <div class="mb-3">
     <h6>Mail des parents:</h6>
-    <input v-model="email" type="mail" class="form-control" id="exampleInputPassword1">
+    <input v-model="email" type="mail" class="form-control" id="exampleInputEmail1">
   </div>
   </div>
 <div class="col">
    <div class="mb-3">
     <h6>Date de naissance:</h6>
-    <input v-model="date" type="date" class="form-control" id="exampleInputPassword1">
+    <input v-model="date" type="date" class="form-control" id="exampleInputDate1">
   </div>
   </div>
   </div>

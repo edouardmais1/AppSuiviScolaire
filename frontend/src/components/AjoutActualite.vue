@@ -19,7 +19,7 @@
     <div class="col">
         <div class="mb-3">
         <h5>Contenu:</h5>
-        <textarea class="form-control" v-model="contenu" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
+        <textarea id="contenu1" class="form-control" v-model="contenu" placeholder="Contenu de l'actualité..." aria-label="With textarea"></textarea>
       </div>
       </div>
     

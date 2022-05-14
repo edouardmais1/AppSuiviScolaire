@@ -19,7 +19,7 @@
             </div>
             <div class="col-2">
                 <!-- <button v-on:click="toggleModale" type="button" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button> --> 
-                <button v-if="this.items_available == true" v-on:click="deleteActualite(this.itemsByTitle[0].ActualiteID)" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+                <button v-if="this.items_available == true" v-on:click="deleteActualite(this.itemsByTitle[0].ActualiteID)" id="btn-supprimer" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
             </div>
         </div>
         </div>

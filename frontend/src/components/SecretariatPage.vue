@@ -9,7 +9,7 @@
                 <div class="col">
                 <div class="nav-links">
                     <button class="btn btn-success btn-lg">
-                        <router-link class="nav-link" to="/secretariat/eleves">
+                        <router-link class="nav-link" id="eleve" to="/secretariat/eleves">
                             <i class="fas fa-solid fa-graduation-cap"></i>  Gestion des élèves
                         </router-link>
                     </button>
@@ -18,7 +18,7 @@
                 <div class="col">
                 <div class="nav-links">
                     <button class="btn btn-secondary btn-lg">
-                        <router-link class="nav-link" to="/secretariat/classes">
+                        <router-link class="nav-link" id="classe" to="/secretariat/classes">
                             <i class="fas fa-solid fa-school"></i>  Gestion des classes
                         </router-link>
                     </button>
@@ -27,7 +27,7 @@
                 <div class="col">
                 <div class="nav-links">
                     <button class="btn btn-primary btn-lg">
-                        <router-link class="nav-link" to="/secretariat/actualites">
+                        <router-link class="nav-link" id="actualite" to="/secretariat/actualites">
                             <i class="fas fa-regular fa-calendar-check"></i>  Gestion des actualités
                         </router-link>
                     </button>
