@@ -201,7 +201,7 @@ require("../store/axios.js");
     max-width: 750px;;
     width: auto;
     min-width: 250px;
-    margin-bottom: 150px;;
+    margin-bottom: 200px;;
     margin-top: 150px;
 }
 

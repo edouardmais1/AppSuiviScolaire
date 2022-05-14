@@ -13,37 +13,7 @@
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto">
 
-            <div v-if="this.status == false "></div>
-            <div class="nav-links" v-else>
-              <li class="nav-item">
-                <div>
-                  <i class="fas fa-calendar-alt imgs"></i>
-                </div>
-                <router-link class="nav-link" to="/calendrier">Calendrier</router-link>
-              </li>
-            </div>
-
-            <div v-if="this.status == false "></div>
-            <div class="nav-links" v-else>
-              <li class="nav-item">
-              <div>
-                <i class="fas fa-exclamation imgs comportement"></i>
-              </div>
-                <router-link class="nav-link" to="/comportement">Comportement</router-link>
-              </li>
-            </div>
-
-            <div v-if="this.status == false "></div>
-            <div class="nav-links" v-else>
-              <li class="nav-item">
-                <div>
-                  <i class="fas fa-file imgs"></i>
-                </div>
-                <router-link class="nav-link" to="/bulletin">Bulletin</router-link>
-              </li>
-            </div>
-
-            <div v-if="this.status == false "></div>
+             <div v-if="this.status == false "></div>
             <div class="nav-links" v-else>
               <li class="nav-item">
                 <div>
@@ -51,8 +21,53 @@
                 </div>
                 <router-link class="nav-link" to="/contact">Contact</router-link>
               </li>
+            </div>         
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
+              <li class="nav-item">
+              <div v-if="this.role == 1 || this.role == 3">
+                <div>
+                  <i class="fas fa-file imgs" v-if="this.role == 1"></i>
+                  <i class="fas fa-envelope imgs" v-else></i>
+                </div>
+                <router-link class="nav-link" to="/bulletin" v-if="this.role == 1">Bulletin</router-link>
+                <router-link class="nav-link" to="/secretariat" v-else>Secretariat</router-link>
+              </div>
+
+              <div v-else>
+              </div>         
+              </li>
             </div>
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
+              <div v-if="this.role == 1 || this.role == 2">
+              <li class="nav-item">
+                <div>
+                  <i class="fas fa-calendar-alt imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/calendrier">Calendrier</router-link>
+              </li>
+              </div>
+             <div v-else></div>              
+            </div>
+
+            <div v-if="this.status == false "></div>
+            <div class="nav-links" v-else>
+              <div v-if="this.role == 1" class="comportement">
+              <li class="nav-item">
+                <div>
+                  <i class="fas fa-comment-alt imgs"></i>
+                </div>
+                <router-link class="nav-link" to="/comportement">Comportement</router-link>
+              </li>
+              </div>
+             <div v-else></div> 
+            </div>            
           </ul>
+
+
           <ul class="navbar-nav justify-content-end">    
 
             <div class="nav-links" v-if="this.status == false ">
@@ -110,12 +125,13 @@ export default{
       return{
         status: false,
         checkData: [],
+        role: "",
       }
     },
 
     created(){
 
-        if(localStorage.getItem('Auth') == '' || localStorage.getItem('Auth') == null || localStorage.getItem('mail') == null || localStorage.getItem('token') == null){
+        if(localStorage.getItem('Auth') == '' || localStorage.getItem('Auth') == null || localStorage.getItem('mail') == null || localStorage.getItem('token') == null || localStorage.getItem('mail') == '' || localStorage.getItem('token') == ''){
             this.status = false;
             localStorage.clear();
         }
@@ -126,7 +142,16 @@ export default{
     },
 
     methods:{
-        getRole(){
+        async getRole(mail){
+          let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+          await axios.get(destinationUrl)
+          .then(response =>{
+              this.role = response.data[0].Roles;
+          })
+          .catch(error =>{
+            console.log(error);
+          })
 
         },
         
@@ -157,7 +182,7 @@ export default{
             }
 
             else{
-              this.getRole();
+              this.getRole(localStorage.getItem('mail'));
             }
 
         }
@@ -175,6 +200,10 @@ export default{
 .logo {
   width:100px;
   height:75px;
+}
+
+.comportement{
+  margin-top: 1px;
 }
 
 .nav {

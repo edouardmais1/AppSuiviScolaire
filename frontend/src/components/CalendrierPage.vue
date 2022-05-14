@@ -11,9 +11,10 @@
               <option v-for="item in items[0]" :key="item.Classe" v-bind:value="item.Classe">{{item.Classe}}</option>
             </select>
         </div>
-        <div class="col-sm">
+        <div class="col-sm" v-if="this.role == 2">
             <BoutonProfesseur></BoutonProfesseur>
         </div>
+        <div v-else></div>
 
         </div>
             <p class="alertMessage">{{alertMessage}}</p>
@@ -50,6 +51,7 @@ export default{
         
       items : [],
       alertMessage : '',
+      role: "",
 
       calendarOptions: {
         plugins: [dayGridPlugin, interactionPlugin, listPlugin, timeGridPlugin],
@@ -95,6 +97,7 @@ export default{
 
   created(){
     this.getClasses();
+    this.getRole(localStorage.getItem('mail'));
   },
 
   methods : {
@@ -110,6 +113,19 @@ export default{
         .catch(error =>{
           console.log(error)
         });
+    },
+
+    async getRole(mail){
+        let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+        await axios.get(destinationUrl)
+        .then(response =>{
+            this.role = response.data[0].Roles;
+        })
+        .catch(error =>{
+          console.log(error);
+        })
+
     },
 
     checkSelect(param){
@@ -144,7 +160,6 @@ export default{
         this.calendarOptions.events = [];
       }
     },
-
 
   }
 }
