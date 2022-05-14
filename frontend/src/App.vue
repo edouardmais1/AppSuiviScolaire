@@ -20,6 +20,8 @@ export default {
     FooterBar,
     CarouselBackground,
   },
+
+  
 };
 </script>
 <style>

@@ -45,8 +45,9 @@
               </li>
             </div>
           </ul>
-          <ul class="navbar-nav justify-content-end">       
-            <div class="nav-links">
+          <ul class="navbar-nav justify-content-end">    
+
+            <div class="nav-links" v-if="this.status == false ">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-align-left imgs"></i>
@@ -64,7 +65,7 @@
               </li>
             </div>
             -->
-            <div class="nav-links">
+            <div class="nav-links" v-if="this.status == false">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-sign-in-alt imgs"></i>
@@ -88,6 +89,36 @@
     </nav>
   </div>
 </template>
+
+
+<script>
+
+export default{
+    name : "NavBar",
+
+    data(){
+      return{
+        status: false
+      }
+    },
+
+    created(){
+
+        if(localStorage.getItem('Auth') == '' || localStorage.getItem('Auth') == null || localStorage.getItem('mail') == null || localStorage.getItem('token') == null){
+            this.$router.push('/');
+            this.status = false;
+            localStorage.clear();
+        }
+        else{
+            this.status = true; 
+        }
+    }
+
+    
+}
+
+</script>
+
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
