@@ -71,7 +71,9 @@ const store = createStore({
                 .then(response =>{
                     commit('setStatus', 'logged');
                     commit('logUser', response.data);
+                    localStorage.setItem('Auth', response.data[0].Jeton);
                     localStorage.setItem('token', response.data[0].token);
+                    localStorage.setItem('mail', response.data[0].Mail);
                     resolve(response);
                 })
                 .catch(error =>{

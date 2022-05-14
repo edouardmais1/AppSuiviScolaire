@@ -54,10 +54,6 @@
     <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
     </div>
 
-    <div class="center">
-    <button type="submit" @click.prevent="test()" value="test" class="btn btn-danger margin-bottom">test <i class="fas fa-solid fa-door-open"></i></button>
-    </div>
-
 </div>
 </form>
 </div>
@@ -69,20 +65,16 @@
 <script>
 import axios from 'axios';
 import ProfilEnfant from './ProfilEnfant.vue';
-import { useCookies } from "vue3-cookies";
 
 const url = require("../../url/url.js");
+
+//const authentification = require("../store/authentification.js");
 
 //vérification du headers de la requete
 require("../store/axios.js");
 
     export default{
         name: 'ProfilePage',
-
-        setup() {
-            const { cookies } = useCookies();
-            return { cookies };
-        },
 
         data(){
             return{
@@ -97,13 +89,12 @@ require("../store/axios.js");
         },
         
         created(){
-            if(localStorage.getItem('token') == null ){
+            if(localStorage.getItem('Auth') == null ){
                 this.$router.push('/');
+                localStorage.clear();
             }
             else{
-                this.generateCookies();
-                this.getUserinfos();
-                
+                this.checkAuthentification(localStorage.getItem('mail'), localStorage.getItem('Auth')); 
             }
         },
 
@@ -116,8 +107,6 @@ require("../store/axios.js");
             logout: function(){
                 this.$store.commit('logout');
                 this.$router.push('/');
-                this.$cookies.remove('mail');
-                this.$cookies.remove('token');
             },
             
             getChildsData(){
@@ -126,7 +115,7 @@ require("../store/axios.js");
             },
 
             async getUserinfos(){
-                let destinationUrl = url.concatUrl(`/infos/${this.$cookies.get('mail')}`);
+                let destinationUrl = url.concatUrl(`/infos/${localStorage.getItem('Auth')}`);
                 await axios.get(destinationUrl)
                 .then(response=>{
                     this.items = response.data[0];
@@ -136,17 +125,25 @@ require("../store/axios.js");
                 })
             },
 
-            test(){
-                let destinationUrl = url.concatUrl(`/test`)
-                axios.get(destinationUrl)
-                .then(response =>{console.log(response)}).catch();
-            },
+            async checkAuthentification(mail, jeton){
+                let destinationUrl = url.concatUrl(`/authentification/${mail}/${jeton}`);
 
-            generateCookies(){
-                if (this.user != []){
-                    this.$cookies.set("mail", this.user.Mail);
-                    this.$cookies.set("token", this.user.token);
-                }
+                console.log(destinationUrl);
+                //trouver un moyen de regler le bug
+                await axios.get(destinationUrl)
+
+                .then(function(response){
+                    if(response.data[0].length == 0){
+                        this.logout()
+                    }
+
+                    else{
+                        this.getUserinfos();
+                    }
+                })
+                .catch(function(){
+                })
+
             }
         }
     }

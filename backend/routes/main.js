@@ -27,7 +27,6 @@ const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');
 const calendarDataValidationSchema = require('../validations/sendDataCalendar');
-const { response } = require('../app');
 
 //API REST
 //GET METHODS
@@ -61,7 +60,8 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 router.get('/connexion/:mail',data.connexionUser);
 
 //récupérer les informations d'un user sur base de son Token
-router.get('/infos/:mail',checkToken.authenticateToken,data.getUserInfosByMail);
+//router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
+router.get('/infos/:auth',data.getUserInfosByAuth);
 
 //routes vers comportement 
 router.get('/comportement',data.getAllComportement);
@@ -74,6 +74,20 @@ router.get('/bulletin/:id',data.getBulletinById);
 //routes vers classe
 router.get('/allclassdata', data.getAllClassesAndMailProf);  
 router.get('/allmailprof', data.getAllMailProf);
+
+//obtenir le role d'un utilisateur
+router.get("/role/:mail",data.getRoleByMail);
+
+//appel API vérification d'identité
+router.get("/authentification/:mail/:jeton", data.getAuthentification);
+
+
+router.get('/test',checkToken.authenticateToken, (request, response)=>{
+    response.send("ok");
+})
+
+
+
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware
