@@ -11,7 +11,7 @@
             <p v-bind= "stopTime">{{convertDateOnTime(eventData.StopTime)}}</p>
         </div>
         <div class="col-2">
-            <button  v-on:click="deleteEventById()"  v-bind:id="eventData.EvenementID" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button  v-on:click="deleteEventById()"  id="supprimer" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     

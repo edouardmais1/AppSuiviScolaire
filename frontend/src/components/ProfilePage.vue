@@ -60,7 +60,7 @@
 
 
     <div class="center">
-    <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
+    <button type="submit" id="deconnexion" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
     </div>
 
 

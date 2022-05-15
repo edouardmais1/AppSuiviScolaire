@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="input-button">
-                            <button type="submit" class="submit-bouton" name="connexion" id="connexion" :disabled="validatedFields" >Se connecter</button>
+                            <button type="submit" class="submit-bouton" name="connexion" id="btn-connexion" :disabled="validatedFields" >Se connecter</button>
                         </div>
                     </form>
                 </div>
