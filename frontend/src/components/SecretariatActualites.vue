@@ -47,6 +47,10 @@
     import NavBar from './NavBar.vue'
     import AjoutActualite from "./AjoutActualite.vue"
     import GestionActualites from "./GestionActualites.vue"
+    import axios from 'axios';
+
+    const url = require("../../url/url.js");
+
     export default{
         name: "SecretariatActualites",
 
@@ -59,7 +63,12 @@
         data(){
             return{
                 revele : false,
+                role: "",
             }
+        },
+
+        created(){
+            this.getRole(localStorage.getItem('mail'));
         },
 
         methods: {
@@ -67,8 +76,33 @@
             toggleModale: function(){
                 this.revele=!this.revele;
             },
-        },
+
+            async getRole(mail){
+                let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+                this.checkRole();
+
+            },
+
+            checkRole(){
+                if(this.role != 3){
+                    this.$router.push("/");
+                }
+                else{
+                    //pass
+                }
+
+            },
+        }
     }
+
 </script>
 
 <style scoped>

@@ -27,6 +27,7 @@ const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');
 const calendarDataValidationSchema = require('../validations/sendDataCalendar');
+const { ChainCondition } = require('express-validator/src/context-items');
 
 //API REST
 //GET METHODS
@@ -38,10 +39,14 @@ router.get('/users/:mail',data.getUserByMail);
 //récupération des infos d'un elève
 router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
-router.get('/elevesByMail/:mail',data.getEleveByMail);
 
-//récupération des informations d'un calendrier
-router.get('/calendrier/:classe',data.getCalendarByClasse);
+//recupération des données d'un enfant + middleware entre 2
+router.get('/elevesByMail/:mail',checkToken.authenticateToken,data.getEleveByMail);
+
+//récupération des informations d'un calendrier et vérification de la validité du token 
+router.get('/calendrier/:classe',checkToken.authenticateToken,data.getCalendarByClasse);
+//récupérer evenement de classe
+router.get('/calendrier/:class/:date',data.getEventByClassAndDate);
 
 //récupérer l'actualité
 router.get('/',data.getActualite);
@@ -49,8 +54,6 @@ router.get('/actualite/:titre',data.getActuByTitle);
 
 router.get('/classes',data.getAllClasses);
 
-//récupérer evenement de classe
-router.get('/calendrier/:class/:date',data.getEventByClassAndDate);
 
 
 //récuperer le mot de passe en fonction du mail
@@ -59,8 +62,8 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 //récuperer le token et le mail de l'utilisateur
 router.get('/connexion/:mail',data.connexionUser);
 
-//router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
-router.get('/infos/:auth',data.getUserInfosByAuth);
+//obtenir les informations d'un utilisateur + middleware d'authentification
+router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
 
 //routes vers comportement 
 router.get('/comportement',data.getAllComportement);
@@ -81,28 +84,23 @@ router.get("/role/:mail",data.getRoleByMail);
 router.get("/authentification/:mail/:jeton", data.getAuthentification);
 
 
-//route de test pour les tokens
-router.get('/test',checkToken.authenticateToken, (request, response)=>{
-    response.send("ok");
-})
-
 
 
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware
-router.post('/actualite',actuDataValidationSchema,data.insertActualite)
+router.post('/actualite',actuDataValidationSchema, checkToken.authenticateToken ,data.insertActualite)
 
-//route permettant de rajouter un événement en DB
-router.post('/calendrier',calendarDataValidationSchema,data.insertDataCalendar);
+//route permettant de rajouter un événement en DB + middleware
+router.post('/calendrier',calendarDataValidationSchema,checkToken.authenticateToken,data.insertDataCalendar);
 
 //route permettant de rajouter un élève dans la base de donnée + middleware
-router.post('/eleves',elevesDataValidationSchema,data.insertStudent);
+router.post('/eleves',elevesDataValidationSchema, checkToken.authenticateToken ,data.insertStudent);
 
 //route vers l'inscription 
 router.post('/inscription',userDataValidationSchema,data.insertUser);
 
-//rafraichir le token utilisateur
+//rafraichir le token utilisateur ---> en cours de développement
 router.post('/refreshToken',checkToken.refreshToken);
 
 
@@ -111,12 +109,14 @@ router.post('/sendMail',mail.sendMail);
 
 
 //DELETE METHODS
-router.delete('/deleteEleve/:id', dataDelete.deleteEleveById);
-router.delete('/deleteActualite/:id', dataDelete.deleteActualiteById);
-router.delete('/deleteEvent/:id', dataDelete.deleteEventById);
+router.delete('/deleteEleve/:id', checkToken.authenticateToken , dataDelete.deleteEleveById);
+router.delete('/deleteActualite/:id', checkToken.authenticateToken ,dataDelete.deleteActualiteById);
+router.delete('/deleteEvent/:id',checkToken.authenticateToken , dataDelete.deleteEventById);
 
 //UPDATE METHODS
-router.post('/updateEleve/:id', dataUpdate.updateEleveById);
+
+router.post('/updateEleve/:id', elevesDataValidationSchema, checkToken.authenticateToken ,dataUpdate.updateEleveById);
+
 router.post('/updateSignature/:id', dataUpdate.updateComportementById);
 
 module.exports = router;

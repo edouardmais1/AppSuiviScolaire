@@ -103,8 +103,8 @@ export default{
                 Classe:this.classe,
                 DateDeNaissance:this.date,
             })
-            .then(response =>{
-                console.log(response.data);
+            .then(function(){
+                //pass
             })
             .catch(error =>{
                 console.log(error)

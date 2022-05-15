@@ -22,8 +22,8 @@
             <input type="text" class="form-control"  v-bind:id="id+'date'" aria-label="Date" aria-describedby="basic-addon1" v-model="linkDateNaissance">
         </div>
         <div class="col-sm">
-            <button v-on:click="toggleModaleUpdate" type="button" v-bind:id="id +'A'" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
-            <button v-on:click="toggleModaleDelete" type="button" v-bind:id="id" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button @click="toggleModaleUpdate" type="button" v-bind:id="id +'A'" class="btn btn-success"><i class="fas fa-solid fa-check"></i></button>
+            <button @click="toggleModaleDelete" type="button" v-bind:id="id" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     

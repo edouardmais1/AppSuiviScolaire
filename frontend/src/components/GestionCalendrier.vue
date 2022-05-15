@@ -45,12 +45,11 @@
 
                 let destinationUrl = url.concatUrl("/deleteEvent/" + this.eventData.EvenementID);
                 await axios.delete(destinationUrl)
-                .then(response =>{
-                    console.log(response.data);
+                .then(function(){
                     location.reload();
                 })
-                .catch(error =>{
-                    console.log(error)
+                .catch(function(){
+                    //pass
                 })
             },
         }

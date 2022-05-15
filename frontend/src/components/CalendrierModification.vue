@@ -2,6 +2,8 @@
     <div id="nav">
       <NavBar/> 
     </div>
+
+<div v-if="this.role == 2">
 <div class="calendrier-modification">
 <div class="row">
     <div class="col-sm">
@@ -94,9 +96,13 @@
         </div>
         </form>
         </div>
+    
 
+        </div>
+    </div>
 </div>
-</div>
+
+<div v-else></div>
 </template>
 
 <script>
@@ -121,6 +127,7 @@ export default{
             classeDelete: '',
             dateDelete:'',
             titreDelete:'',
+            role: "",
         }
     },
     components: {
@@ -129,7 +136,8 @@ export default{
             
     },
     created(){
-        this.getClasses()
+        this.getClasses();
+        this.getRole(localStorage.getItem('mail'))
     },
 
     computed: {
@@ -149,12 +157,11 @@ export default{
             let destinationUrl = url.concatUrl("/classes");
             await axios.get(destinationUrl)
             .then(response =>{
-                console.log(response.data);
                 this.items = response.data;
-                console.log(this.items);
             })
-            .catch(error =>{
-                console.log(error)
+            .catch(function(){
+                //pass
+
             })
         },
 
@@ -174,7 +181,7 @@ export default{
                 StopTime: this.stop,
             })
             .then(function(){
-                console.log("request send");
+                //pass
             })
             .catch(error =>{
                 console.log(error);
@@ -186,12 +193,25 @@ export default{
             await axios.get(destinationUrl)
             .then(response =>{
                 this.events = response.data;
-                console.log((this.events[0][0]).Titre);
+                //console.log((this.events[0][0]).Titre);
+            })
+            .catch(function(){
+                //pass
+            })
+        },
+
+        async getRole(mail){
+            let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.role = response.data[0].Roles;
             })
             .catch(error =>{
-                console.log(error)
+                console.log(error);
             })
-        },      
+
+        },   
 
     }
 

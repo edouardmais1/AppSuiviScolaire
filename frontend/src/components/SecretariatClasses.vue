@@ -46,11 +46,12 @@
         },
         
         created(){
-            this.getAllClassesAndMailProf();
+            this.getRole(localStorage.getItem('mail'));
         },
         data(){
             return{
                 items : [],
+                role: "",
             }
         },
         methods: {
@@ -66,6 +67,29 @@
                         console.log(error)
                     })
                 },
+
+            async getRole(mail){
+                let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+                this.checkRole();
+
+            },
+
+            checkRole(){
+                if(this.role == 3){
+                    this.getAllClassesAndMailProf();
+                }
+                else{
+                    this.$router.push("/");
+                }
+            }               
         },
     }
 </script>

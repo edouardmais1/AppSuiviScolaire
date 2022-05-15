@@ -51,7 +51,6 @@ const store = createStore({
                 .then(response =>{
                     commit('setStatus', 'created')
                     resolve(response);
-                    console.log(response);
                 })
                 .catch(error =>{
                     commit('setStatus', 'error_create')

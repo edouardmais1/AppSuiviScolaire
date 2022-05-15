@@ -4,8 +4,8 @@
     <div class="modale card" >
         <div class="btn-modale btn btn-danger" v-on:click="toggleModaleUpdate">X</div>
         <h3>Êtes-vous sur de vouloir mettre à jour les informations de cet élève ? </h3>
-        <div class="btn-modale-check btn btn-success" id="oui" v-on:click="updateEleve()"> Oui <i class="fas fa-solid fa-check"></i></div>
-        <div class="btn-modale-cancel btn btn-danger" id="non" v-on:click="toggleModaleUpdate">Annulé <i class="fas fa-solid fa-ban"></i></div>
+        <div class="btn-modale-check btn btn-success" id="oui" @click="updateEleve()"> Oui <i class="fas fa-solid fa-check"></i></div>
+        <div class="btn-modale-cancel btn btn-danger" id="non" @click="toggleModaleUpdate">Annulé <i class="fas fa-solid fa-ban"></i></div>
     </div>
     </div>
 </template>
@@ -34,8 +34,7 @@ export default{
                 Classe:this.classe,
                 DateDeNaissance:this.conversionDate(this.dateNaissance),
             })
-            .then(response =>{
-                console.log(response.data);
+            .then(function(){
                 location.reload();
             })
             .catch(error =>{

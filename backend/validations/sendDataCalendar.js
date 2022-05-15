@@ -20,7 +20,7 @@ const calendarDataValidationSchema = [
       .withMessage("Titre is required")
       .isString()
       .withMessage("input should be String")
-      .isLength({min: 3, max: 15}),
+      .isLength({min: 3, max: 30}),
     
 ];
 

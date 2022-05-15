@@ -60,6 +60,8 @@
     import axios from 'axios';
     import GestionEleves from "./GestionEleves.vue"
     import AjoutEleve from "./AjoutEleve.vue"
+
+    const url = require("../../url/url.js");
     export default{
         name: "SecretariatEleves",
 
@@ -73,16 +75,18 @@
             return{
                 items : [],
                 revele : false,
+                role : "",
             }
         },
 
         created(){
-            this.getEleves();
+            this.getRole(localStorage.getItem('mail'));
         },
 
         methods: {
             async getEleves(){
-                await axios.get("http://localhost:3000/eleves")
+                let destinationUrl = url.concatUrl("/eleves");
+                await axios.get(destinationUrl)
                 .then(response =>{
                     this.items = response.data;
                 })
@@ -99,6 +103,29 @@
             toggleModale: function(){
                 this.revele=!this.revele;
             },
+
+            async getRole(mail){
+                let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+                this.checkRole();
+
+            },
+
+            checkRole(){
+                if(this.role == 3){
+                    this.getEleves();
+                }
+                else{
+                    this.$router.push("/");
+                }
+            }
         },
     }
 </script>

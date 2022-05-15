@@ -2,6 +2,8 @@
     <div id="nav">
       <NavBar/> 
     </div>
+
+    <div v-if="this.role == 3"> 
     <section class="SecretariatPage">
         <div class="text-center">
                 <h1 class="form-title">Secrétariat</h1>
@@ -40,10 +42,16 @@
         </div>
         </div>
     </section>
+    </div>
+
+    <div v-else></div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue'
+import axios from 'axios'
+
+const url = require("../../url/url.js")
 
     export default{
         name: 'SecretariatPage',
@@ -51,6 +59,42 @@ import NavBar from './NavBar.vue'
         components: {
             NavBar
         },
+
+        data(){
+            return{
+                role: ""
+            }
+        },
+
+        created(){
+            this.getRole(localStorage.getItem('mail'));
+        },
+
+        methods: {
+            async getRole(mail){
+                let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+                this.checkRole();
+
+            },
+
+            checkRole(){
+                if(this.role == 3){
+                    return true;
+                }
+                else{
+                    this.$router.push("/");
+                    return false;
+                }
+            }
+        }
     }
 
 

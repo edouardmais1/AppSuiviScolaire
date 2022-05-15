@@ -6,7 +6,7 @@
 <div class="container">
 <form class="row g-3">
   <div class="col-md-6">
-  <h1 class="title">Votre Profil <div class="site-color"><i class="fas fa-regular fa-user"></i></div></h1>
+  <h1 class="title">Votre Profil <div><i class="fas fa-regular fa-user"></i></div></h1>
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
@@ -43,12 +43,18 @@
     </div>
 
 
-    <h1 class="title">Vos Enfants <div class="site-color"><i class="fas fa-solid fa-child"></i></div></h1>
+    <h1 class="title">Vos Enfants<div><i class="fas fa-solid fa-child"></i></div></h1>
 
 
     
     <div class="profil-enfant" v-if="this.user != null">
-        <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-for="item in childs" :key="item"/>
+
+        <div v-if="this.childs[0] == null " class="error-message">Pas d'enfants associés à ce compte pour le moment</div>
+
+        <div v-else>
+        <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:test="mabite" v-for="item in childs" :key="item"/>
+        </div>
+
     </div>
     <div v-else></div>
 
@@ -56,6 +62,7 @@
     <div class="center">
     <button type="submit" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
     </div>
+
 
 </div>
 </form>
@@ -110,6 +117,7 @@ require("../store/axios.js");
         },
 
         methods: {
+
             //appel de l'action 'logout' dans le Store 
             logout: function(){
                 this.$store.commit('logout');
@@ -180,6 +188,11 @@ require("../store/axios.js");
 
 
 <style scoped>
+
+.error-message{
+    color: red;
+    text-align: center;
+}
 
 .title{
     text-align: center;
