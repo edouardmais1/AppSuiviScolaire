@@ -1,24 +1,18 @@
 <template>
     <div class="listeEleves">
     <div class="row">
-    <div class="col-sm">
-            <p> Edouard Maisin </p>
-        </div>
-        <div class="col-sm">
-            <p> Compréhension de lecture
-                Andrée Otte
-                Les gladiateurs
-                Christian Lamblin
-                25 février de l’année 62. Après la longue interruption due aux froids de l’hiver, les
-                jeux du cirque vont reprendre dans une grande ville romaine.
-                De nombreuses affiches rouges et noires ont été placardées dans les rues de la ville.
-                Attirés par cette publicité, plus de vingt mille personnes se pressent aux entrées de l’arène. </p>
+    <div class="col-sm text-center">
+            <p> {{eleveId}} </p>
         </div>
         <div class="col-sm text-center">
-            <p> 13/12/21 </p>
+            <p> {{contenu}} </p>
+        </div>
+        <div class="col-sm text-center">
+            <p> {{splitDate(date)}} </p>
         </div>
         <div class="col-sm ">
-            <div class="text-center"> <i class="fas fa-solid fa-check"></i></div>
+            <div v-if="check == 1" class="text-center"> <i class="fas greencolor  fa-solid fa-check"></i></div>
+            <div v-if="check == 0" class="text-center"> <i class="fas redcolor fa-solid fa-exclamation"></i></div>
         </div>
         <div class="col-sm">
             <button v-on:click="toggleModale" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
@@ -38,18 +32,35 @@
            
         },
 
+        props: {
+            eleveId: String,
+            contenu: String,
+            date: Date,
+            signature: Number,
+        },
+
+
         data(){
             return{
-                revele: false,
+                revele: false,     
+                check: this.signature,  
             }
         },
 
-        methods:{
-            toggleModale: function(){
-                this.revele=!this.revele;
-            },
 
-        }
+        methods:{ 
+            /*toggleModale: function(){
+                this.revele=!this.revele;
+            },*/
+            setCheck(state){
+                this.check = state;
+            },
+            splitDate(date){
+                return((date.split('T'))[0]);
+            }
+
+        },
+
     }
 
 </script>
@@ -58,7 +69,12 @@
 <style scoped>
 
 
-
+.redcolor{
+    color: red;
+}
+.greencolor{
+    color: green;
+}
 .listeEleves{
     margin-top: 15px;
 }

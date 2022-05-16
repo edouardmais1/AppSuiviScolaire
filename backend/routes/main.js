@@ -66,8 +66,8 @@ router.get('/connexion/:mail',data.connexionUser);
 router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
 
 //routes vers comportement 
-router.get('/comportement',data.getAllComportement);
-router.get('/comportement/:id',data.getComportementById);
+//router.get('/comportement',data.getAllComportement);
+//router.get('/comportement/:id',data.getComportementById);
 
 //routes vers le bulletin
 router.get('/bulletin',data.getAllBulletin);
@@ -83,7 +83,8 @@ router.get("/role/:mail",data.getRoleByMail);
 //appel API vérification d'identité
 router.get("/authentification/:mail/:jeton", data.getAuthentification);
 
-
+//obtenir comportement par mail du prof
+router.get("/comportement/:mail", data.getComportementByMailProf);
 
 
 //POST METHODS

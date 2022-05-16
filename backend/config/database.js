@@ -5,16 +5,20 @@ const mysql = require('mysql2');
 
 //crée la connection avec la base de données
 let db = mysql.createConnection({
-    host : '176.96.231.253',
-    user : 'appscolaire',
-    password : 'appscolaireephec',
-    name : 'appscolaire',
-    database : 'appscolaire'
+    host : require('dotenv').config()["parsed"]["DB_HOST"],
+    user : require('dotenv').config()["parsed"]["DB_USER"],
+    password : require('dotenv').config()["parsed"]["DB_PASSWORD"],
+    name : require('dotenv').config()["parsed"]["DB_NAME"],
+    database : require('dotenv').config()["parsed"]["DB_DATABASE"]
 });
+
 
 //connection à la DB
 db.connect(function(err) {
     if (err) {
+
+
+
       return console.error('error: ' + err.message);
     }
   

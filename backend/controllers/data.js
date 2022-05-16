@@ -436,6 +436,18 @@ const getEventByClassAndDate = (request,response)=>{
     })
 };
 
+const getComportementByMailProf = (request,response)=>{
+    let sql = 'CALL getComportementByMailProf (?)'
+    db.query(sql, request.params.mail,(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
+
 
 //INSERT AN STUDENT 
 const dataStudent = (data,result)=>{
@@ -501,6 +513,7 @@ const getDataUserByAuth = (auth, result) => {
     });   
 }
 
+
 const getUserInfosByAuth = (req, res) => {
     getDataUserByAuth(req.params.auth, (err, results) => {
         if (err){
@@ -510,6 +523,7 @@ const getUserInfosByAuth = (req, res) => {
         }
     });
 }
+
 
 
 //POST
@@ -693,5 +707,6 @@ module.exports = {
     getRoleByMail,
     getAuthentification,
     getEleveByMail,
+    getComportementByMailProf,
 }
 
