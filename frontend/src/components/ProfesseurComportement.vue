@@ -69,10 +69,12 @@ const url = require('../../url/url.js');
         return{
             items: [],
             revele : false,
+            role: "",
         }
     },
     created(){
-        this.getComportementByMailProf();
+        this.getRole(localStorage.getItem('mail'));
+
     },
     methods: {
         toggleModale: function(){
@@ -92,6 +94,31 @@ const url = require('../../url/url.js');
                 })
                 
         },
+
+        async getRole(mail){
+            let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.role = response.data[0].Roles;
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+            this.checkRole();
+
+        },
+
+        checkRole(){
+            if(this.role == 2){
+                this.getComportementByMailProf()
+            }
+            else{
+                this.$router.push("/");
+            }
+        }
+
+
     },
  }
 </script>

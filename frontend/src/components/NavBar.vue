@@ -54,13 +54,22 @@
             </div>
 
             <div v-if="this.status == false "></div>
+
             <div class="nav-links" v-else>
-              <div v-if="this.role == 1" class="comportement">
+              <div v-if="this.role == 1 || this.role == 2" class="comportement">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-comment-alt imgs"></i>
                 </div>
+
+                <div v-if="this.role == 1">
                 <router-link class="nav-link" to="/comportement">Comportement</router-link>
+                </div>
+
+                <div v-else>
+                  <router-link class="nav-link" to="/comportement/modification">Comportement</router-link>
+                </div>
+
               </li>
               </div>
              <div v-else></div> 
