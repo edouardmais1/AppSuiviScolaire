@@ -33,6 +33,18 @@ export default{
     name: 'AjoutComportement',
     //Props contenant des variables utilisées pour la gestion de données dans le html
     props: ['revele', 'toggleModale'],
+
+    computed: {
+          //Fonction permettant de vérifier si les champs 'titre', 'date' et 'contenu' sont remplis ou non
+          checkValidatedFields: function(){
+            if(this.titre != "" && this.date != "" && this.contenu != ""){
+              return false;
+            }
+            else{
+              return true;
+            }
+          }
+    },
 }
 
 </script>
