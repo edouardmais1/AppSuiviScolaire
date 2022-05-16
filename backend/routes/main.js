@@ -113,9 +113,9 @@ router.post('/sendMail',mail.sendMail);
 router.delete('/deleteEleve/:id', checkToken.authenticateToken , dataDelete.deleteEleveById);
 router.delete('/deleteActualite/:id', checkToken.authenticateToken ,dataDelete.deleteActualiteById);
 router.delete('/deleteEvent/:id',checkToken.authenticateToken , dataDelete.deleteEventById);
+router.delete('/deleteComportement/:id',checkToken.authenticateToken , dataDelete.deleteComportementById);
 
 //UPDATE METHODS
-
 router.post('/updateEleve/:id', elevesDataValidationSchema, checkToken.authenticateToken ,dataUpdate.updateEleveById);
 
 router.post('/updateSignature/:id', dataUpdate.updateComportementById);

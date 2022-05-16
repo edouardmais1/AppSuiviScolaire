@@ -448,7 +448,30 @@ const getComportementByMailProf = (request,response)=>{
     })
 };
 
+//ROUTES POUR AJOUT DE COMPORTEMENT
+const getClasseByMailProf = (request,response)=>{
+    let sql = 'CALL getClasseByMailProf (?)'
+    db.query(sql, request.params.mail,(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
 
+const getEleveByClasse = (request,response)=>{
+    let sql = 'CALL getEleveByClasse (?)'
+    db.query(sql, request.params.mail,(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
 //INSERT AN STUDENT 
 const dataStudent = (data,result)=>{
 

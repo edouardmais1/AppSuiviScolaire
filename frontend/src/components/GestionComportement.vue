@@ -15,7 +15,7 @@
             <div v-if="check == 0" class="text-center"> <i class="fas redcolor fa-solid fa-exclamation"></i></div>
         </div>
         <div class="col-sm">
-            <button v-on:click="toggleModale" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button v-on:click="deleteComportement(id)" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     
@@ -23,9 +23,11 @@
 </template>
 
 <script>
-
+    import axios from 'axios';
+    const url = require("../../url/url.js");
 
     export default{
+
         name: "GestionComportement",
         
         components: {
@@ -37,6 +39,7 @@
             contenu: String,
             date: Date,
             signature: Number,
+            id: Number,
         },
 
 
@@ -57,8 +60,19 @@
             },
             splitDate(date){
                 return((date.split('T'))[0]);
-            }
-
+            },
+            async deleteComportement(id){
+                console.log(id);
+                let destinationUrl = url.concatUrl("/deleteComportement/" + id);
+                await axios.delete(destinationUrl)
+                .then(response =>{
+                    console.log(response.data);
+                    location.reload();
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            },
         },
 
     }

@@ -55,9 +55,23 @@ const deleteEventById= (request, response) =>{
     })
 }
 
+//DELETE UNE ACTUALITE PAR RAPPORT A SON ID
+const deleteComportementById= (request, response) =>{
+
+    let sql = `CALL deleteComportementById (?)`
+    db.query(sql, request.params.id, (error, results)=>{
+        if(error){
+            throw error;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+}
 
 module.exports = { 
     deleteEleveById,
     deleteActualiteById,
     deleteEventById,
+    deleteComportementById,
 }
