@@ -53,7 +53,22 @@ const updateEleveById = (request, response) =>{
 
 }
 
+//UPDATE UN ELEVE PAR RAPPORT A SON ID
+const updateClasseMailProf = (request, response) =>{
+    let sql = `CALL updateClasseMailProf (?, ?)`
+    db.query(sql, [request.body.Mail, request.body.Classe], (error, results)=>{
+        if(error){
+            throw error;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+
+}
+
 module.exports = {
     updateComportementById,
     updateEleveById,
+    updateClasseMailProf,
 }

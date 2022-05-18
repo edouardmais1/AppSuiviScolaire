@@ -111,7 +111,8 @@ router.delete('/deleteComportement/:id',checkToken.authenticateToken , dataDelet
 
 //UPDATE METHODS
 router.post('/updateEleve/:id', elevesDataValidationSchema, checkToken.authenticateToken ,dataUpdate.updateEleveById);
-
+router.post('/updateClasseByMailProf', dataUpdate.updateClasseMailProf);
 router.post('/updateSignature/:id', dataUpdate.updateComportementById);
+
 
 module.exports = router;
