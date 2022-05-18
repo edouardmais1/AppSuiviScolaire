@@ -67,7 +67,7 @@ router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
 
 //routes vers comportement 
 //router.get('/comportement',data.getAllComportement);
-//router.get('/comportement/:id',data.getComportementById);
+router.get('/comportement/:id',data.getComportementById);
 
 //routes vers le bulletin
 router.get('/bulletin',data.getAllBulletin);
@@ -86,7 +86,8 @@ router.get("/authentification/:mail/:jeton", data.getAuthentification);
 //obtenir comportement par mail du prof
 router.get("/comportement/:mail", data.getComportementByMailProf);
 
-
+//obtenir comportement par mail du prof
+router.get("/eleveid/:mail", data.getEleveIdByMailParent);
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware

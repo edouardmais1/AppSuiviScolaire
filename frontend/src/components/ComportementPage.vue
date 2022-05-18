@@ -11,20 +11,23 @@
                     </header>
 
                     <div class="row titles">
-                            <div class="col-xl-3 title">
+                            <div class="col-sm title">
+                                Enfant
+                            </div>
+                            <div class="col-sm title">
                                 Mail du professeur
                             </div>
-                            <div class="col-xl-3 title">
+                            <div class="col-sm title">
                                 Commentaire
                             </div>
-                            <div class="col-xl-3 title">
+                            <div class="col-sm title">
                                 Date
                             </div>
-                            <div class="col-xl-3 title">
+                            <div class="col-sm title">
                                 Signature
                             </div>
                     </div>
-                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse().slice(0,20)" :key="item"/>
+                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:eleveId="item.EleveID" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse().slice(0,20)" :key="item"/>
                     <button class="button-send" v-on:click="updateSignature()"  name="button">Signer tout</button>
                 </div>
             </div>
@@ -37,11 +40,9 @@ import NavBar from './NavBar.vue'
 import CompComponent from "./CompComponent.vue";
 import axios from 'axios';
 const url = require("../../url/url.js");
-const instance = axios.create({
-baseURL: 'http://localhost:3000/comportement'
-});
 
-const eleve_id ='/'+'25';
+
+
 
 export default{
     name : "ComportementPage",
@@ -51,23 +52,46 @@ export default{
         NavBar
     },
 
+
+
     data(){
         return {
             items: [],
+            eleve_id: [],
         }
     },
 
+
     created(){
-        this.getAllComportement();
+        this.getEleveIdByMailParent();
     },
 
     methods : {
-        async getAllComportement(){
+        async getEleveIdByMailParent(){
+            let destinationUrl = url.concatUrl('/eleveid/' + localStorage.getItem('mail'));
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.eleve_id = (response.data[0]);
+                this.test(this.eleve_id.length);
+                console.log("Request send");
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+        test(tab){
+            console.log(tab);
+            for(let i=0; i<tab; i++){
+                let finalId = this.eleve_id[i].EleveID;
+                this.getComportement(finalId);
+            }
+        },
+        async getComportement(id){
             try{
-                await instance.get(eleve_id)
+                let destinationUrl = url.concatUrl('/comportement/' + id);
+                await axios.get(destinationUrl)
                 .then(response =>{
-                    this.items = response.data;
-                    console.log(response.data);
+                    this.items.push(response.data[0]);
                 })
                 .catch(error =>{
                     console.log(error)
@@ -79,7 +103,7 @@ export default{
 
         },
          async updateSignature(){
-            let destinationUrl = url.concatUrl('/updateSignature' + eleve_id);
+            let destinationUrl = url.concatUrl('/updateSignature' + this.eleve_id);
             await axios.post(destinationUrl)
             .then(response =>{
                 console.log(response.data);
@@ -116,13 +140,13 @@ export default{
     padding-bottom: 10%;
 }
 .wrapper {
-    width: 60%;
     margin-left: auto;
     margin-right: auto;
     background: #fff;
     border-radius: 20px;
     border: 3px solid #6dabe4;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
+    min-width: 600px;
 }
 .wrapper header {
     font-size: 36px;
@@ -140,7 +164,6 @@ export default{
 .titles {
     margin-left: 15px;
     margin-top: 15px;
-    text-align: center;
 }
 
 form .button-send {
@@ -179,17 +202,10 @@ form .button-send {
 
 @media (max-width: 700px) {
     .wrapper header {
-        font-size:90%;
         text-align: center;
         font-weight: 300;
         padding: 20px 30px;
         border-bottom: 3px solid #6dabe4;
-    }
-    .titles{
-        font-size: 90%;
-    }
-    .bodys{
-        font-size: 90%;
     }
 }
 </style>

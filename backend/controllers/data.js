@@ -358,8 +358,7 @@ const getAllComportement = (request,response)=>{
 
 const getComportement = (id,result) =>{
 
-    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("SELECT Mail, Contenu, Date, Signature FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
+    db.query("SELECT Mail, Contenu, Date, Signature, EleveID FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
         if(err){
             console.log(err);
             result(err,null);
@@ -463,6 +462,18 @@ const getClasseByMailProf = (request,response)=>{
 
 const getEleveByClasse = (request,response)=>{
     let sql = 'CALL getEleveByClasse (?)'
+    db.query(sql, request.params.mail,(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
+
+const getEleveIdByMailParent = (request,response)=>{
+    let sql = 'CALL getEleveIdByMailParent (?)'
     db.query(sql, request.params.mail,(err,results)=>{
         if(err){
             throw err;
@@ -731,5 +742,6 @@ module.exports = {
     getAuthentification,
     getEleveByMail,
     getComportementByMailProf,
+    getEleveIdByMailParent,
 }
 

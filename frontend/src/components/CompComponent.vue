@@ -1,40 +1,63 @@
 <template> 
     <div class="row bodys">
-        <div class="col-xl-3 body">
+        <div class="col-sm body">
+            {{name}}
+        </div>
+        <div class="col-sm body">
             {{mail}}
         </div>
 
-       <div class="col-xl-3 body">
+       <div class="col-sm body">
             {{contenu}}
         </div>
 
-        <div class="col-xl-3 body">
+        <div class="col-sm body">
             {{date}}
         </div>
         
-        <div class="col-xl-3 body" v-if="signature == '0'">
-            <i class="fas fa-times"></i>
+        <div class="col-sm body" v-if="signature == '0'">
+            <i class="fas fa-times redcolor"></i>
         </div>
-         <div class="col-xl-3 body" v-else>
-            <i class="fas fa-check"></i>
+         <div class="col-sm body" v-else>
+            <i class="fas fa-check greencolor"></i>
         </div>
     </div>
 </template>
 
 
 <script>
+import axios from 'axios';
+const url = require("../../url/url.js");
+export default{
+    name : "CompComponent",
+    data(){
+        return {
+            name: "",
+        }
+    },
+    props: {
+        mail : String,
+        contenu: String,
+        date: Date,
+        signature: Number,
+    },
+    created(){
+        //this.getNameByEleveId();
+    },
 
-    export default{
-        name : "CompComponent",
-
-        props: {
-            mail : String,
-            contenu: String,
-            date: Date,
-            signature: Number
-            
+    methods:{
+        async getNameByEleveId(){
+            let destinationUrl = url.concatUrl('/eleves/' + this.eleveId);
+            await axios.get(destinationUrl)
+            .then(response =>{
+                this.name = response.data[0].Prenom;
+            })
+            .catch(error =>{
+                console.log(error)
+            })
         },
     }
+}
 
 </script>
 <style scoped>
@@ -45,11 +68,16 @@
 }
 
 .body{
-    text-align: center;
     padding-bottom: 5px;
     margin-top:10px;
 }
 
+.greencolor{
+    color: green;
+}
 
+.redcolor{
+    color: red;
+}
 
 </style>
