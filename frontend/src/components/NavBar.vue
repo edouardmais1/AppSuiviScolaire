@@ -42,7 +42,7 @@
 
             <div v-if="this.status == false "></div>
             <div class="nav-links" v-else>
-              <div v-if="this.role == 1 || this.role == 2">
+              <div v-if="this.role == 1 || this.role == 2 || this.role == 3">
               <li class="nav-item">
                 <div>
                   <i class="fas fa-calendar-alt imgs"></i>

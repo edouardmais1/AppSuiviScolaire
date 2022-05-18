@@ -1,5 +1,5 @@
 <template>
-<form class='add-student center' v-if="revele" @submit="insertStudent()" >
+<form class='add-student' v-if="revele" @submit="insertStudent()" >
 <h1> Ajout d'un élève <i class="fas fa-solid fa-user-plus"></i></h1>
 <div class="row">
     <div class="col">
@@ -120,7 +120,7 @@ export default{
     width: 750px;
     height: 250px;
     margin-top: 50px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
 }
 
 

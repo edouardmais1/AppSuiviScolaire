@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i> <h7>Prénom:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i>Prénom:
 
         </div>
         </div>
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i><h7>Nom:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i>Nom:
             </div>
         </div>
         <div class="col-sm">
@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-sm">
         <div class="underlined">
-            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i><h7>Adresse email:</h7>
+            <i class="fas fa-solid fa-arrow-right padding-icone site-color"></i>Adresse email:
         </div>
         </div>
         <div class="col-sm">
@@ -51,7 +51,7 @@
             <div v-if="this.childs[0] == null " class="error-message">Pas d'enfants associés à ce compte pour le moment</div>
 
             <div v-else>
-            <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:test="mabite" v-for="item in childs" :key="item"/>
+            <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-for="item in childs" :key="item"/>
             </div>
 
         </div>

@@ -86,8 +86,6 @@ const url = require('../../url/url.js');
                 await axios.get(destinationUrl)
                 .then(response =>{
                     this.items = response.data;
-                    console.log(localStorage.getItem('mail'));
-                    console.log(this.items.EleveID);
                 })
                 .catch(error =>{
                     console.log(error);

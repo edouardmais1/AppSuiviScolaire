@@ -27,7 +27,7 @@
         //Props contenant des variables utilisées pour la gestion de données dans le html
         props: {
             titre : String,
-            date: Date,
+            date: String,
             Contenu: String,
         },
     }

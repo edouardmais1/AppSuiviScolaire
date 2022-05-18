@@ -1,5 +1,5 @@
 <template>
-    <form class='add-actualite center' v-if="revele" @submit="insertActu()">
+    <form class='add-actualite' v-if="revele" @submit="insertActu()">
     <h1> Ajout d'une actualité <i class="fas fa-solid fa-calendar-plus"></i></h1>
     <div class="row">
     <div class="col">
@@ -70,8 +70,8 @@
               Titre: this.titre,
               Contenu: this.contenu
             })
-            .then(response =>{
-              console.log(response.data);
+            .then(function(){
+              //pass
             })
             .catch(error =>{
               console.log(error);
@@ -86,7 +86,7 @@
     width: 750px;
     height: 250px;
     margin-top: 50px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     }
 
     </style>

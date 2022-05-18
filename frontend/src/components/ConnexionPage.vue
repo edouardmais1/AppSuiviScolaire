@@ -127,11 +127,11 @@ const url = require("../../url/url.js");
             },
 
 
-            login(){
+            async login(){
                  
                 const self = this;
 
-                this.$store.dispatch('login',this.email)
+                await this.$store.dispatch('login',this.email)
                 .then(function(){
                     self.$router.push('/profile');
                 })

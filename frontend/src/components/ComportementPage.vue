@@ -27,7 +27,7 @@
                                 Signature
                             </div>
                     </div>
-                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:eleveId="item.EleveID" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items.reverse().slice(0,20)" :key="item"/>
+                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:eleveId="item.EleveID" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items" :key="item"/>
                     <button class="button-send" v-on:click="updateSignature()"  name="button">Signer tout</button>
                 </div>
             </div>
@@ -73,14 +73,12 @@ export default{
             .then(response =>{
                 this.eleve_id = (response.data[0]);
                 this.test(this.eleve_id.length);
-                console.log("Request send");
             })
             .catch(error =>{
                 console.log(error)
             })
         },
         test(tab){
-            console.log(tab);
             for(let i=0; i<tab; i++){
                 let finalId = this.eleve_id[i].EleveID;
                 this.getComportement(finalId);
@@ -92,6 +90,8 @@ export default{
                 await axios.get(destinationUrl)
                 .then(response =>{
                     this.items.push(response.data[0]);
+                    //filter le tableau en fonction des événements récents et nombres de commentaires
+                    this.items.reverse().slice(0,20);
                 })
                 .catch(error =>{
                     console.log(error)
@@ -105,8 +105,7 @@ export default{
          async updateSignature(){
             let destinationUrl = url.concatUrl('/updateSignature' + this.eleve_id);
             await axios.post(destinationUrl)
-            .then(response =>{
-                console.log(response.data);
+            .then(function(){
                 location.reload();
             })
             .catch(error =>{

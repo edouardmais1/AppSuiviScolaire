@@ -7,7 +7,7 @@
             <h1 class="form-title">Actualités</h1>
         </div>
         <div v-if="this.active = true">
-            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items.reverse().slice(0,6)" :key="item"/>
+            <ActuComponent v-bind:titre="item.Titre" v-bind:date="this.conversionDate(item.Date)" v-bind:Contenu="item.Contenu" v-bind:classe="item.Classe"  v-for="item in items" :key="item"/>
         </div>
         <div v-else class="alertMessage"><p>{{alerMessage}}</p></div>
 
@@ -63,7 +63,7 @@
                 try{
                     await axios.get(destinationUrl)
                     .then(response =>{
-                        this.items = response.data;
+                        this.items = response.data.reverse().slice(0,6);
                     })
                     .catch(error =>{
                         console.log(error)

@@ -61,7 +61,7 @@
             nom : String,
             prenom : String,
             email: String,
-            dateNaissance: Date,
+            dateNaissance: String,
             classe: String,
             id: Number,
         },

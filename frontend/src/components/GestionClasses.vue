@@ -21,7 +21,7 @@
     export default{
         name: "GestionClasses",
         props: {
-            classeData: String,
+            classeData: Object,
 
         },
         data(){

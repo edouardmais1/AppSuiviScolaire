@@ -41,7 +41,7 @@ router.get('/eleves', data.getAllEleves);
 router.get('/eleves/:id',data.getEleveById);
 
 //recupération des données d'un enfant + middleware entre 2
-router.get('/elevesByMail/:mail',checkToken.authenticateToken,data.getEleveByMail);
+router.get('/elevesByMail/:mail',data.getEleveByMail);
 
 //récupération des informations d'un calendrier et vérification de la validité du token 
 router.get('/calendrier/:classe',checkToken.authenticateToken,data.getCalendarByClasse);
@@ -63,7 +63,7 @@ router.get('/passwords/:mail',data.getPasswordByMail);
 router.get('/connexion/:mail',data.connexionUser);
 
 //obtenir les informations d'un utilisateur + middleware d'authentification
-router.get('/infos/:auth',checkToken.authenticateToken,data.getUserInfosByAuth);
+router.get('/infos/:auth',data.getUserInfosByAuth);
 
 //routes vers comportement 
 //router.get('/comportement',data.getAllComportement);

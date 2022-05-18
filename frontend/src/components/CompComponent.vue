@@ -38,7 +38,7 @@ export default{
     props: {
         mail : String,
         contenu: String,
-        date: Date,
+        date: String,
         signature: Number,
     },
     created(){

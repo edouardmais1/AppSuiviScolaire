@@ -20,17 +20,13 @@
 <script>
 //import BullComponent from "./BullComponent.vue";
 import NavBar from './NavBar.vue'
-import axios from 'axios';
 
 //Lien avec axios et la base URL
-const instance = axios.create({
-baseURL: 'http://localhost:3000/bulletin'
-});
 
     export default{
         //Nom de composant actuel
         name : "BulletinPage",
-        //Components exteernes importés et utilisé sur la page
+        //Composants externes importés et utilisé sur la page
         components: {
             //BullComponent
             NavBar,
@@ -42,35 +38,9 @@ baseURL: 'http://localhost:3000/bulletin'
                 messageMaj : "à implémenter et pas mettre du bullshit inutile",
             }
         },
-        //Appel de fonctions au chargement de la page
-        created(){
-            this.getBulletinById();
-        },
         //Méthode utilisées sur la pag
         methods : {
-            //Fonction asynchrone récupérant le contenu d'un bulletin par rapport à un id
-            async getBulletinById(){
-                try{
-                    await instance.get("/1")
-                    .then(response =>{
-                        this.items = response.data;
-                        console.log(response.data);
-                    })
-                    .catch(error =>{
-                        console.log(error)
-                    })
-                }
-                catch(error){
-                    console.log(error);
-                }
-
-            },
-
-            conversionDate(date){
-                let result = new Date(date);
-
-                return result.toLocaleDateString();
-            },
+            //en cours de développement
         
         }
 
