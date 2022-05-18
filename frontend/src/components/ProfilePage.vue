@@ -42,22 +42,22 @@
         </div>
     </div>
 
+    <div v-if="this.role == 1">
+        <h1 class="title">Vos Enfants<div><i class="fas fa-solid fa-child"></i></div></h1>
 
-    <h1 class="title">Vos Enfants<div><i class="fas fa-solid fa-child"></i></div></h1>
 
+        <div class="profil-enfant" v-if="this.user != null">
 
-    
-    <div class="profil-enfant" v-if="this.user != null">
+            <div v-if="this.childs[0] == null " class="error-message">Pas d'enfants associés à ce compte pour le moment</div>
 
-        <div v-if="this.childs[0] == null " class="error-message">Pas d'enfants associés à ce compte pour le moment</div>
+            <div v-else>
+            <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:test="mabite" v-for="item in childs" :key="item"/>
+            </div>
 
-        <div v-else>
-        <ProfilEnfant v-bind:classe="item.Classe" v-bind:date="this.conversionDate(item.DateDeNaissance)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:test="mabite" v-for="item in childs" :key="item"/>
         </div>
-
+        <div v-else></div>
     </div>
     <div v-else></div>
-
 
     <div class="center">
     <button type="submit" id="deconnexion" @click="logout()" value="deconnexion" class="btn btn-danger margin-bottom">Déconnexion <i class="fas fa-solid fa-door-open"></i></button>
@@ -93,7 +93,7 @@ require("../store/axios.js");
                 items: [],
                 childs: [],
                 user : this.$store.state.user,
-
+                role: "",
                 checkData: [],
             }
         },
@@ -178,9 +178,23 @@ require("../store/axios.js");
                 else{
                     this.getUserinfos(localStorage.getItem('Auth'));
                     this.getChildsData(localStorage.getItem('mail'));
+                    this.getRole(localStorage.getItem('mail'));
                 }
 
-            }
+            },
+
+            async getRole(mail){
+                let destinationUrl = url.concatUrl(`/role/${mail}`)
+
+                await axios.get(destinationUrl)
+                .then(response =>{
+                    this.role = response.data[0].Roles;
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+
+            },
         }
     }
 
