@@ -1,17 +1,19 @@
 /// <reference types="cypress" />
 
-context('Secrétariat Actualité Page', () => {
+context('Actualité Page', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080)
         cy.visit('http://localhost:8080/')
         cy.wait(1000)
     })
+    
     it('Up down home page', () => {
         cy.scrollTo('bottom')
         cy.wait(1000)
         cy.scrollTo('top')
         cy.wait(1000)
     });
+
     it('.click() - click on a DOM element', () => {
         cy.viewport(1920, 1080)
         cy.get('.navbar-toggler').click({force: true})
@@ -70,7 +72,11 @@ context('Secrétariat Actualité Page', () => {
         //Check résultat
 
         cy.visit('http://localhost:8080/')
+        cy.contains('Test1').should('exist')
         cy.wait(2000)
+
+        //Déconnexion
+        
         cy.get('.navbar-toggler').click({force: true})
         cy.contains('Profile').click({force: true})
         cy.location('pathname').should('eq', '/profile')
@@ -79,6 +85,7 @@ context('Secrétariat Actualité Page', () => {
         cy.wait(1000)
 
         //Retour à la connexion du secrétariat
+        
         cy.get('.navbar-toggler').click({force: true})
         cy.contains('Connexion').click({force: true})
         cy.location('pathname').should('eq', '/connexion')
@@ -102,6 +109,35 @@ context('Secrétariat Actualité Page', () => {
         cy.get('select').select('Test1',{force: true})
         cy.wait(1000)
         cy.get("#btn-supprimer").click({force: true})
+        cy.wait(1000)
+        
+        //Déconnexion
+
+        cy.get('.navbar-toggler').click({force: true})
+        cy.contains('Profile').click({force: true})
+        cy.location('pathname').should('eq', '/profile')
+        cy.wait(2000)
+        cy.get('#deconnexion').click({force: true})
+        cy.wait(1000)
+
+        //Reconnexion en tant que parent
+
+        cy.get('.navbar-toggler').click({force: true})
+        cy.contains('Connexion').click({force: true})
+        cy.location('pathname').should('eq', '/connexion')
+        cy.wait(1000)
+        cy.get('#email').type('Cypress@gmail.com')
+        cy.wait(1000)
+        cy.get('#password').type('Cypress123')
+        cy.wait(1000)
+        cy.get('#btn-connexion').click({force: true})
+        cy.wait(1000)
+
+        //Check résultat
+
+        cy.visit('http://localhost:8080/')
+        cy.wait(1000)
+        cy.contains('Test1').should('not.exist')
         cy.wait(1000)
     });
   });
