@@ -2,13 +2,13 @@
 <div class="listeCalendrier">
     <div class="row">
         <div class="col-4">
-            <p v-bind= "titreDelete">{{eventData.Titre}}</p>
+            <p>{{eventData.Titre}}</p>
         </div>
         <div class="col-3">
-            <p v-bind= "startTime">{{convertDateOnTime(eventData.StartTime)}}</p>
+            <p>{{convertDateOnTime(eventData.StartTime)}}</p>
         </div>
         <div class="col-3">
-            <p v-bind= "stopTime">{{convertDateOnTime(eventData.StopTime)}}</p>
+            <p>{{convertDateOnTime(eventData.StopTime)}}</p>
         </div>
         <div class="col-2">
             <button  v-on:click="deleteEventById()"  id="supprimer" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
@@ -28,7 +28,7 @@
     
         },
         props:{
-            eventData: String,
+            eventData: Object,
         },
         methods:{
             convertDateOnTime(dateTime){

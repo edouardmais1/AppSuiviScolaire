@@ -50,6 +50,7 @@ router.get('/calendrier/:class/:date',data.getEventByClassAndDate);
 
 //récupérer l'actualité
 router.get('/',data.getActualite);
+
 router.get('/actualite/:titre',data.getActuByTitle);
 
 router.get('/classes',data.getAllClasses);
@@ -68,10 +69,6 @@ router.get('/infos/:auth',data.getUserInfosByAuth);
 //routes vers comportement 
 //router.get('/comportement',data.getAllComportement);
 router.get('/comportement/:id',data.getComportementById);
-
-//routes vers le bulletin
-router.get('/bulletin',data.getAllBulletin);
-router.get('/bulletin/:id',data.getBulletinById);
 
 //routes vers classe
 router.get('/allclassdata', data.getAllClassesAndMailProf);  
@@ -104,10 +101,6 @@ router.post('/inscription',userDataValidationSchema,data.insertUser);
 
 //rafraichir le token utilisateur ---> en cours de développement
 router.post('/refreshToken',checkToken.refreshToken);
-
-
-//route pour l'envoi de mails
-router.post('/sendMail',mail.sendMail);
 
 
 //DELETE METHODS

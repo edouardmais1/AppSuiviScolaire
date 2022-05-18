@@ -12,7 +12,7 @@ const calendarDataValidationSchema = [
       .withMessage("Contenu is required")
       .isString()
       .withMessage("Contenu should be a string")
-      .isLength({min: 15}),
+      .isLength({min: 10}),
 
 
     body("Titre")

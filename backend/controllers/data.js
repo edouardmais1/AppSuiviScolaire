@@ -382,45 +382,6 @@ const getComportementById = (request, response) =>{
 }
 
 
-//Routes bulletin
-
-const getAllBulletin = (request,response)=>{
-
-    db.query('SELECT * FROM tb_Bulletins',(err,results)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            response.status(200).json(results);
-        }
-    })
-};
-
-const getBulletin = (id,result) =>{
-
-    //RECUPERER LES INFORMATIONS D'UN UTILISATEUR
-    db.query("SELECT * FROM tb_Bulletins WHERE EleveID = ?", [id], (err,results)=>{
-        if(err){
-            console.log(err);
-            result(err,null);
-        }
-        else{
-            result(null,results);
-            console.log("Request send with success");
-        }
-    });
-}
-
-const getBulletinById = (request, response,next) =>{
-    getBulletin(request.params.id, (error,results)=>{
-        if(error){
-            response.send(error);
-        }
-        else{
-            response.status(200).json(results)
-        }
-    })
-}
 
 
 const getEventByClassAndDate = (request,response)=>{
@@ -729,8 +690,6 @@ module.exports = {
     connexionUser,
     getAllComportement,
     getComportementById,
-    getAllBulletin,
-    getBulletinById,
     getUserInfosByAuth,
     insertActualite,
     getActuByTitle, 

@@ -7,7 +7,7 @@
 <div class="calendrier-modification">
 <div class="row">
     <div class="col-sm">
-        <form class='event' @submit="sendData()">
+        <form class='event' @submit.prevent="sendData()">
         <h3 class="title"> Ajout d'une activité <i class="fas fa-solid fa-calendar-plus"></i></h3>
         <div class="row">
             <div class="col-5">
@@ -70,7 +70,7 @@
             <p class="advice"> *Chercher par classe et date pour trouver l'activité à supprimer </p>
             <div class="row">
                 <div class="col-sm">
-                    <button type="button" v-on:click="getEventByClassAndDate()" class="btn btn-success" >Rechercher</button>
+                    <button type="button" v-on:click="getEventByClassAndDate()" :disabled="validInputs" class="btn btn-success" >Rechercher</button>
                 </div>
             </div>
             <div class="row">
@@ -91,6 +91,7 @@
             <div class="table-container">
             <div>
                 <GestionCalendrier v-for="event in this.events[0]" :key="event" v-bind:eventData="event"></GestionCalendrier>
+
             </div>
             </div>
         </div>
@@ -148,6 +149,15 @@ export default{
             else{
                 return true;
             }
+        },
+
+        validInputs : function(){
+            if(this.dateDelete != ""   && this.classeDelete != ""){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
     },
 
@@ -181,11 +191,12 @@ export default{
                 StopTime: this.stop,
             })
             .then(function(){
-                //pass
             })
             .catch(error =>{
                 console.log(error);
             })
+
+            this.$router.push('/calendrier');
         },
         async getEventByClassAndDate(){
             
