@@ -25,9 +25,11 @@
                 Professeur associé / Adresse mail :
                 </div>
             </div>
+            <div class="col-sm">
+
+            </div>
         </div>
         <GestionClasses v-for="item in this.items[0]" :key="item" v-bind:classeData="item"></GestionClasses>
-        <button type="button" class="btn btn-success btn-lg"><i class="fas fa-solid fa-check"></i></button>
     </div>
 </section>
 </template>

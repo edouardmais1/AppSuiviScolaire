@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
-context('Inscription Page', () => {
-    beforeEach(() => {
-        cy.viewport(1920, 1080)
-        cy.visit('http://localhost:8080/')
-        cy.wait(1000)
-    })
+    context('Inscription Page', () => {
+        beforeEach(() => {
+            cy.viewport(1920, 1080)
+            cy.visit('http://localhost:8080/')
+            cy.wait(1000)
+        })
     it('Inscription page', () => {
         cy.get('.navbar-toggler').click({force: true})
         cy.contains('Inscription').click({force: true})
@@ -40,8 +40,5 @@ context('Inscription Page', () => {
         cy.wait(1000)
         cy.get('#btn-connexion').click({force: true})
         cy.wait(1000)
-        
-
-
     });
 });
