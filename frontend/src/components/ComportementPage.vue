@@ -27,8 +27,8 @@
                                 Signature
                             </div>
                     </div>
-                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:eleveId="item.EleveID" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items" :key="item"/>
-                    <button class="button-send" v-on:click="updateSignature()"  name="button">Signer tout</button>
+                    <CompComponent v-bind:mail="item.Mail" v-bind:date="this.conversionDate(item.Date)" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:eleveId="item.EleveID" v-bind:contenu="item.Contenu" v-bind:signature="item.Signature"  v-for="item in items[0]" :key="item"/>
+                    <button class="button-send" v-on:click="updateComportementByMailParent()"  name="button">Signer tout</button>
                 </div>
             </div>
         </div>
@@ -63,47 +63,25 @@ export default{
 
 
     created(){
-        this.getEleveIdByMailParent();
+        this.getComportementByMailParent();
     },
 
     methods : {
-        async getEleveIdByMailParent(){
-            let destinationUrl = url.concatUrl('/eleveid/' + localStorage.getItem('mail'));
-            await axios.get(destinationUrl)
-            .then(response =>{
-                this.eleve_id = (response.data[0]);
-                this.test(this.eleve_id.length);
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+        async getComportementByMailParent(){
+          let mailParent = localStorage.getItem('mail');
+          let destinationUrl = url.concatUrl("/comportement/parent/" + mailParent);
+          await axios.get(destinationUrl)
+          .then(response =>{
+              this.items = response.data;
+          })
+          .catch(error =>{
+              console.log(error)
+          })
         },
-        test(tab){
-            for(let i=0; i<tab; i++){
-                let finalId = this.eleve_id[i].EleveID;
-                this.getComportement(finalId);
-            }
-        },
-        async getComportement(id){
-            try{
-                let destinationUrl = url.concatUrl('/comportement/' + id);
-                await axios.get(destinationUrl)
-                .then(response =>{
-                    this.items.push(response.data[0]);
-                    //filter le tableau en fonction des événements récents et nombres de commentaires
-                    this.items.reverse().slice(0,20);
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
-            }
-            catch(error){
-                console.log(error);
-            }
-
-        },
-         async updateSignature(){
-            let destinationUrl = url.concatUrl('/updateSignature' + this.eleve_id);
+        
+         async updateComportementByMailParent(){
+            let mailParent = localStorage.getItem('mail');
+            let destinationUrl = url.concatUrl('/updateSignature/' +mailParent);
             await axios.post(destinationUrl)
             .then(function(){
                 location.reload();

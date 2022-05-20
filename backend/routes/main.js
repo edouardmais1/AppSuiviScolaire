@@ -27,6 +27,7 @@ const userDataValidationSchema = require('../validations/sendDataUser');
 const elevesDataValidationSchema = require('../validations/sendDataEleves')
 const actuDataValidationSchema = require('../validations/sendDataActualite');
 const calendarDataValidationSchema = require('../validations/sendDataCalendar');
+const comportementDataValidationSchema = require('../validations/sendDataComportement');
 const { ChainCondition } = require('express-validator/src/context-items');
 
 //API REST
@@ -81,20 +82,34 @@ router.get("/role/:mail",data.getRoleByMail);
 router.get("/authentification/:mail/:jeton", data.getAuthentification);
 
 //obtenir comportement par mail du prof
-router.get("/comportement/:mail", data.getComportementByMailProf);
+router.get("/comportement/prof/:mail", data.getComportementByMailProf);
+
+//obtenir comportement par mail du parent
+router.get('/comportement/parent/:mail',data.getComportementByMailParent);
+
+//obtenir la classe par un prof
+router.get("/classeByMailProf/:mail", data.getClasseByMailProf);
+
+
+//obtenir les eleves correspondant à ces classes 
+router.get("/elevesByClasse/:classe", data.getEleveByClasse);
+
 
 //obtenir comportement par mail du prof
 router.get("/eleveid/:mail", data.getEleveIdByMailParent);
 //POST METHODS
 
 //route permettant de rajouter une actualité + middleware
-router.post('/actualite',actuDataValidationSchema, checkToken.authenticateToken ,data.insertActualite)
+router.post('/actualite',actuDataValidationSchema, checkToken.authenticateToken ,data.insertActualite);
 
 //route permettant de rajouter un événement en DB + middleware
 router.post('/calendrier',calendarDataValidationSchema,checkToken.authenticateToken,data.insertDataCalendar);
 
 //route permettant de rajouter un élève dans la base de donnée + middleware
 router.post('/eleves',elevesDataValidationSchema, checkToken.authenticateToken ,data.insertStudent);
+
+//route permettant de rajouter un note dans la base de donnée + middleware
+router.post('/comportement',comportementDataValidationSchema, checkToken.authenticateToken ,data.insertComportement);
 
 //route vers l'inscription 
 router.post('/inscription',userDataValidationSchema,data.insertUser);
@@ -112,7 +127,7 @@ router.delete('/deleteComportement/:id',checkToken.authenticateToken , dataDelet
 //UPDATE METHODS
 router.post('/updateEleve/:id', elevesDataValidationSchema, checkToken.authenticateToken ,dataUpdate.updateEleveById);
 router.post('/updateClasseByMailProf', dataUpdate.updateClasseMailProf);
-router.post('/updateSignature/:id', dataUpdate.updateComportementById);
+router.post('/updateSignature/:mail', dataUpdate.updateComportementByMailParent);
 
 
 module.exports = router;

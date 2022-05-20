@@ -1,7 +1,7 @@
 <template> 
     <div class="row bodys">
         <div class="col-sm body">
-            {{name}}
+            {{prenom}} {{nom}}
         </div>
         <div class="col-sm body">
             {{mail}}
@@ -26,8 +26,6 @@
 
 
 <script>
-import axios from 'axios';
-const url = require("../../url/url.js");
 export default{
     name : "CompComponent",
     data(){
@@ -36,26 +34,13 @@ export default{
         }
     },
     props: {
+        nom: String,
+        prenom : String,
+        eleveId : Number,
         mail : String,
         contenu: String,
         date: String,
         signature: Number,
-    },
-    created(){
-        //this.getNameByEleveId();
-    },
-
-    methods:{
-        async getNameByEleveId(){
-            let destinationUrl = url.concatUrl('/eleves/' + this.eleveId);
-            await axios.get(destinationUrl)
-            .then(response =>{
-                this.name = response.data[0].Prenom;
-            })
-            .catch(error =>{
-                console.log(error)
-            })
-        },
     }
 }
 

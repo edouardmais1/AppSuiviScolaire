@@ -81,7 +81,8 @@ const url = require('../../url/url.js');
             this.revele=!this.revele;
         },
         async getComportementByMailProf(){
-                let destinationUrl = url.concatUrl('/comportement/' + localStorage.getItem('mail'));
+                let mailProf =  localStorage.getItem('mail');
+                let destinationUrl = url.concatUrl('/comportement/prof/' + mailProf);
 
                 await axios.get(destinationUrl)
                 .then(response =>{
@@ -127,5 +128,9 @@ const url = require('../../url/url.js');
 }
 .center{
     margin: auto;
+}
+
+.postion-center{
+    postion:block;
 }
 </style>

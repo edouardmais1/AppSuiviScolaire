@@ -381,12 +381,9 @@ const getComportementById = (request, response) =>{
     })
 }
 
-
-
-
-const getEventByClassAndDate = (request,response)=>{
-    let sql = 'CALL getEventByClassAndDate (?,?)'
-    db.query(sql, [request.params.class, request.params.date],(err,results)=>{
+const getComportementByMailProf = (request,response)=>{
+    let sql = 'CALL getComportementByMailProf (?)'
+    db.query(sql, request.params.mail,(err,results)=>{
         if(err){
             throw err;
         }
@@ -396,9 +393,22 @@ const getEventByClassAndDate = (request,response)=>{
     })
 };
 
-const getComportementByMailProf = (request,response)=>{
-    let sql = 'CALL getComportementByMailProf (?)'
+const getComportementByMailParent = (request,response)=>{
+    let sql = 'CALL getComportementByMailParent (?)'
     db.query(sql, request.params.mail,(err,results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            response.status(200).json(results);
+        }
+    })
+};
+
+
+const getEventByClassAndDate = (request,response)=>{
+    let sql = 'CALL getEventByClassAndDate (?,?)'
+    db.query(sql, [request.params.class, request.params.date],(err,results)=>{
         if(err){
             throw err;
         }
@@ -422,8 +432,8 @@ const getClasseByMailProf = (request,response)=>{
 };
 
 const getEleveByClasse = (request,response)=>{
-    let sql = 'CALL getEleveByClasse (?)'
-    db.query(sql, request.params.mail,(err,results)=>{
+    let sql = 'CALL getElevesByClasse (?)'
+    db.query(sql, request.params.classe,(err,results)=>{
         if(err){
             throw err;
         }
@@ -444,6 +454,54 @@ const getEleveIdByMailParent = (request,response)=>{
         }
     })
 };
+
+const dataComportement = (data,result)=>{
+
+    //INSERER UN UTILISATEUR DANS LA TABLE UTILISATEURS
+    db.query("INSERT INTO tb_Comportements SET ?", [data], (err,results)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else{
+            result(null,results);
+            console.log("Request send with success");
+        }
+    });
+};
+
+const insertComportement = (request,response,next)=>{
+    const data = request.body;
+
+
+    try{
+        const errors = validationResult(request);
+
+        if(!errors.isEmpty()){
+            return response.status(400).json({
+                success: false,
+                errors: errors.array(),
+            });
+        }
+        
+        dataComportement(data,(err,results)=>{
+            if(err){
+                response.send(err);
+            }
+            else{
+                response.status(200).json(results);
+            }
+        });
+
+    }
+
+    catch(error){
+        console.log(error);
+        next(error);
+    }
+
+}
+
 //INSERT AN STUDENT 
 const dataStudent = (data,result)=>{
 
@@ -702,5 +760,9 @@ module.exports = {
     getEleveByMail,
     getComportementByMailProf,
     getEleveIdByMailParent,
+    insertComportement,
+    getEleveByClasse,
+    getClasseByMailProf,
+    getComportementByMailParent
 }
 
