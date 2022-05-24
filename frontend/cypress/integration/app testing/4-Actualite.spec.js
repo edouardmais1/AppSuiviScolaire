@@ -5,6 +5,11 @@ context('Actualité Page', () => {
         cy.viewport(1920, 1080)
         cy.visit('http://localhost:8080/')
         cy.wait(1000)
+        cy.get('.HomePageContainer > .row > .col-sm > .form-title')
+        cy.contains('Test1').should('not.exist')
+        cy.contains('15/05/2022').should('not.exist')
+        cy.contains('Je suis un test Cypress').should('not.exist')
+        cy.wait(2000)
     })
     
     it('Up down home page', () => {
@@ -20,13 +25,14 @@ context('Actualité Page', () => {
         cy.contains('Connexion').click({force: true})
         cy.location('pathname').should('eq', '/connexion')
         cy.wait(1000)
-        cy.get('#email').type('secretariat.test@gmail.com')
+        cy.get('#email').type('MailSecretariat1@gmail.com')
         cy.wait(1000)
         cy.get('#password').type('testtest')
         cy.wait(1000)
         cy.get('#btn-connexion').click({force: true})
         cy.wait(1000)
         cy.reload(true)
+        cy.wait(1000)
         
         //Ajout d'ue actualité
         
@@ -72,7 +78,10 @@ context('Actualité Page', () => {
         //Check résultat
 
         cy.visit('http://localhost:8080/')
+        cy.get('.HomePageContainer > .row > .col-sm > .form-title')
         cy.contains('Test1').should('exist')
+        cy.contains('15/05/2022').should('exist')
+        cy.contains('Je suis un test Cypress').should('exist')
         cy.wait(2000)
 
         //Déconnexion
@@ -90,13 +99,14 @@ context('Actualité Page', () => {
         cy.contains('Connexion').click({force: true})
         cy.location('pathname').should('eq', '/connexion')
         cy.wait(1000)
-        cy.get('#email').type('secretariat.test@gmail.com')
+        cy.get('#email').type('MailSecretariat1@gmail.com')
         cy.wait(1000)
         cy.get('#password').type('testtest')
         cy.wait(1000)
         cy.get('#btn-connexion').click({force: true})
         cy.wait(1000)
         cy.reload(true)
+        cy.wait(1000)
 
         //Supression directement
 
@@ -137,6 +147,7 @@ context('Actualité Page', () => {
 
         cy.visit('http://localhost:8080/')
         cy.wait(1000)
+        cy.get('.HomePageContainer > .row > .col-sm > .form-title')
         cy.contains('Test1').should('not.exist')
         cy.wait(1000)
     });

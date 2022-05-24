@@ -358,7 +358,7 @@ const getAllComportement = (request,response)=>{
 
 const getComportement = (id,result) =>{
 
-    db.query("SELECT Mail, Contenu, Date, Signature, EleveID FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
+    db.query("SELECT ComportementID, Mail, Contenu, Date, Signature, EleveID FROM tb_Comportements WHERE EleveID = ?", [id], (err,results)=>{
         if(err){
             console.log(err);
             result(err,null);

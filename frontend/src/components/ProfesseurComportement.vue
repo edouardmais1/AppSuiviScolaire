@@ -5,7 +5,7 @@
     <section class="SecretariatPage">
     <div class="position-center">
             <div class="lol">
-                <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-comment"></i>
+                <button type="button" id="add-component" class="btn btn-primary btn-lg" v-on:click="toggleModale"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-comment"></i>
             </button>
         </div>
         <div class='center'>

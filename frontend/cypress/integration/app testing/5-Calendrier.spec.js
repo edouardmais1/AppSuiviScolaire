@@ -6,22 +6,64 @@ context('Calendrier Page', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080)
       cy.visit(' http://localhost:8080/')
+
       cy.get('.navbar-toggler').click({force: true})
       cy.contains('Connexion').click({force: true})
       cy.location('pathname').should('eq', '/connexion')
       cy.wait(1000)
-      cy.get('#email').type('test.prof@gmail.com')
+      cy.get('#email').type('Cypress@gmail.com')
+      cy.wait(1000)
+      cy.get('#password').type('Cypress123')
+      cy.wait(1000)
+      cy.get('#btn-connexion').click({force: true})
+      cy.wait(1000)
+      cy.reload(true)
+      cy.wait(1000)
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Calendrier').click({force: true})
+      cy.location('pathname').should('eq', '/calendrier')
+      cy.wait(1000)
+
+      cy.get('select').select('1A',{force: true})
+      cy.wait(1000)
+      cy.get('.fc-today-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-daygrid-event > .fc-event-title')
+      cy.contains('Je suis un test Cypress').should('not.exist')
+      cy.wait(1000)
+
+      // Déconnexion 
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Profile').click({force: true})
+      cy.location('pathname').should('eq', '/profile')
+      cy.wait(2000)
+      cy.get('#deconnexion').click({force: true})
+      cy.wait(1000)
+
+      
+    });
+
+    it('.click() - click on a DOM element', () => {   
+      
+      //Changement de User
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Connexion').click({force: true})
+      cy.location('pathname').should('eq', '/connexion')
+      cy.wait(1000)
+      cy.get('#email').type('MailProf1@gmail.com')
       cy.wait(1000)
       cy.get('#password').type('testtest')
       cy.wait(1000)
       cy.get('#btn-connexion').click({force: true})
       cy.wait(1000)
       cy.reload(true)
-    });
+      cy.wait(1000)
 
-    it('.click() - click on a DOM element', () => {   
-        
       //Passage en mode professeur
+
       cy.get('.navbar-toggler').click({force: true})
       cy.contains('Calendrier').click({force: true})
       cy.location('pathname').should('eq', '/calendrier')
@@ -34,9 +76,9 @@ context('Calendrier Page', () => {
       cy.wait(1000)
       cy.get('#object1').select('1A',{force: true})
       cy.wait(1000)
-      cy.get('#départ').type('2022-05-16T08:30')
+      cy.get('#départ').type('2022-05-24T08:30')
       cy.wait(1000)
-      cy.get('#fin').type('2022-05-16T09:30')
+      cy.get('#fin').type('2022-05-24T09:30')
       cy.wait(1000)
       cy.get('textarea').type('Je suis un test Cypress')
       cy.wait(1000)
@@ -65,6 +107,7 @@ context('Calendrier Page', () => {
       cy.get('#btn-connexion').click({force: true})
       cy.wait(1000)
       cy.reload(true)
+      cy.wait(1000)
 
       cy.get('.navbar-toggler').click({force: true})
       cy.contains('Calendrier').click({force: true})
@@ -74,6 +117,9 @@ context('Calendrier Page', () => {
       cy.get('select').select('1A',{force: true})
       cy.wait(1000)
       cy.get('.fc-today-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-daygrid-event > .fc-event-title')
+      cy.contains('Je suis un test Cypress').should('exist')
       cy.wait(1000)
       cy.get('.fc-next-button').click({force: true})
       cy.wait(1000)
@@ -87,6 +133,8 @@ context('Calendrier Page', () => {
       cy.wait(1000)
       cy.get('.fc-listWeek-button').click({force: true})
       cy.wait(1000)
+      // cy.contains('Je suis un test Cypress').should('exist')
+      // cy.wait(1000)
 
       //Déconnexion en tant que utilisateur
 
@@ -103,13 +151,14 @@ context('Calendrier Page', () => {
       cy.contains('Connexion').click({force: true})
       cy.location('pathname').should('eq', '/connexion')
       cy.wait(1000)
-      cy.get('#email').type('test.prof@gmail.com')
+      cy.get('#email').type('MailProf1@gmail.com')
       cy.wait(1000)
       cy.get('#password').type('testtest')
       cy.wait(1000)
       cy.get('#btn-connexion').click({force: true})
       cy.wait(1000)
       cy.reload(true)
+      cy.wait(1000)
 
       cy.get('.navbar-toggler').click({force: true})
       cy.contains('Calendrier').click({force: true})
@@ -123,12 +172,63 @@ context('Calendrier Page', () => {
 
       cy.get('#object2').select('1A',{force: true})
       cy.wait(1000)
-      cy.get('#exampleInputPassword1').type('2022-05-16')
+      cy.get('#exampleInputPassword1').type('2022-05-24')
       cy.wait(1000)
       cy.contains('Rechercher').click({force: true})
       cy.wait(1000)
       cy.get('#supprimer').click({ force: true })
       cy.wait(1000) 
+
+      // Déconnexion en tant que professeur 
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Profile').click({force: true})
+      cy.location('pathname').should('eq', '/profile')
+      cy.wait(2000)
+      cy.get('#deconnexion').click({force: true})
+      cy.wait(1000)
+
+      //Check du résultat 
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Connexion').click({force: true})
+      cy.location('pathname').should('eq', '/connexion')
+      cy.wait(1000)
+      cy.get('#email').type('Cypress@gmail.com')
+      cy.wait(1000)
+      cy.get('#password').type('Cypress123')
+      cy.wait(1000)
+      cy.get('#btn-connexion').click({force: true})
+      cy.wait(1000)
+      cy.reload(true)
+      cy.wait(1000)
+
+      cy.get('.navbar-toggler').click({force: true})
+      cy.contains('Calendrier').click({force: true})
+      cy.location('pathname').should('eq', '/calendrier')
+      cy.wait(1000)
+
+      cy.get('select').select('1A',{force: true})
+      cy.wait(1000)
+      cy.get('.fc-today-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-daygrid-event > .fc-event-title')
+      cy.contains('Je suis un test Cypress').should('not.exist')
+      cy.wait(1000)
+      cy.get('.fc-next-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-prev-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-timeGridWeek-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-today-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-timeGridDay-button').click({force: true})
+      cy.wait(1000)
+      cy.get('.fc-listWeek-button').click({force: true})
+      cy.wait(1000)
+      
+      
 
           // cy.request('http://localhost:3000/calendrier/1A/2022-05-13').should(
     //   (response) => {

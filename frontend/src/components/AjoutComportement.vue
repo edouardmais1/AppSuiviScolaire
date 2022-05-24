@@ -10,7 +10,7 @@
           </select>
         </div>
         <div class="mb-3">
-          <button type="button" v-on:click="getElevesByClass()" :disabled="validInputs" class="btn btn-success" >Rechercher</button>
+          <button type="button" id="rechercher" v-on:click="getElevesByClass()" :disabled="validInputs" class="btn btn-success" >Rechercher</button>
         </div>
         <div class="mb-3">
           <h6>Nom de l'élève:</h6>
@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
           <h6>Date:</h6>
-          <input type="date" class="form-control" id="exampleInputPassword1" v-model="date">
+          <input type="date" class="form-control" id="date" v-model="date">
           </div>
         </div>
     <div class="col">
@@ -35,10 +35,10 @@
 
 
   <div class="mb-3">
-     <textarea class="form-control" v-model="contenu" placeholder="Contenu de la note de comportement..." aria-label="With textarea"></textarea>
+     <textarea class="form-control" v-model="contenu" id="contenu" placeholder="Contenu de la note de comportement..." aria-label="With textarea"></textarea>
   </div>
 
-  <button type="submit" class="btn btn-success" :disabled="checkValidatedFields">Ajouter</button>
+  <button type="submit" id="ajouter" class="btn btn-success" :disabled="checkValidatedFields">Ajouter</button>
 </form>
 </template>
 

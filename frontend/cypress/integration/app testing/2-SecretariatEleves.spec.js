@@ -10,13 +10,14 @@ context('Secrétariat élèves Page', () => {
         cy.contains('Connexion').click({force: true})
         cy.location('pathname').should('eq', '/connexion')
         cy.wait(1000)
-        cy.get('#email').type('secretariat.test@gmail.com')
+        cy.get('#email').type('MailSecretariat1@gmail.com')
         cy.wait(1000)
         cy.get('#password').type('testtest')
         cy.wait(1000)
         cy.get('#btn-connexion').click({force: true})
         cy.wait(1000)
         cy.reload(true)
+        cy.wait(1000)
      
     })
 
@@ -46,26 +47,33 @@ context('Secrétariat élèves Page', () => {
         cy.wait(1000)
 
         //Gestion des eleves 
-        // cy.request('http://localhost:3000/eleves').should(
-        //   (response) => {
-        //     expect(response.status).to.eq(200)
-        //     const respBody = response.body[0]
-        //     const place = (respBody['length'])-1
-        //     const id = respBody[place]['EleveID']
-        //     expect(response.body)
-        //     console.log(id)
-        //   })
-            // cy.get('#'+id+"nom").type('TestModifié')
-            // cy.wait(1000)
-            // cy.get('#'+id+'classe').select('2B', {force: true})
-            // cy.wait(1000)
-            // cy.get('#'+id+'A').click({ force: true })
-            // cy.wait(1000)
-            // cy.get('#oui').click({ force: true })
-            // cy.wait(1000)
-            // cy.get('#'+id).click({ force: true })
-            // cy.wait(1000)
-            // cy.get('#oui').click({ force: true })
-            // cy.wait(1000)
+                  
+        cy.request('http://localhost:3000/eleves').should(
+          (response) => {
+            expect(response.status).to.eq(200)
+            const respBody = response.body[0]
+            const place = (respBody['length'])-1
+            const id = respBody[place]['EleveID']
+            expect(response.body)
+            console.log(id)
+
+            cy.wait(1000)
+            cy.get('.listeEleves > .row > .col-sm').get('#'+id+"nom").should('exist')
+            cy.get('.listeEleves > .row > .col-sm').get('#'+id+"mail").should('exist')
+            cy.get('.listeEleves > .row > .col-sm').get('#'+id+"classe").should('exist') 
+            cy.wait(1000)
+          });
+           
+      
+        //     cy.get('#'+id+'classe').select('2B', {force: true})
+        //     cy.wait(1000)
+        //     cy.get('#'+id+'A').click({ force: true })
+        //     cy.wait(1000)
+        //     cy.get('#oui').click({ force: true })
+        //     cy.wait(1000)
+        //     cy.get('#'+id).click({ force: true })
+        //     cy.wait(1000)
+        //     cy.get('#oui').click({ force: true })
+        //     cy.wait(1000)
       });
   });

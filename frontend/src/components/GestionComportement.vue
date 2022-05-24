@@ -15,7 +15,7 @@
             <div v-if="check == 0" class="text-center"> <i class="fas redcolor fa-solid fa-exclamation"></i></div>
         </div>
         <div class="col-sm">
-            <button v-on:click="deleteComportement(id)" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
+            <button v-on:click="deleteComportement(id)" v-bind:id="id" type="button" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
         </div>
     </div>
     
