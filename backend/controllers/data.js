@@ -1,10 +1,11 @@
 'use strict'
 
+const crypto = require('crypto');
+
 const { json } = require("express");
 const { response } = require("../app");
 const {validationResult} = require("express-validator");
 const Cookies = require("js-cookie");
-
 
 
 
@@ -307,9 +308,9 @@ const getDataPasswordByMail = (mail, result) => {
     //RECUPERER UN UTILISATEUR EN FONCTION DE SON MAIL
     db.query("SELECT MotDePasse FROM tb_Utilisateurs WHERE Mail = ?", [mail], (err, results) => {             
         if(err) {
-            console.log(err);
             result(err, null);
         } else {
+
             result(null, results);
         }
     });   
@@ -685,6 +686,12 @@ const dataUser = (data,result)=>{
 
 const insertUser = (request,response,next)=>{
     const data = request.body;
+    
+    //clé de chiffrement
+    const key = require('dotenv').config()["parsed"]["DB_PASSWORD_KEY"];
+
+    //hasher le mot de passe avec le module 'crypto" et algorithme sha256
+    data.MotDePasse = (crypto.createHmac("sha256",key)).update(data.MotDePasse).digest('hex');
 
     try{
         const errors = validationResult(request);
@@ -714,6 +721,19 @@ const insertUser = (request,response,next)=>{
 
 }
 
+const checkPassword = (request, response) =>{
+
+    const data = request.body;
+
+    //clé de chiffrement
+    const key = require('dotenv').config()["parsed"]["DB_PASSWORD_KEY"];
+
+    //hasher le mot de passe avec le module 'crypto" et algorithme sha256
+    data.password = (crypto.createHmac("sha256",key)).update(data.password).digest('hex');    
+
+    response.status(200).send(data);
+
+}
 
 
 
@@ -748,6 +768,7 @@ module.exports = {
     insertComportement,
     getEleveByClasse,
     getClasseByMailProf,
-    getComportementByMailParent
+    getComportementByMailParent,
+    checkPassword
 }
 

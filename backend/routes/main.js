@@ -116,6 +116,9 @@ router.post('/inscription',userDataValidationSchema,data.insertUser);
 //rafraichir le token utilisateur ---> en cours de développement
 router.post('/refreshToken',checkToken.refreshToken);
 
+//route pour vérifier les hash des password
+router.post('/verifyPassword', data.checkPassword);
+
 
 //DELETE METHODS
 router.delete('/deleteEleve/:id', checkToken.authenticateToken , dataDelete.deleteEleveById);

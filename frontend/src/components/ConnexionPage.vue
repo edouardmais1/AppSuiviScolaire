@@ -29,6 +29,7 @@
                 <div class="alertMessage">
                     <p>{{message}}</p>
                 </div>
+        
 
                 <div class="link">
                     <router-link to="inscription" class="inscription-link">Créer un compte</router-link>
@@ -58,6 +59,8 @@ const url = require("../../url/url.js");
                 password_exist: '',
 
                 message: "",
+
+                password_status: "",
             }
         },
 
@@ -109,11 +112,32 @@ const url = require("../../url/url.js");
                 })
             },
 
+            verifyPassword(){
+                const destinationUrl = url.concatUrl("/verifyPassword")
+
+                return new Promise((resolve, reject) =>{
+                    axios.post(destinationUrl, {
+                        hash_password : this.password_exist,
+                        password : this.password
+                    })
+                    .then(response =>{
+                        this.password_status = response.data;
+                        resolve(response);
+                    })
+                    .catch(error =>{
+                        reject(error);
+                    })
+                })
+            },
+
             async SendData(){
                 await this.checkMailDatabase(this.email);
+
                 if(this.mail_exist == "1"){
                     await this.getPasswordByMail(this.email);
-                    if (this.password == this.password_exist){
+                    await this.verifyPassword();
+
+                    if (this.password_status.password == this.password_status.hash_password){
                         this.message = "";
                         this.login();
                     }
