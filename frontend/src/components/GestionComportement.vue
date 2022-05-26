@@ -35,9 +35,9 @@
         },
 
         props: {
-            eleveId: String,
+            eleveId: Number,
             contenu: String,
-            date: Date,
+            date: String,
             signature: Number,
             id: Number,
         },

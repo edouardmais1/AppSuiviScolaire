@@ -35,19 +35,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//utiliser les sessions
-app.use(session({
-    secret : "secret-key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 60000,
-        httpOnly: true,
-    },
-}))
-
-app.use(cookieParser());
-
 
 //middleware intéraction serveur frontend && backend
 app.use((req,res,next)=>{
@@ -59,11 +46,8 @@ app.use(express.urlencoded({extended: true}));
 
 //utiliser le router NodeJS
 app.use('/',Route);
+app.listen(3000, () => {console.log('Server running on port 3000')});
 
-
-
-
-app.listen(process.env.PORT || 3000, function(){console.log("app running")});
 
 
 module.exports = app;

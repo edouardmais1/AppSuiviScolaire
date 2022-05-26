@@ -109,20 +109,6 @@ const getEleveById = (req, res) => {
 }
 
 
-//GET ALL USERS
-const getAllUsers = (request,response)=>{
-
-    //RECUPERER LES UTILISATEURS DE L'APPLICATION
-    db.query("SELECT * FROM tb_Utilisateurs",(err,results)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            response.status(200).json(results);
-        }
-    });
-};
-
 
 //GET Eleve BY MAIL
 const getDataEleveByMail = (mail, result) => {
@@ -736,7 +722,6 @@ const insertUser = (request,response,next)=>{
 
 module.exports = {
     getAllEleves,
-    getAllUsers,
     getCalendarByClasse,
     getActualite,
     getEleveById,

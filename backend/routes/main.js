@@ -34,7 +34,6 @@ const { ChainCondition } = require('express-validator/src/context-items');
 //GET METHODS
 
 //récupération des informations d'un user
-router.get('/users',data.getAllUsers);
 router.get('/users/:mail',data.getUserByMail);
 
 //récupération des infos d'un elève
@@ -95,7 +94,7 @@ router.get("/classeByMailProf/:mail", data.getClasseByMailProf);
 router.get("/elevesByClasse/:classe", data.getEleveByClasse);
 
 
-//obtenir comportement par mail du prof
+//obtenir comportement par mail du prof (SIMON)
 router.get("/eleveid/:mail", data.getEleveIdByMailParent);
 //POST METHODS
 
