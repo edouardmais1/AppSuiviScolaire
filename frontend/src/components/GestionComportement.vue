@@ -2,7 +2,7 @@
     <div class="listeEleves">
     <div class="row">
     <div class="col-sm text-center">
-            <p> {{eleveId}} </p>
+            <p> {{nom}} {{prenom}} </p>
         </div>
         <div class="col-sm text-center">
             <p> {{contenu}} </p>
@@ -40,6 +40,8 @@
             date: String,
             signature: Number,
             id: Number,
+            nom: String,
+            prenom: String
         },
 
 

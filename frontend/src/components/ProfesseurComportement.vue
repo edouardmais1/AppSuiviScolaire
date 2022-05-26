@@ -45,7 +45,7 @@
                 <div class="col-sm text-center">
                 </div>
             </div>
-            <GestionComportement v-for="item in items[0]" :key="item" v-bind:eleveId="item.EleveID" v-bind:date="item.Date" v-bind:signature="item.Signature" v-bind:contenu="item.Contenu" v-bind:id="item.ComportementID"></GestionComportement>
+            <GestionComportement v-for="item in items[0]" :key="item" v-bind:eleveId="item.EleveID" v-bind:nom="item.Nom" v-bind:prenom="item.Prenom" v-bind:date="item.Date" v-bind:signature="item.Signature" v-bind:contenu="item.Contenu" v-bind:id="item.ComportementID"></GestionComportement>
     </div>
     </section>
 </template>

@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "unit": "jest",
+    "unit:coverage": "jest --coverage"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -20,6 +22,7 @@
     "@fullcalendar/list": "^5.10.1",
     "@fullcalendar/timegrid": "^5.10.1",
     "@fullcalendar/vue3": "^5.10.1",
+    "@vue/compiler-sfc": "^3.2.36",
     "aos": "^2.3.4",
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
@@ -31,6 +34,7 @@
     "dotenv": "^16.0.0",
     "es6-promise": "^4.2.8",
     "express-validator": "^6.14.0",
+    "jest": "^28.1.0",
     "js-cookies": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "vue": "^3.2.13",
@@ -48,10 +52,14 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "@vue/test-utils": "^2.0.0-rc.21",
+    "@vue/test-utils": "^2.0.0",
+    "@vue/vue3-jest": "^28.0.0",
+    "babel-jest": "^28.1.0",
     "cypress": "^9.6.1",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "jest-environment-jsdom": "^28.1.0",
+    "vue-jest": "^3.0.7"
   },
   "eslintConfig": {
     "root": true,
@@ -72,5 +80,18 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "testEnvironment": "jsdom",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$",
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.vue$": "@vue/vue3-jest"
+    }
+  }
 }

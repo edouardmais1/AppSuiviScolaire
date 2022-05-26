@@ -98,7 +98,7 @@ export default{
             await axios.get(destinationUrl)
             .then(response =>{
                 this.items = response.data;
-                console.log(this.items[0]);
+                //console.log(this.items[0]);
             })
             .catch(error =>{
                 console.log(error)
