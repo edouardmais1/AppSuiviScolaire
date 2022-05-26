@@ -2,7 +2,7 @@
   <div id="nav mh-50">  
     <footer class="navbar fixed-bottom navbar-expand-xl my-primary " style="background-color: #6dabe4;">
       <div class="container-fluid">
-        <span class="footer-title">Projet Ephec</span>
+        <span class="footer-title">Projet Ephec Réalisé Par Maisin Edouard, Momin Maxime et Kinet Simon</span>
       </div>
     </footer>
   </div>
